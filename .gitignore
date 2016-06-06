@@ -4,3 +4,6 @@
 .idea/
 AngryNerds.iml
 target/
+.classpath
+.project
+.settings
