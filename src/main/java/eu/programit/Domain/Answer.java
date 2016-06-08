@@ -5,10 +5,13 @@ package eu.programit.Domain;
  */
 public class Answer {
 	
-	String answer;
-	boolean correct;
-	String explanation;
+	private String answer;
+	private boolean correct;
+	private String explanation;
 	
+	public void setCorrect(boolean correct) {
+		this.correct = correct;
+	}
 	public String getAnswer() {
 		return answer;
 	}

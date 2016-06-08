@@ -2,8 +2,8 @@ package eu.programit.Domain;
 
 public class SourceCode {
 	
-	String code;
-	public boolean hasCode;
+	private String code;
+	private boolean hasCode;
 	
 	public String getCode() {
 		return code;

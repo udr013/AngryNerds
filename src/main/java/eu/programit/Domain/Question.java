@@ -11,17 +11,23 @@ enum Difficulty {HARD, EASY, MEDIUM}
 //@Entity
 public class Question {
     
-    String question;
-    String internetLink;
-    SourceCode code;
-    Answer answers;
-    boolean isMarked;
-    Status status;
-    Difficulty difficulty;
-    public int questionID;
-    public String feedback;
-    public boolean hasFeedback;
+    private String question;
+    private String internetLink;
+    private SourceCode code;
+    private Answer answers;
+    private boolean isMarked;
+    private Status status;
+    private Difficulty difficulty;
+    private int questionID;
+    private String feedback;
+    private boolean hasFeedback;
     
+	public boolean isHasFeedback() {
+		return hasFeedback;
+	}
+	public void setHasFeedback(boolean hasFeedback) {
+		this.hasFeedback = hasFeedback;
+	}
 	public String getQuestion() {
 		return question;
 	}

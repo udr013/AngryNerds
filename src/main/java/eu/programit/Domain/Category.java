@@ -2,10 +2,22 @@ package eu.programit.Domain;
 
 public class Category {
 	
-	public String name;
-	public String chapter;
-	public Question questions;
+	private String name;
+	private String chapter;
+	private Question questions;
 	
+	public String getChapter() {
+		return chapter;
+	}
+	public void setChapter(String chapter) {
+		this.chapter = chapter;
+	}
+	public Question getQuestions() {
+		return questions;
+	}
+	public void setQuestions(Question questions) {
+		this.questions = questions;
+	}
 	public String getName() {
 		return name;
 	}
