@@ -1,4 +1,4 @@
-package eu.programit.Domain;
+package eu.programit.domain;
 
 public class SourceCode {
 	

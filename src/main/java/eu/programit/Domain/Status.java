@@ -1,3 +1,3 @@
-package eu.programit.Domain;
+package eu.programit.domain;
 
 public enum Status {SUBMITTED, APPROVED}

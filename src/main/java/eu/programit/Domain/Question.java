@@ -1,16 +1,19 @@
-package eu.programit.Domain;
+package eu.programit.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by udr013 on 1-6-2016.
  */
 
 @Entity
-public class Question {
+public class Question implements Serializable {
+
+	private static final long serialVersionUID = 5801378338363587926L;
 
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,8 +1,8 @@
-package eu.programit.Controller;
+package eu.programit.controller;
 
 
-import eu.programit.Domain.*;
-import eu.programit.QuestionRepository;
+import eu.programit.domain.*;
+import eu.programit.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
