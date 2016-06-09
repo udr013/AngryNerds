@@ -9,10 +9,6 @@ import javax.persistence.Id;
  * Created by udr013 on 1-6-2016.
  */
 
-enum Status {SUBMITTED, APPROVED}
-
-enum Difficulty {HARD, EASY, MEDIUM}
-
 @Entity
 public class Question {
 

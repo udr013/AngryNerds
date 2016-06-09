@@ -1,20 +1,13 @@
 package eu.programit.Controller;
 
 
-import eu.programit.Domain.Question;
-import eu.programit.Domain.SourceCode;
+import eu.programit.Domain.*;
 import eu.programit.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import static eu.programit.Domain.Difficulty.EASY;
-
-/**
- * Created by udr013 on 1-6-2016.
- */
 
 @Controller
 public class WebController {
@@ -29,7 +22,7 @@ public class WebController {
         Question q = new Question();
         q.setQuestionID(12);
         q.setQuestion("Would the following code compile?");
-        q.setDifficulty(EASY);
+        q.setDifficulty(Difficulty.EASY);
         SourceCode code = new SourceCode();
         code.setCode("<pre>\n" +
                 "<a name=\"l1\"><span class=\"ln\">1    </span></a><span class=\"s0\">package </span><span class=\"s1\">eu.programit.Domain</span><span class=\"s0\">;</span><span class=\"s1\"> \n" +
