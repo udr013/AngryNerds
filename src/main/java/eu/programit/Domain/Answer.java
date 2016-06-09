@@ -21,9 +21,6 @@ public class Answer {
 	public boolean isCorrect() {
 		return correct;
 	}
-	/*public void setCorrect(boolean correct) {
-		this.correct = correct;
-	}*/
 	String getExplanation() {
 		return explanation;
 	}

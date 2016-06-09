@@ -1,5 +1,10 @@
 package eu.programit.Domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Created by udr013 on 1-6-2016.
  */
@@ -8,9 +13,12 @@ enum Status {SUBMITTED, APPROVED}
 
 enum Difficulty {HARD, EASY, MEDIUM}
 
-//@Entity
+@Entity
 public class Question {
-    
+
+    @Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int questionID;
     private String question;
     private String internetLink;
     private SourceCode code;
@@ -18,10 +26,13 @@ public class Question {
     private boolean isMarked;
     private Status status;
     private Difficulty difficulty;
-    private int questionID;
     private String feedback;
     private boolean hasFeedback;
-    
+
+	public void setQuestionID(int questionID) {
+		this.questionID = questionID;
+	}
+
 	public boolean isHasFeedback() {
 		return hasFeedback;
 	}
@@ -46,9 +57,9 @@ public class Question {
 	public void addCode(SourceCode code) {
 		this.code = code;
 	}
-	public Answer showAnswers() {
-		return answers;
-	}
+//	public Answer showAnswers() {
+//		return answers;
+//	}
 	public boolean getMarked() {
 		return isMarked;
 	}
