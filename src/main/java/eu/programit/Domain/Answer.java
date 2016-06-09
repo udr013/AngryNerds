@@ -1,8 +1,6 @@
 package eu.programit.Domain;
 
-import javax.persistence.Entity;
-
-@Entity
+//@Entity
 public class Answer {
 	
 	private String answer;

@@ -56,7 +56,7 @@ public class WebController {
                 "<a name=\"l29\"><span class=\"ln\">29   </span></a>    } \n" +
                 "<a name=\"l30\"><span class=\"ln\">30   </span></a>} \n" +
                 "<a name=\"l31\"><span class=\"ln\">31   </span></a></span></pre>\n");
-        q.addCode(code);
+        //q.addCode(code);
 
         return "question.html";
     }

@@ -17,8 +17,8 @@ public class Question {
 	private int questionID;
     private String question;
     private String internetLink;
-    private SourceCode code;
-    private Answer answers;
+    //private SourceCode code;
+    //private Answer answers;
     private boolean isMarked;
     private Status status;
     private Difficulty difficulty;
@@ -47,12 +47,12 @@ public class Question {
 	public void setInternetLink(String internetLink) {
 		this.internetLink = internetLink;
 	}
-	public SourceCode removeCode() {
-		return code;
-	}
-	public void addCode(SourceCode code) {
-		this.code = code;
-	}
+//	public SourceCode removeCode() {
+//		return code;
+//	}
+//	public void addCode(SourceCode code) {
+//		this.code = code;
+//	}
 //	public Answer showAnswers() {
 //		return answers;
 //	}
