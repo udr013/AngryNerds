@@ -1,12 +1,27 @@
 package eu.programit.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Answer {
+public class Answer implements Serializable {
+
+	private static final Logger log = LoggerFactory.getLogger(Answer.class);
+
+	@ManyToOne
+	@JoinColumn(name = "questionID", insertable = false, updatable = false)
+	private Question question;
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

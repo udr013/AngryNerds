@@ -13,7 +13,6 @@ import java.io.Serializable;
 @Entity
 public class Question implements Serializable {
 
-	private static final long serialVersionUID = 5801378338363587926L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
