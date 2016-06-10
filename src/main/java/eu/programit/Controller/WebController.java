@@ -1,11 +1,12 @@
 package eu.programit.controller;
 
 
-import eu.programit.domain.*;
+import eu.programit.domain.Difficulty;
+import eu.programit.domain.Question;
 import eu.programit.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,13 +19,12 @@ public class WebController {
     QuestionRepository questionRepository;
 
     @RequestMapping(value = "/loadExam", method = RequestMethod.GET)
-    public String Start(@ModelAttribute("examType") String examType) {
+    public String Start(Model model) {
         Question q = new Question();
         q.setQuestionID(12);
         q.setQuestion("Would the following code compile?");
         q.setDifficulty(Difficulty.EASY);
-        SourceCode code = new SourceCode();
-        code.setCode("<pre>\n" +
+        q.setCode("<pre>\n" +
                 "<a name=\"l1\"><span class=\"ln\">1    </span></a><span class=\"s0\">package </span><span class=\"s1\">eu.programit.Domain</span><span class=\"s0\">;</span><span class=\"s1\"> \n" +
                 "<a name=\"l2\"><span class=\"ln\">2    </span></a> \n" +
                 "<a name=\"l3\"><span class=\"ln\">3    </span></a></span><span class=\"s2\">/** \n" +
@@ -56,9 +56,8 @@ public class WebController {
                 "<a name=\"l29\"><span class=\"ln\">29   </span></a>    } \n" +
                 "<a name=\"l30\"><span class=\"ln\">30   </span></a>} \n" +
                 "<a name=\"l31\"><span class=\"ln\">31   </span></a></span></pre>\n");
-        //q.addCode(code);
-
-        return "question.html";
+        model.addAttribute("question", q);
+        return "question";
     }
 
 
