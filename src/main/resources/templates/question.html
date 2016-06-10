@@ -6,5 +6,13 @@
 <body>
 <p th:text="${question.question}"></p>
 <pre th:text="${question.code}"/>
+<ul>
+    <li th:each="answer:${answers}">
+<input type="checkbox"  th:text="${answer.answer}"/>
+    </li>
+    <li>
+    <button type="submit" value="submit">submit</button>
+    </li>
+</ul>
 </body>
 </html>
