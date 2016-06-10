@@ -6,13 +6,15 @@
 <body>
 <p th:text="${question.question}"></p>
 <pre th:text="${question.code}"/>
-<ul>
+<form  method="post" action="/registerQuestion">
+<ul >
     <li th:each="answer:${answers}">
 <input type="checkbox"  th:text="${answer.answer}"/>
     </li>
     <li>
-    <button type="submit" value="submit">submit</button>
+    <button type="submit" value="registerQuestion">submit</button>
     </li>
 </ul>
+</form>
 </body>
 </html>
