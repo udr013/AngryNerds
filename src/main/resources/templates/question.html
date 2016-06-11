@@ -9,7 +9,7 @@
 <form  method="post" action="/registerQuestion">
 <ul >
     <li th:each="answer:${answers}">
-<input type="checkbox"  th:text="${answer.answer}"/>
+<input type="checkbox" th:text="${answer.answer}"/>
     </li>
     <li>
     <button type="submit" value="registerQuestion">submit</button>

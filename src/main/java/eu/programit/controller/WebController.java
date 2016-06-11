@@ -8,6 +8,7 @@ import eu.programit.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,7 +24,7 @@ public class WebController {
     QuestionRepository questionRepository;
 
     @RequestMapping(value = "/loadExam", method = RequestMethod.GET)
-    public String Start(Model model) {
+    public String start(Model model) {
         Question q = new Question();
         q.setQuestionID(12);
         q.setQuestion("Would the following code compile?");
@@ -71,8 +72,8 @@ public class WebController {
         return "question";
     }
 
-    @RequestMapping("/registerQuestion")
-    String saveQuestion(Model model){
+    @RequestMapping(value = "/registerQuestion", method = RequestMethod.POST)
+    String saveQuestion(@ModelAttribute("record") Answer answer, Model model){
         Question q = new Question();
         q.setQuestionID(12);
         q.setQuestion("Would the following code compile?");
