@@ -31,6 +31,7 @@ public class Answer implements Serializable {
 	private boolean correct;
 	private String explanation;
 
+
 	public int getAnswerID() {
 		return answerID;
 	}
