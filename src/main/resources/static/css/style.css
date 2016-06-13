@@ -1,0 +1,22 @@
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: left;
+}
+
+h3 {
+    text-align: right;
+}
+
+th {
+	background-color:blue;
+	color:white;
+	font-weight: bold;
+  }
+  
+td.lastname  {
+	font-style:italic;
+	color:grey;
+}
