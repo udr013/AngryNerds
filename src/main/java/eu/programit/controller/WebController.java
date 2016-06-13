@@ -53,10 +53,10 @@ public class WebController {
 //		Category category = new Category();
 //		category.setChapter(chapter);
 //		category.setName(chapname);
-		this.QuestionService.save(question);
-
-		this.personService.save(person);
-		this.personService.save2(category, person);
+		this.questionService.save(question);
+//
+//		this.personService.save(person);
+//		this.personService.save2(category, person);
 		return "list";
 
 	}
