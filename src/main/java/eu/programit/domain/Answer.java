@@ -8,28 +8,27 @@ import java.io.Serializable;
 
 @Entity
 public class Answer implements Serializable {
+	
+	private static final long serialVersionUID = -5754502589407713275L;
 
 	private static final Logger log = LoggerFactory.getLogger(Answer.class);
 
-	@ManyToOne
-	@JoinColumn(name = "questionID", insertable = false, updatable = false)
-	private Question question;
-
-	public Question getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(Question question) {
-		this.question = question;
-	}
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int AnswerID;
+	@Column(name = "answer", columnDefinition = "LONGVARBINARY")
 	private String answer;
 	private boolean correct;
+	@Column(name = "explanation", columnDefinition = "LONGVARBINARY")
 	private String explanation;
 	
+	public int getAnswerID() {
+		return AnswerID;
+	}
+	public void setAnswerID(int answerID) {
+		AnswerID = answerID;
+	}
 	public void setCorrect(boolean correct) {
 		this.correct = correct;
 	}
@@ -48,4 +47,10 @@ public class Answer implements Serializable {
 	public void setExplanation(String explanation) {
 		this.explanation = explanation;
 	}
+	@Override
+	public String toString() {
+		return "Answer [AnswerID=" + AnswerID + ", answer=" + answer + ", correct=" + correct + ", explanation="
+				+ explanation + "]";
+	}
+	
 }

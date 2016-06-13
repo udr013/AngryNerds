@@ -1,8 +1,24 @@
 package eu.programit.domain;
 
-//@Entity
-public class Category {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Entity
+public class Category implements Serializable{	
 	
+	private static final long serialVersionUID = 2138006949250844149L;
+
+	private static final Logger log = LoggerFactory.getLogger(Category.class);
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private String name;
 	private String chapter;
 	private Question questions;
@@ -25,7 +41,8 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-
+	@Override
+	public String toString() {
+		return "Category [name=" + name + ", chapter=" + chapter + ", questions=" + questions + "]";
+	}
 }
