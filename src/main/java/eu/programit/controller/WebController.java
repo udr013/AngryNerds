@@ -8,9 +8,9 @@ import eu.programit.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,18 +62,25 @@ public class WebController {
             "}\n");
         model.addAttribute("question", q);
         Answer a = new Answer();
+        a.setAnswerID(3);
         a.setAnswer("this class will compile");
         Answer b = new Answer();
+        b.setAnswerID(5);
         b.setAnswer("this class will not compile");
         List<Answer> answers = new ArrayList<>();
+        ArrayList<Answer> selectedAnswers = new ArrayList<>();
         answers.add(a);
         answers.add(b);
         model.addAttribute("answers", answers);
+        model.addAttribute("selectedAnswers", selectedAnswers);
         return "question";
     }
 
     @RequestMapping(value = "/registerQuestion", method = RequestMethod.POST)
-    String saveQuestion(@ModelAttribute("record") Answer answer, Model model){
+    String saveQuestion(Model model, @RequestParam ArrayList<Answer> selectedAnswers){
+        for(Answer x:selectedAnswers) {
+            System.out.println(x);
+        }
         Question q = new Question();
         q.setQuestionID(12);
         q.setQuestion("Would the following code compile?");

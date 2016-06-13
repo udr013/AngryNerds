@@ -25,11 +25,20 @@ public class Answer implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int AnswerID;
+	private int answerID;
 	private String answer;
+	@Column(name = "correct", nullable = false, columnDefinition = "INT default 0")
 	private boolean correct;
 	private String explanation;
-	
+
+	public int getAnswerID() {
+		return answerID;
+	}
+
+	public void setAnswerID(int answerID) {
+		this.answerID = answerID;
+	}
+
 	public void setCorrect(boolean correct) {
 		this.correct = correct;
 	}

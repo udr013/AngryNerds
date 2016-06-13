@@ -1,9 +1,6 @@
 package eu.programit.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -17,12 +14,15 @@ public class Question implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int questionID;
+
 	private String question;
 	private String code;
 	private Difficulty difficulty;
+	@Column(name = "is_marked", columnDefinition = "INT default 0")
 	private boolean isMarked;
 	private Status status;
 	private String feedback;
+	@Column(name = "has_feedback", columnDefinition = "INT default 0")
 	private boolean hasFeedback;
 	private String internetLink;
 
