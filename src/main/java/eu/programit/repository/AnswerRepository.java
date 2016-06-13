@@ -5,7 +5,7 @@ import eu.programit.domain.Question;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Created by udr013 on 13-6-2016.
@@ -13,5 +13,5 @@ import java.util.List;
 @Component
 public interface AnswerRepository extends CrudRepository<Answer,Integer> {
 
-    List<Answer> findAllByQuestion(Question id);
+    Collection<Answer> findAllByQuestion(Question id);
 }
