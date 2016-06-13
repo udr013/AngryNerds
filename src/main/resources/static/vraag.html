@@ -1,0 +1,42 @@
+
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+
+ <div class="container" id="banner">
+      <div class="row">
+          <h2> Welcome at Program IT Starter app  </h2>
+      </div>
+    </div>
+    
+    
+	<form method="post" action="/insert">
+		<table>
+			<tr><td>Firstname</td><td><input type="text" name="name" placeholder="Jan"></td></tr>
+			<tr><td>Lastname</td><td><textarea name="lastName" rows="8" cols="40"></textarea> </td></tr>
+
+			<tr><td>Address</td><td><input type="text" name="address" placeholder="nogwat straat"></td></tr>
+			<tr><td>Phone</td><td><input type="text" name="phone" placeholder="0618954125"></td></tr>
+			<tr><td>Email</td><td><input type="text" name="mail" placeholder="huppeldepup@hotmail.com"></td></tr>
+			
+			<tr><td>checkbox</td><td><input rel="active"  type="checkbox" name="checked"></td></tr>
+			<input type='hidden' value='0' name='checked'>
+
+			<tr><td>Name &nbsp;&nbsp;</td><td><input type="text" name="chapname" placeholder="Naam van de categorie"></td></tr>
+			<tr><td>Chapter</td><td><input type="text" name="chapter" placeholder="Hoofdstuk"></td></tr>
+			<tr><td>Press here to upload the category!</td><td><input class="btn btn-success btn-sm" type="submit" value="Insert"></td></tr>
+		</table>
+	</form>
+	
+</body>
+</html>
+
