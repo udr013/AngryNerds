@@ -6,7 +6,7 @@ import eu.programit.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by udr013 on 13-6-2016.
@@ -18,8 +18,8 @@ public class AnswerService implements IAnswerService {
     AnswerRepository answerRepository;
 
     @Override
-    public Collection<Answer> findAllByQuestion(Question question) {
+    public List<Answer> findAllByQuestion(Question question) {
         Iterable<Answer> itr = answerRepository.findAllByQuestion(question);
-        return (Collection<Answer>) itr ;
+        return (List<Answer>) itr ;
     }
 }

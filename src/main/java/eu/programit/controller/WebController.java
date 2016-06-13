@@ -26,14 +26,14 @@ public class WebController {
     @Autowired
     IAnswerService iAnswerService;
 
-    @RequestMapping(value = "/loadExam", method = RequestMethod.GET)
+    @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
     public String start(Model model) {
-        List<Question>questions = (ArrayList<Question>)iQuestionService.findAll();
-        model.addAttribute("question", questions.get(1));//the 1 will get question 2 (index 0)
-        List<Answer>answers =(List<Answer>) iAnswerService.findAllByQuestion(questions.get(1));
+        List<Question>questions = (List<Question>)iQuestionService.findAll();
+        model.addAttribute("question", questions.get(0));//the 1 will get question 2 (index 0)
+        List<Answer>answers = iAnswerService.findAllByQuestion(questions.get(0));
         model.addAttribute("answers", answers);
         //model.addAttribute("selectedAnswers", selectedAnswers);
-        return "question";
+        return "examquestion";
     }
 
     @RequestMapping(value = "/registerQuestion", method = RequestMethod.POST)
