@@ -1,5 +1,6 @@
 package eu.programit.domain;
 
+
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -11,18 +12,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Entity
-public class Category implements Serializable{	
-	
-	private static final long serialVersionUID = 2138006949250844149L;
-
-	private static final Logger log = LoggerFactory.getLogger(Category.class);
-	
+public class Category {
+	// technical key
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	private String name;
 	private String chapter;
 	private Question questions;
-	
+
 	public String getChapter() {
 		return chapter;
 	}
