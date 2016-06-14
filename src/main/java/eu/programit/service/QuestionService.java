@@ -20,17 +20,17 @@ public class QuestionService {
 	private QuestionRepository questionRepository;
 
 	
-	public Question save(Question question) {
-		
-		LOGGER.debug("it rocks");
-		
-		// aanroep van het door Mockito gemaakte contract (normaliter zet je dat natuurlijk hier
-//		niet in de code 
-		Question result = this.questionRepository.save(question);	
-		
-		return result;
-
-	}
+//	public Question save(Question question) {
+//
+//		LOGGER.debug("it rocks");
+//
+//		// aanroep van het door Mockito gemaakte contract (normaliter zet je dat natuurlijk hier
+////		niet in de code
+//		Question result = this.questionRepository.save(question);
+//
+//		return result;
+//
+//	}
 	
 	public Iterable<Question> findAll() {
 		Iterable<Question> result = this.questionRepository.findAll();

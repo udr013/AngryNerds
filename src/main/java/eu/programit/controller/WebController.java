@@ -1,9 +1,11 @@
 package eu.programit.controller;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
+import eu.programit.domain.Answer;
+import eu.programit.domain.Question;
+import eu.programit.service.IAnswerService;
+import eu.programit.service.IQuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,22 +13,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import eu.programit.domain.Answer;
-import eu.programit.domain.Question;
-import eu.programit.service.IAnswerService;
-import eu.programit.service.IQuestionService;
-import eu.programit.service.QuestionService;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class WebController {
-//	@Autowired
-	private QuestionService questionService;
 
-//    @Autowired
+
+    @Autowired
     IQuestionService iQuestionService;
     
-//    @Autowired
+    @Autowired
     IAnswerService iAnswerService;
+
+    @RequestMapping("/")
+    public String start(){
+        return "index";
+    }
+
+    @RequestMapping("/exam")
+    public String showExam(){
+        return "exam";
+    }
 
     @RequestMapping("/vraag")
     public String createQuestion(Model model){
@@ -37,7 +45,7 @@ public class WebController {
     public String saveQuestion(@ModelAttribute("question") Question question) {
         System.out.println(question);
         iQuestionService.save(question);
-        return "vraag" ;
+        return "redirect:/vraag" ;
     }
 
 

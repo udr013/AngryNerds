@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Angry Nerds Main Memu</title>
 </head>
 <body>
@@ -10,8 +10,8 @@
 <!-- dit mag zo eigenlijk niet -->
 <!-- moet iets zijn als
 <a href="hupje/vraag.html"... >Klik hier </a> -->
-<a href="http://localhost:8888/vraag.html">vraag toevoegen</a>
-<a href="http://localhost:8888/exam.html">examen maken</a>
+<a href="#" th:href="@{/vraag}">vraag toevoegen</a>
+<a href="#" th:href="@{/exam}">examen maken</a>
 
 
 <form method="get" action="/loadExamQuestion">

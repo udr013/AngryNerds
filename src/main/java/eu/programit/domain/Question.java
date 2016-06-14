@@ -1,17 +1,11 @@
 package eu.programit.domain;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 
 
@@ -30,7 +24,7 @@ public class Question implements Serializable {
 	@OneToMany (mappedBy="question")
 	private List<Answer> answers;
 	
-	@Column(columnDefinition = "LONGVARBINARY")
+	@Column(columnDefinition = "TEXT")
 	private String content;
 	
 	// might be MEDIUMTEXT here for columnDefinition
