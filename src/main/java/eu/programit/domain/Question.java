@@ -18,10 +18,10 @@ public class Question implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long questionID;
+	private int questionID;
 	
-	//@Column(columnDefinition = "LONGVARBINARY")
-	private String question;
+	@Column(columnDefinition = "LONGVARBINARY")
+	private String content;
 	
 	// might be MEDIUMTEXT here for columnDefinition
 	@Column(name = "code", columnDefinition = "LONGVARBINARY")
@@ -40,17 +40,17 @@ public class Question implements Serializable {
 	private String internetLink;
 
 
-	public long getQuestionID() {
+	public int getQuestionID() {
 		return questionID;
 	}
-	public void setQuestionID(long questionID) {
+	public void setQuestionID(int questionID) {
 		this.questionID = questionID;
 	}
-	public String getQuestion() {
-		return question;
+	public String getContent() {
+		return content;
 	}
-	public void setQuestion(String question) {
-		this.question = question;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public String getCode() {
 		return code;
@@ -94,12 +94,21 @@ public class Question implements Serializable {
 	public void setInternetLink(String internetLink) {
 		this.internetLink = internetLink;
 	}
-	@Override
-	public String toString() {
-		return "Question [questionID=" + questionID + ", question=" + question + ", code=" + code + ", difficulty="
-				+ difficulty + ", isMarked=" + isMarked + ", status=" + status + ", feedback=" + feedback
-				+ ", hasFeedback=" + hasFeedback + ", internetLink=" + internetLink + "]";
-	}
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "questionID=" + questionID +
+                ", content='" + content + '\'' +
+                ", code='" + code + '\'' +
+                ", difficulty=" + difficulty +
+                ", isMarked=" + isMarked +
+                ", status=" + status +
+                ", feedback='" + feedback + '\'' +
+                ", hasFeedback=" + hasFeedback +
+                ", internetLink='" + internetLink + '\'' +
+                '}';
+    }
 }
 
 
