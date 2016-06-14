@@ -2,6 +2,7 @@ package eu.programit.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,7 +10,7 @@ import javax.persistence.Id;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//@Entity
+@Entity
 public class Exam implements Serializable{
 
 	private static final long serialVersionUID = 4411933556214276894L;
