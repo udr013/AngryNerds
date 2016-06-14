@@ -1,11 +1,11 @@
 package eu.programit.controller;
 
 
-import eu.programit.domain.Answer;
-import eu.programit.domain.Difficulty;
-import eu.programit.domain.Question;
-import eu.programit.service.IAnswerService;
-import eu.programit.service.IQuestionService;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
+import eu.programit.domain.Answer;
+import eu.programit.domain.Difficulty;
+import eu.programit.domain.Question;
+import eu.programit.service.IAnswerService;
+import eu.programit.service.IQuestionService;
+import eu.programit.service.QuestionService;
 
 @Controller
 public class WebController {
-
-
+	@Autowired
+	private QuestionService questionService;
 
     @Autowired
     IQuestionService iQuestionService;
+    
     @Autowired
     IAnswerService iAnswerService;
 
@@ -35,6 +40,29 @@ public class WebController {
         //model.addAttribute("selectedAnswers", selectedAnswers);
         return "examquestion";
     }
+    
+    @RequestMapping(value = "/createQuestion", method = RequestMethod.GET)
+	public String handleFileUpload(@RequestParam("name") String name,
+			@RequestParam(required = false, value = "renderPresentationNotes") boolean renderPresentationNotes,
+			@RequestParam("sourceCode") String sourceCode,	@RequestParam("difficulty") String difficulty,
+			@RequestParam("isMarked") boolean isMarked,@RequestParam("status") String status, @RequestParam("feedback") String feedback, 
+			@RequestParam("interLink") String interLink,HttpServletResponse response) {
+
+		Question question = new Question();
+		question.setQuestion(name);
+		question.setCode(sourceCode);
+		question.setMarked(isMarked);
+		question.setFeedback(feedback);
+		question.setInternetLink(interLink);
+//		String newLastName= lastName.replaceAll(Character.toString((char)10),"\n\r");
+//		newLastName= newLastName.replaceAll(Character.toString((char)9),"\t");
+	
+
+		this.questionService.save(question);
+		return "list";
+
+	}
+
 
     @RequestMapping(value = "/registerQuestion", method = RequestMethod.POST)
     String saveQuestion(Model model, @RequestParam ArrayList<Answer> selectedAnswers){
