@@ -22,13 +22,13 @@ import eu.programit.service.QuestionService;
 
 @Controller
 public class WebController {
-	@Autowired
+//	@Autowired
 	private QuestionService questionService;
 
-    @Autowired
+//    @Autowired
     IQuestionService iQuestionService;
     
-    @Autowired
+//    @Autowired
     IAnswerService iAnswerService;
 
     @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)

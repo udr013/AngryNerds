@@ -14,7 +14,7 @@ import java.util.Collection;
 @Service
 public class AnswerService implements IAnswerService {
 
-    @Autowired
+//    @Autowired
     AnswerRepository answerRepository;
 
     @Override

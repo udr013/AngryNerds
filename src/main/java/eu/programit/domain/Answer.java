@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +17,18 @@ import org.slf4j.LoggerFactory;
 public class Answer implements Serializable {
 	
 	private static final long serialVersionUID = -5754502589407713275L;
-
 	private static final Logger log = LoggerFactory.getLogger(Answer.class);
+
+	@ManyToOne
+	@JoinColumn(name="questionID", insertable = false, updatable=false)
+	private Question question;
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

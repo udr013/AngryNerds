@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Entity
+//@Entity
 public class Category {
 	// technical key
 	@Id
