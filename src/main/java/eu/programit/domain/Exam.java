@@ -19,6 +19,10 @@ public class Exam implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+    // rvandemaat: getters and setters maken voor id
+	private long id;
+
+
 	private boolean isParallel;
 	private int numberOfQuestions;
 	private Category categories;

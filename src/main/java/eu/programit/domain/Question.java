@@ -18,20 +18,27 @@ public class Question implements Serializable {
 	
 	private static final long serialVersionUID = -8245794906215772189L;
 	
+	//rvandemaat hier moet ik nog wat log naar toe sturen
 	private static final Logger log = LoggerFactory.getLogger(Question.class);
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int questionID;
-	@Column(name = "question", columnDefinition = "LONGVARBINARY")
+	
+	@Column(columnDefinition = "LONGVARBINARY")
 	private String question;
+	
+	// might be MEDIUMTEXT here for columnDefinition
 	@Column(name = "code", columnDefinition = "LONGVARBINARY")
 	private String code;
+	
 	private Difficulty difficulty;
 	private boolean isMarked;
 	private Status status;
+	
 	@Column(name = "feedback", columnDefinition = "LONGVARBINARY")
 	private String feedback;
+	
 	private boolean hasFeedback;
 	private String internetLink;
 
