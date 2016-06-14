@@ -2,7 +2,6 @@ package eu.programit.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,13 +9,13 @@ import javax.persistence.Id;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Entity
+//@Entity
 public class Exam implements Serializable{
-	
+
 	private static final long serialVersionUID = 4411933556214276894L;
-	
+
 	private static final Logger log = LoggerFactory.getLogger(Exam.class);
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
@@ -26,7 +25,7 @@ public class Exam implements Serializable{
 	//Commented out because Category is not a field of Exam, but a manner of constructing an specific exam
 	//private Category categories;
 	private int maxTimelnMinutes;
-	
+
 	public boolean isParallel() {
 		return isParallel;
 	}
@@ -56,7 +55,7 @@ public class Exam implements Serializable{
 	public long getId() {
 		return id;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Exam [isParallel=" + isParallel + ", numberOfQuestions=" + numberOfQuestions + ", maxTimelnMinutes=" + maxTimelnMinutes + "]";

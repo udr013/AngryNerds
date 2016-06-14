@@ -1,12 +1,12 @@
 package eu.programit.service;
 
+import java.util.Collection;
+
+import org.springframework.stereotype.Service;
+
 import eu.programit.domain.Answer;
 import eu.programit.domain.Question;
 import eu.programit.repository.AnswerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 
 @Service
 public class AnswerService implements IAnswerService {
