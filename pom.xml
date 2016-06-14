@@ -64,9 +64,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- if left out the executable bit is not set and it should be hence this lines-->
+				<configuration>
+					<executable>true</executable>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>
