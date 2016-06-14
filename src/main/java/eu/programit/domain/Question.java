@@ -1,15 +1,10 @@
 package eu.programit.domain;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 
 
@@ -23,9 +18,9 @@ public class Question implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int questionID;
+	private long questionID;
 	
-	@Column(columnDefinition = "LONGVARBINARY")
+	//@Column(columnDefinition = "LONGVARBINARY")
 	private String question;
 	
 	// might be MEDIUMTEXT here for columnDefinition
@@ -45,10 +40,10 @@ public class Question implements Serializable {
 	private String internetLink;
 
 
-	public int getQuestionID() {
+	public long getQuestionID() {
 		return questionID;
 	}
-	public void setQuestionID(int questionID) {
+	public void setQuestionID(long questionID) {
 		this.questionID = questionID;
 	}
 	public String getQuestion() {

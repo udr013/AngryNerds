@@ -1,26 +1,21 @@
 package eu.programit.domain;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Entity
+import java.io.Serializable;
+
+//@Entity
 public class Exam implements Serializable{
 	
 	private static final long serialVersionUID = 4411933556214276894L;
 	
 	private static final Logger log = LoggerFactory.getLogger(Exam.class);
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-    // rvandemaat: getters and setters maken voor id
-	private long id;
+//
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//    // rvandemaat: getters and setters maken voor id
+//	private long id;
 
 
 	private boolean isParallel;

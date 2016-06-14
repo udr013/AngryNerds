@@ -1,24 +1,23 @@
 package eu.programit.controller;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import eu.programit.domain.Answer;
 import eu.programit.domain.Difficulty;
 import eu.programit.domain.Question;
 import eu.programit.service.IAnswerService;
 import eu.programit.service.IQuestionService;
 import eu.programit.service.QuestionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class WebController {
@@ -30,6 +29,20 @@ public class WebController {
     
     @Autowired
     IAnswerService iAnswerService;
+
+    @RequestMapping("/vraag")
+    public String createQuestion(Model model){
+        model.addAttribute("question", new Question());
+        return "vraag";
+    }
+    @RequestMapping(value = {"/questionsave"}, method = RequestMethod.POST)
+    public String saveQuestion(@ModelAttribute("question") Question question) {
+        System.out.println(question);
+        iQuestionService.save(question);
+        return "vraag" ;
+    }
+
+
 
     @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
     public String start(Model model) {

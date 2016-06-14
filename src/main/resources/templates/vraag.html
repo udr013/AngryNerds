@@ -1,0 +1,39 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+ <div class="container" id="banner">
+      <div class="row">
+          <h2> Welcome at Program IT Starter app  </h2>
+      </div>
+    </div>
+
+
+ <form id="col-form" th:object="${question}" th:action="@{/questionsave}" action="#" method="post">
+	 <input type="text" th:field="*{questionID}" class="form-control" placeholder=" id"/>
+	 <input type="text" th:field="*{question}" class="form-control" placeholder=" question"/>
+
+	 <input type="text" th:field="*{code}" class="form-control" placeholder=" code"/>
+
+
+	 <input type="checkbox" class="form-control" placeholder=" label"/>
+	 <select type="text" th:field="*{status}" class="form-control">
+		 <option name="select" value="0">Submitted</option>
+		 <option name="select" value="1">Approved</option>
+	 </select>
+	 <select type="text" th:field="*{difficulty}" class="form-control">
+		 <option name="select" value="0">Easy</option>
+		 <option name="select" value="1">Medium</option>
+		 <option name="select" value="1">Hard</option>
+	 </select>
+	 <input type="checkbox" th:field="*{hasFeedback}" />
+	 <input type="text" th:field="*{feedback}" />
+	 <input class="button" type="submit" value="Submit"/>
+
+ </form>
+	
+</body>
+</html>
+
