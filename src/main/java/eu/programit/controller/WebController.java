@@ -132,7 +132,7 @@ public class WebController {
 //        answers.add(b);
 //        model.addAttribute("answers", answers);
 
-        return "question";
+        return "redirect:/loadExamQuestion";
     }
 
 

@@ -31,10 +31,10 @@ public class QuestionService {
 //		return result;
 //
 //	}
-	
+
 	public Iterable<Question> findAll() {
 		Iterable<Question> result = this.questionRepository.findAll();
-		
+
 		return result;
 	}
 

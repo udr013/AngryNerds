@@ -5,9 +5,9 @@
 </head>
 <body>
 <header>Level: <span th:text="${question.difficulty}"></span></header>
-<p th:text="${question.question}"></p>
+<p th:text="${question.content}"></p>
 <pre th:text="${question.code}"/>
-<form  method="post" th:action="@{/registerQuestion}" th:object="${selectedAnswers}">
+<form  method="post" th:action="@{/registerQuestion}" th:object="${answers}">
 <ul >
     <li th:each="answer:${answers}">
 <input type="checkbox" th:text="${answer.answer}" th:value="${answer.answerID}"/>
