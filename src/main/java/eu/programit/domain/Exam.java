@@ -24,8 +24,10 @@ public class Exam implements Serializable{
 
 	private boolean isParallel;
 	private int numberOfQuestions;
-	//Commented out because Category is not a field of Exam, but a manner of constructing an specific exam
-	//private Category categories;
+	
+	@OneToOne
+	private Category categories;
+
 	private int maxTimelnMinutes;
 
 	public boolean isParallel() {
