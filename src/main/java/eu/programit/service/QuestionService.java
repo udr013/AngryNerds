@@ -10,9 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import eu.programit.domain.Question;
 import eu.programit.repository.QuestionRepository;
 
-/**
- * Created by udr013 on 9-6-2016.
- */
 @Service
 @Transactional
 public class QuestionService {

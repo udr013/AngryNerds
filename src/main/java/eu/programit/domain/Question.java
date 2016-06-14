@@ -1,12 +1,14 @@
 package eu.programit.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,29 +27,43 @@ public class Question implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int questionID;
 	
-	@Column(columnDefinition = "LONGVARBINARY")
+	@OneToMany (mappedBy="question")
+	private List<Answer> answers;
+	
+	@Column(columnDefinition = "TEXT")
 	private String question;
 	
 	// might be MEDIUMTEXT here for columnDefinition
-	@Column(name = "code", columnDefinition = "LONGVARBINARY")
+	@Column(name = "code", columnDefinition = "TEXT")
 	private String code;
 	
 	private Difficulty difficulty;
+
 	@Column(name = "is_marked", columnDefinition = "INT default 0")
 	private boolean isMarked;
+	
 	private Status status;
 	
-	@Column(name = "feedback", columnDefinition = "LONGVARBINARY")
+	@Column(name = "feedback", columnDefinition = "TEXT")
 	private String feedback;
 	
 	@Column(name = "has_feedback", columnDefinition = "INT default 0")
 	private boolean hasFeedback;
+	
 	private String internetLink;
 
 
 	public int getQuestionID() {
 		return questionID;
 	}
+	
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+	
 	public void setQuestionID(int questionID) {
 		this.questionID = questionID;
 	}

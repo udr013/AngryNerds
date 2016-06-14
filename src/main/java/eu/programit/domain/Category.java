@@ -8,15 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+@Entity
+public class Category implements Serializable{
 
-//@Entity
-public class Category {
+	private static final long serialVersionUID = -8878362315044398411L;
+
 	// technical key
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private int id;
+	
 	private String name;
 	private String chapter;
 	private Question questions;
@@ -39,6 +40,10 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public int getId() {
+		return id;
+	}
+	
 	@Override
 	public String toString() {
 		return "Category [name=" + name + ", chapter=" + chapter + ", questions=" + questions + "]";

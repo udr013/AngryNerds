@@ -17,15 +17,14 @@ public class Exam implements Serializable{
 	
 	private static final Logger log = LoggerFactory.getLogger(Exam.class);
 	
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
-    // rvandemaat: getters and setters maken voor id
-//	private long id;
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
 
 	private boolean isParallel;
 	private int numberOfQuestions;
-	private Category categories;
+	//Commented out because Category is not a field of Exam, but a manner of constructing an specific exam
+	//private Category categories;
 	private int maxTimelnMinutes;
 	
 	public boolean isParallel() {
@@ -40,21 +39,26 @@ public class Exam implements Serializable{
 	public void setNumberOfQuestions(int numberOfQuestions) {
 		this.numberOfQuestions = numberOfQuestions;
 	}
+	/*
 	public Category getCategories() {
 		return categories;
 	}
 	public void setCategories(Category categories) {
 		this.categories = categories;
 	}
+	*/
 	public int getMaxTimelnMinutes() {
 		return maxTimelnMinutes;
 	}
 	public void setMaxTimelnMinutes(int maxTimelnMinutes) {
 		this.maxTimelnMinutes = maxTimelnMinutes;
 	}
+	public long getId() {
+		return id;
+	}
+	
 	@Override
 	public String toString() {
-		return "Exam [isParallel=" + isParallel + ", numberOfQuestions=" + numberOfQuestions + ", categories="
-				+ categories + ", maxTimelnMinutes=" + maxTimelnMinutes + "]";
+		return "Exam [isParallel=" + isParallel + ", numberOfQuestions=" + numberOfQuestions + ", maxTimelnMinutes=" + maxTimelnMinutes + "]";
 	}
 }
