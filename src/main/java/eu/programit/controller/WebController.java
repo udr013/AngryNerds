@@ -24,11 +24,9 @@ public class WebController {
 	@Autowired
 	private QuestionService questionService;
 
-
-
     @Autowired
     QuestionRepository questionRepository;
-    @RequestMapping(value = "/loadExam", method = RequestMethod.POST)
+    @RequestMapping(value = "/loadExam", method = RequestMethod.GET)
 	public String handleFileUpload(@RequestParam("name") String name,
 			@RequestParam(required = false, value = "renderPresentationNotes") boolean renderPresentationNotes,
 			@RequestParam("sourceCode") String sourceCode,	@RequestParam("difficulty") String difficulty,
@@ -44,19 +42,8 @@ public class WebController {
 //		String newLastName= lastName.replaceAll(Character.toString((char)10),"\n\r");
 //		newLastName= newLastName.replaceAll(Character.toString((char)9),"\t");
 	
-//		String toInsert=textAreaWidget.getText().replaceAll(Character.toString((char) 10), "\n\r"));
-//
-//		person.setLastName(sourceCode);
-//		person.setAddress(address);
-//		person.setPhone(phone);
-//		person.setMail(mail);
-//		Category category = new Category();
-//		category.setChapter(chapter);
-//		category.setName(chapname);
+
 		this.questionService.save(question);
-//
-//		this.personService.save(person);
-//		this.personService.save2(category, person);
 		return "list";
 
 	}
