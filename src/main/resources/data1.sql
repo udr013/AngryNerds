@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `answer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `answer` (
   `answerid` int(11) NOT NULL AUTO_INCREMENT,
-  `answer` text,
+  `content` text,
   `correct` int(11) NOT NULL DEFAULT '0',
   `explanation` text,
   `questionid` int(11) DEFAULT NULL,
