@@ -12,7 +12,7 @@ import eu.programit.repository.QuestionRepository;
 
 @Service
 @Transactional
-public class QuestionService {
+public class QuestionService implements IQuestionService{
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(QuestionService.class);
 	
@@ -20,17 +20,7 @@ public class QuestionService {
 	private QuestionRepository questionRepository;
 
 	
-//	public Question save(Question question) {
-//
-//		LOGGER.debug("it rocks");
-//
-//		// aanroep van het door Mockito gemaakte contract (normaliter zet je dat natuurlijk hier
-////		niet in de code
-//		Question result = this.questionRepository.save(question);
-//
-//		return result;
-//
-//	}
+
 
 	public Iterable<Question> findAll() {
 		Iterable<Question> result = this.questionRepository.findAll();
@@ -38,7 +28,9 @@ public class QuestionService {
 		return result;
 	}
 
-	
 
-
+	@Override
+	public Question saveQuestion(Question question) {
+		return questionRepository.save(question);
+	}
 }

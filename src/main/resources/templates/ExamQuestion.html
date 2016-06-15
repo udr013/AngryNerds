@@ -10,7 +10,8 @@
 <form  method="post" th:action="@{/registerQuestion}" th:object="${answers}">
 <ul >
     <li th:each="answer:${answers}">
-<input type="checkbox" th:text="${answer.answer}" th:value="${answer.answerID}"/>
+<!--/*@thymesVar id="answerid" type="java"*/-->
+<input type="checkbox" th:text="${answer.content}" th:id="answer" th:value="answer"/>
         <!--<label th:name="${#ids.prev('answer.anserID')}"></label>-->
     </li>
     <li>

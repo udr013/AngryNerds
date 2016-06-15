@@ -6,8 +6,6 @@ import eu.programit.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-
 @Service
 public class AnswerService implements IAnswerService {
 
@@ -15,8 +13,14 @@ public class AnswerService implements IAnswerService {
     AnswerRepository answerRepository;
 
     @Override
-    public Collection<Answer> findAllByQuestion(Question question) {
+    public Answer saveAnswer(Answer answer) {
+        return answerRepository.save(answer);
+    }
+
+    @Override
+    public Iterable<Answer> findAllByQuestion(Question question) {
         Iterable<Answer> itr = answerRepository.findAllByQuestion(question);
-        return (Collection<Answer>) itr ;
+
+        return itr ;
     }
 }
