@@ -45,6 +45,7 @@ public class WebController {
     public String saveQuestion(@ModelAttribute("question") Question question, Model model) {
         System.out.println(question);
         iQuestionService.saveQuestion(question);
+        model.addAttribute("question",question);
         model.addAttribute("answer", new Answer());
         return "answers";
     }
