@@ -1,8 +1,8 @@
 package eu.programit.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import eu.programit.domain.Answer;
+import eu.programit.domain.Question;
+import eu.programit.repository.AnswerRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,9 +11,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import eu.programit.domain.Answer;
-import eu.programit.domain.Question;
-import eu.programit.repository.AnswerRepository;
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AnswerServiceTest {
@@ -31,7 +30,7 @@ public class AnswerServiceTest {
 		Question questionMock = new Question();
 		questionMock.setCode("public static void main");
 		Answer answerMock = new Answer();
-		answerMock.setAnswer("it rocks");
+		answerMock.setContent("it rocks");
 		List<Answer> answersMock = new ArrayList<>();
 		answersMock.add(answerMock);
 		Mockito.when(this.answerRepository.findAllByQuestion(questionMock)).thenReturn(answersMock);
@@ -41,7 +40,7 @@ public class AnswerServiceTest {
 		Iterable<Answer> result = this.answerService.findAllByQuestion(q);
 		
 		for(Answer a : result) {
-			Assert.assertEquals("it rocks", a.getAnswer());
+			Assert.assertEquals("it rocks", a.getContent());
 		}
 	}
 	

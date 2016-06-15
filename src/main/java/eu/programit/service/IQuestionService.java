@@ -1,10 +1,11 @@
 package eu.programit.service;
 
-import eu.programit.repository.QuestionRepository;
+import eu.programit.domain.Question;
 
-public interface IQuestionService extends QuestionRepository{
-    
-    
+public interface IQuestionService{
+
+    Question saveQuestion(Question question);
+    Iterable<Question> findAll();
 
 
 }

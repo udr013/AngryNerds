@@ -1,17 +1,10 @@
 package eu.programit.domain;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 public class Answer implements Serializable {
@@ -36,7 +29,7 @@ public class Answer implements Serializable {
 	private int answerID;
 
 	@Column(columnDefinition = "TEXT")
-	private String answer;
+	private String content;
 
 	@Column(nullable = false, columnDefinition = "INT default 0")
 	private boolean correct;
@@ -56,19 +49,19 @@ public class Answer implements Serializable {
 		this.correct = correct;
 	}
 
-	public String getAnswer() {
-		return answer;
+	public String getContent() {
+		return content;
 	}
 
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public boolean isCorrect() {
 		return correct;
 	}
 
-	String getExplanation() {
+	public String getExplanation() {
 		return explanation;
 	}
 
@@ -78,8 +71,12 @@ public class Answer implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Answer [AnswerID=" + answerID + ", answer=" + answer + ", correct=" + correct + ", explanation="
-				+ explanation + "]";
+		return "Answer{" +
+				"question=" + question +
+				", answerID=" + answerID +
+				", content='" + content + '\'' +
+				", correct=" + correct +
+				", explanation='" + explanation + '\'' +
+				'}';
 	}
-
 }

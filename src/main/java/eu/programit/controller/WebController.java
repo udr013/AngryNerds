@@ -1,9 +1,10 @@
 package eu.programit.controller;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
+import eu.programit.domain.Answer;
+import eu.programit.domain.Question;
+import eu.programit.service.IAnswerService;
+import eu.programit.service.IQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.context.annotation.Bean;
@@ -13,10 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import eu.programit.domain.Answer;
-import eu.programit.domain.Question;
-import eu.programit.service.IAnswerService;
-import eu.programit.service.IQuestionService;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class WebController {
@@ -27,7 +26,6 @@ public class WebController {
     
     @Autowired
     IAnswerService iAnswerService;
-
     @RequestMapping("/")
     public String start(){
         return "index";
@@ -44,10 +42,19 @@ public class WebController {
         return "vraag";
     }
     @RequestMapping(value = "/questionsave", method = RequestMethod.POST)
-    public String saveQuestion(@ModelAttribute("question") Question question) {
+    public String saveQuestion(@ModelAttribute("question") Question question, Model model) {
         System.out.println(question);
-        iQuestionService.save(question);
-        return "redirect:/vraag" ;
+        iQuestionService.saveQuestion(question);
+        model.addAttribute("answer", new Answer());
+        return "answers";
+    }
+
+    @RequestMapping(value = "/answersave", method = RequestMethod.POST)
+    public String saveQuestion(@ModelAttribute("answer") Answer answer) {
+        System.out.println(answer);
+        iAnswerService.saveAnswer(answer);
+
+        return "redirect:/answers" ;
     }
 
 
@@ -61,80 +68,14 @@ public class WebController {
         //model.addAttribute("selectedAnswers", selectedAnswers);
         return "examquestion";
     }
-    
-//    @RequestMapping(value = "/createQuestion", method = RequestMethod.GET)
-//	public String handleFileUpload(@RequestParam("name") String name,
-//			@RequestParam(required = false, value = "renderPresentationNotes") boolean renderPresentationNotes,
-//			@RequestParam("sourceCode") String sourceCode,	@RequestParam("difficulty") String difficulty,
-//			@RequestParam("isMarked") boolean isMarked,@RequestParam("status") String status, @RequestParam("feedback") String feedback,
-//			@RequestParam("interLink") String interLink,HttpServletResponse response) {
-//
-//		Question question = new Question();
-//		question.setQuestion(name);
-//		question.setCode(sourceCode);
-//		question.setMarked(isMarked);
-//		question.setFeedback(feedback);
-//		question.setInternetLink(interLink);
-////		String newLastName= lastName.replaceAll(Character.toString((char)10),"\n\r");
-//		newLastName= newLastName.replaceAll(Character.toString((char)9),"\t");
-//
-//
-//		this.questionService.save(question);
-//		return "list";
-//
-//	}
+
 
 
     @RequestMapping(value = "/registerQuestion", method = RequestMethod.POST)
-    String saveQuestion(Model model, @ModelAttribute("answers") ArrayList<Answer> selectedAnswers){
-        for(Answer x:selectedAnswers) {
+    String saveQuestion(Model model, @ModelAttribute("answers") ArrayList<Answer> answers){
+        for(Answer x:answers) {
             System.out.println(x);
         }
-//        Question q = new Question();
-//        q.setQuestionID(12);
-//        q.setQuestion("Would the following code compile?");
-//        q.setDifficulty(Difficulty.EASY);
-//        q.setCode("package eu.programit.domain;\n" +
-//                "\n" +
-//                "//@Entity\n" +
-//                "public class Category {\n" +
-//                "\t\n" +
-//                "\tprivate String name;\n" +
-//                "\tprivate String chapter;\n" +
-//                "\tprivate Question questions;\n" +
-//                "\t\n" +
-//                "\tpublic String getChapter() {\n" +
-//                "\t\treturn chapter;\n" +
-//                "\t}\n" +
-//                "\tpublic void setChapter(String chapter) {\n" +
-//                "\t\tthis.chapter = chapter;\n" +
-//                "\t}\n" +
-//                "\tpublic Question getQuestions() {\n" +
-//                "\t\treturn questions;\n" +
-//                "\t}\n" +
-//                "\tpublic void setQuestions(Question questions) {\n" +
-//                "\t\tthis.questions = questions;\n" +
-//                "\t}\n" +
-//                "\tpublic String getName() {\n" +
-//                "\t\treturn name;\n" +
-//                "\t}\n" +
-//                "\tpublic void setName(String name) {\n" +
-//                "\t\tthis.name = name;\n" +
-//                "\t}\n" +
-//                "\t\n" +
-//                "\t\n" +
-//                "\n" +
-//                "}\n");
-//        model.addAttribute("question", q);
-//        Answer a = new Answer();
-//        a.setAnswer("this is an invalid class");
-//        Answer b = new Answer();
-//        b.setAnswer("this class will not be recognized in springboot mysql");
-//        List<Answer> answers = new ArrayList<>();
-//        answers.add(a);
-//        answers.add(b);
-//        model.addAttribute("answers", answers);
-
         return "redirect:/loadExamQuestion";
     }
 
