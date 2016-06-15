@@ -12,7 +12,7 @@
 
 
  <form id="col-form" th:object="${question}" th:action="@{/questionsave}" action="#" method="post">
-	 <input type="text" th:field="*{questionID}" class="form-control" placeholder=" id"/>
+	 <input type="hidden" th:field="*{questionID}" class="form-control" placeholder=" id"/>
 	 <input type="text" th:field="*{content}" class="form-control" placeholder=" question"/>
 
 	 <input type="text" th:field="*{code}" class="form-control" placeholder=" code"/>
@@ -28,9 +28,9 @@
 		 <option name="select" value="MEDIUM">Medium</option>
 		 <option name="select" value="HARD">Hard</option>
 	 </select>
-	 <input type="checkbox" th:field="*{hasFeedback}" />
-	 <input type="text" th:field="*{feedback}" />
-	 <input type="url" th:field="*{internetLink}" />
+	 <input type="checkbox" th:field="*{hasFeedback}" placeholder=" label" />
+	 <input type="text" th:field="*{feedback}" placeholder=" feedback" />
+	 <input type="url" th:field="*{internetLink}" placeholder="internetLink" />
 
 	 <input class="button" type="submit" value="Submit"/>
 

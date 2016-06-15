@@ -29,7 +29,7 @@ public class TakeTestController {
     	//model.addAttribute("question", questions.get(questionCounter));//the 1 will get question 2 (index 0)
     	Question q = iQuestionService.findById(questionCounter);
     	questionCounter++;
-        System.out.println("TakeTestCont: questionCounter = " + questionCounter);
+        //System.out.println("TakeTestCont: questionCounter = " + questionCounter);
     	model.addAttribute("question", q);//the 1 will get question 2 (index 0)
         
     	List<Answer>answers = q.getAnswers();

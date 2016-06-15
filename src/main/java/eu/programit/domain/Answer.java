@@ -9,11 +9,16 @@ import java.io.Serializable;
 @Entity
 public class Answer implements Serializable {
 
+	public Answer(){}
+	public Answer(Question question){
+
+	}
+
 	private static final long serialVersionUID = -5754502589407713275L;
 	private static final Logger log = LoggerFactory.getLogger(Answer.class);
 
 	@ManyToOne
-	@JoinColumn(name = "questionID", insertable = false, updatable = false)
+	@JoinColumn(name = "questionid")
 	private Question question;
 
 	public Question getQuestion() {
