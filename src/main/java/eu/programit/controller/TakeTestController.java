@@ -25,10 +25,12 @@ public class TakeTestController {
 	
     @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
     public String start(Model model) {
-        List<Question>questions = (List<Question>)iQuestionService.findAll();
-        model.addAttribute("question", questions.get(questionCounter));//the 1 will get question 2 (index 0)
+        //List<Question>questions = (List<Question>)iQuestionService.findAll();
+    	//model.addAttribute("question", questions.get(questionCounter));//the 1 will get question 2 (index 0)
+    	Question q = iQuestionService.findById(questionCounter);
+    	model.addAttribute("question", q);//the 1 will get question 2 (index 0)
         questionCounter++;
-        List<Answer>answers =(List<Answer>) iAnswerService.findAllByQuestion(questions.get(0));
+        List<Answer>answers = q.getAnswers();
         model.addAttribute("answers", answers);
         //model.addAttribute("selectedAnswers", selectedAnswers);
         return "examquestion";

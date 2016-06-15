@@ -6,6 +6,8 @@ public interface IQuestionService{
 
     Question saveQuestion(Question question);
     Iterable<Question> findAll();
+    
+    Question findById(int questionID);
 
 
 }

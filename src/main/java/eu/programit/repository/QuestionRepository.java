@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 import eu.programit.domain.Question;
 
 @Component
-public interface QuestionRepository extends CrudRepository<Question, Long> { 
+public interface QuestionRepository extends CrudRepository<Question, Integer> {
 	
+	//Question findOne(int questionId);
+
 }
 

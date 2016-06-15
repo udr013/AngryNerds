@@ -33,4 +33,11 @@ public class QuestionService implements IQuestionService{
 	public Question saveQuestion(Question question) {
 		return questionRepository.save(question);
 	}
+
+
+	@Override
+	public Question findById(int questionID) {
+		// TODO Auto-generated method stub
+		return questionRepository.findOne(questionID);
+	}
 }
