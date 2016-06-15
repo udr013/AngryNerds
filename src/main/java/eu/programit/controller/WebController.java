@@ -1,10 +1,9 @@
 package eu.programit.controller;
 
 
-import eu.programit.domain.Answer;
-import eu.programit.domain.Question;
-import eu.programit.service.IAnswerService;
-import eu.programit.service.IQuestionService;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.context.annotation.Bean;
@@ -14,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
-import java.util.List;
+import eu.programit.domain.Answer;
+import eu.programit.domain.Question;
+import eu.programit.service.IAnswerService;
+import eu.programit.service.IQuestionService;
 
 @Controller
 public class WebController {
