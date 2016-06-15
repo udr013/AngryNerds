@@ -12,7 +12,7 @@
 
 
  <form id="col-form" th:object="${question}" th:action="@{/questionsave}" action="#" method="post">
-	 <input type="text" th:field="*{questionID}" class="form-control" placeholder=" id"/>
+	 <input type="hidden" th:field="*{questionID}" class="form-control" placeholder=" id"/>
 	 <input type="text" th:field="*{content}" class="form-control" placeholder=" question"/>
 
 	 <input type="text" th:field="*{code}" class="form-control" placeholder=" code"/>

@@ -45,17 +45,24 @@ public class WebController {
     public String saveQuestion(@ModelAttribute("question") Question question, Model model) {
         System.out.println(question);
         iQuestionService.saveQuestion(question);
-        model.addAttribute("question",question);
-        model.addAttribute("answer", new Answer());
+        List<Question> questions = (List<Question> )iQuestionService.findAll();
+        Question addedQuestion = questions.get(questions.size()-1);
+        System.out.println(addedQuestion);
+        model.addAttribute("question",addedQuestion);
+        Answer nextAnswer = new Answer(addedQuestion);
+        model.addAttribute("answer", nextAnswer);
         return "answers";
     }
 
     @RequestMapping(value = "/answersave", method = RequestMethod.POST)
-    public String saveQuestion(@ModelAttribute("answer") Answer answer) {
+    public String saveAnswer(@ModelAttribute("answer") Answer answer) {
+        List<Question> questions = (List<Question> )iQuestionService.findAll();
+        Question addedQuestion = questions.get(questions.size()-1);
+        answer.setQuestion(addedQuestion);
         System.out.println(answer);
         iAnswerService.saveAnswer(answer);
 
-        return "redirect:/answers" ;
+        return "answers" ;
     }
 
     @RequestMapping(value = "/registerQuestion", method = RequestMethod.POST)
