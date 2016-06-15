@@ -13,11 +13,12 @@
 
 
 <form id="col-form" th:object="${answer}" th:action="@{/answersave}" action="#" method="post">
-    <!--<input type="hidden" th:value="${question}" th:field="${question}"  />-->
-    <input type="text" th:field="*{answerID}" class="form-control" placeholder=" id"/>
+    <!--<input type="hidden" th:value="${question}" th:field="${question}"  />
+    <input type="text" th:field="*{answerID}" class="form-control" placeholder=" id"/>-->
     <input type="text" th:field="*{content}" class="form-control" placeholder="answer"/>
-    <input type="checkbox" class="form-control" th:label="correct" th:title="value"/>
-    <input type="text" th:field="*{explanation}" placeholder="answer"/>
+    <!--<input type="checkbox" class="form-control" th:label="correct" th:title="value"/>-->
+    <input type="checkbox" th:text="${answer.content}" th:id="answer" th:value="value"/>
+    <input type="text" th:field="*{explanation}" placeholder="explanation"/>
     <input class="button" type="submit" value="Submit"/>
 
 </form>
