@@ -49,15 +49,7 @@ public class WebController {
 
 
 
-    @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
-    public String start(Model model) {
-        List<Question>questions = (List<Question>)iQuestionService.findAll();
-        model.addAttribute("question", questions.get(0));//the 1 will get question 2 (index 0)
-        List<Answer>answers =(List<Answer>) iAnswerService.findAllByQuestion(questions.get(0));
-        model.addAttribute("answers", answers);
-        //model.addAttribute("selectedAnswers", selectedAnswers);
-        return "examquestion";
-    }
+
     
 //    @RequestMapping(value = "/createQuestion", method = RequestMethod.GET)
 //	public String handleFileUpload(@RequestParam("name") String name,
