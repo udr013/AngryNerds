@@ -6,6 +6,8 @@ import eu.programit.domain.Question;
 import eu.programit.service.IAnswerService;
 import eu.programit.service.IQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ErrorAttributes;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -136,7 +138,11 @@ public class WebController {
     }
 
 
+    @Autowired
+    private ErrorAttributes errorAttributes;
 
+    @Bean
+    public AppErrorController appErrorController(){return new AppErrorController(errorAttributes);}
 
 
 }
