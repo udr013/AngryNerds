@@ -45,12 +45,12 @@ public class WebController {
     public String saveQuestion(@ModelAttribute("question") Question question, Model model) {
         System.out.println(question);
         iQuestionService.saveQuestion(question);
-        List<Question> questions = (List<Question> )iQuestionService.findAll();
-        Question addedQuestion = questions.get(questions.size()-1);
-        System.out.println(addedQuestion);
-        model.addAttribute("question",addedQuestion);
-        Answer nextAnswer = new Answer(addedQuestion);
-        model.addAttribute("answer", nextAnswer);
+//        List<Question> questions = (List<Question> )iQuestionService.findAll();
+//        Question addedQuestion = questions.get(questions.size()-1);
+//        System.out.println(addedQuestion);
+//        model.addAttribute("question",addedQuestion);
+//        Answer nextAnswer = new Answer(addedQuestion);
+        model.addAttribute("answer", new Answer());
         return "answers";
     }
 

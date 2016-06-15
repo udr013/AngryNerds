@@ -18,7 +18,7 @@ public class Answer implements Serializable {
 	private static final Logger log = LoggerFactory.getLogger(Answer.class);
 
 	@ManyToOne
-	@JoinColumn(name = "questionID", insertable = false, updatable = false)
+	@JoinColumn(name = "questionid")
 	private Question question;
 
 	public Question getQuestion() {
