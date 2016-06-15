@@ -28,11 +28,15 @@ public class TakeTestController {
         //List<Question>questions = (List<Question>)iQuestionService.findAll();
     	//model.addAttribute("question", questions.get(questionCounter));//the 1 will get question 2 (index 0)
     	Question q = iQuestionService.findById(questionCounter);
+    	questionCounter++;
+        System.out.println("TakeTestCont: questionCounter = " + questionCounter);
     	model.addAttribute("question", q);//the 1 will get question 2 (index 0)
-        questionCounter++;
-        List<Answer>answers = q.getAnswers();
+        
+    	List<Answer>answers = q.getAnswers();
         model.addAttribute("answers", answers);
-        //model.addAttribute("selectedAnswers", selectedAnswers);
-        return "examquestion";
+        
+    	//model.addAttribute("selectedAnswers", selectedAnswers);
+ 
+    	return "examquestion";
     }
 }
