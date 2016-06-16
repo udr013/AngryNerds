@@ -2,6 +2,7 @@ package eu.programit.controller;
 
 
 import eu.programit.domain.Answer;
+import eu.programit.domain.Category;
 import eu.programit.domain.Question;
 import eu.programit.service.IAnswerService;
 import eu.programit.service.IQuestionService;
@@ -39,6 +40,12 @@ public class WebController {
     public String createQuestion(Model model){
         model.addAttribute("question", new Question());
         return "vraag";
+    }
+    
+    @RequestMapping("/categorysave")
+    public String createCategory(Model model){
+        model.addAttribute("category", new Category());
+        return "category";
     }
 
 
