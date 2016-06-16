@@ -5,6 +5,7 @@ import eu.programit.domain.Answer;
 import eu.programit.domain.Category;
 import eu.programit.domain.Question;
 import eu.programit.service.IAnswerService;
+import eu.programit.service.ICategoryService;
 import eu.programit.service.IQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
@@ -20,12 +21,15 @@ import java.util.ArrayList;
 @Controller
 public class WebController {
 
+    @Autowired
+    ICategoryService iCategoryService;
 
     @Autowired
     IQuestionService iQuestionService;
     
     @Autowired
     IAnswerService iAnswerService;
+
     @RequestMapping("/")
     public String start(){
         return "index";
@@ -39,6 +43,7 @@ public class WebController {
     @RequestMapping("/vraag")
     public String createQuestion(Model model){
         model.addAttribute("question", new Question());
+        model.addAttribute("categories", iCategoryService.findAll());
         return "vraag";
     }
     

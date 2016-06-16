@@ -50,6 +50,13 @@ public class Question implements Serializable {
 	
 	private String internetLink;
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	public int getQuestionID() {
 		return questionID;
