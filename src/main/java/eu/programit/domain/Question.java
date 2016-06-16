@@ -121,20 +121,22 @@ public class Question implements Serializable {
 		this.internetLink = internetLink;
 	}
 
-    @Override
-    public String toString() {
-        return "Question{" +
-                "questionID=" + questionID +
-                ", content='" + content + '\'' +
-                ", code='" + code + '\'' +
-                ", difficulty=" + difficulty +
-                ", isMarked=" + isMarked +
-                ", status=" + status +
-                ", feedback='" + feedback + '\'' +
-                ", hasFeedback=" + hasFeedback +
-                ", internetLink='" + internetLink + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Question{" +
+				"questionID=" + questionID +
+				", answers=" + answers +
+				", category=" + category +
+				", content='" + content + '\'' +
+				", code='" + code + '\'' +
+				", difficulty=" + difficulty +
+				", isMarked=" + isMarked +
+				", status=" + status +
+				", feedback='" + feedback + '\'' +
+				", hasFeedback=" + hasFeedback +
+				", internetLink='" + internetLink + '\'' +
+				'}';
+	}
 }
 
 
