@@ -16,7 +16,7 @@
     <!--<input type="hidden" th:value="${question}" th:field="${question}"  />
     <input type="text" th:field="*{answerID}" class="form-control" placeholder=" id"/>-->
     <input type="text" th:field="*{content}" class="form-control" placeholder="answer"/>
-    <input type="checkbox" class="form-control" th:field="*{correct}" th:title="value"/>    <input type="checkbox" th:text="${answer.correct}" th:id="question" th:value="value"/>
+    <input type="checkbox" class="form-control" th:field="*{correct}" th:title="value"/>    
     <input type="text" th:field="*{explanation}" placeholder="explanation"/>
     <input class="button" type="submit" value="Submit"/>
 
