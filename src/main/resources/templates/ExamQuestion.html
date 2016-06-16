@@ -11,10 +11,10 @@
 <p th:text="${question.content}"></p>
 <pre th:text="${question.code}"/>
 
-<form  method="post" th:action="@{/registerQuestion}" th:object="${answers}">
+<form  method="post" th:action="@{/loadExamQuestion}" th:object="${answers}">
 	<table>
 		<tr th:each="answer : ${answers}">
-			<td><input type="checkbox" th:text="${answer.content}" th:value="${answer.answerID}"/></td>
+			<td><input type="checkbox" th:text="${answer.content}" th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/></td>
 			<!--<label th:name="${#ids.prev('answer.anserID')}"></label>-->
 	    </tr>
 	</table>
