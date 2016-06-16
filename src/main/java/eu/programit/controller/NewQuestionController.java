@@ -1,9 +1,5 @@
 package eu.programit.controller;
 
-/**
- * Created by udr013 on 16-6-2016.
- */
-
 import eu.programit.domain.Answer;
 import eu.programit.domain.Question;
 import eu.programit.service.IAnswerService;
@@ -18,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-public class newQuestionController {
+public class NewQuestionController {
 
 
     @Autowired
