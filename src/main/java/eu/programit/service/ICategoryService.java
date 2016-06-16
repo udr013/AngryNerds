@@ -1,12 +1,10 @@
 package eu.programit.service;
 
 import eu.programit.domain.Category;
-import eu.programit.domain.Question;
-import eu.programit.repository.CategoryRepository;
 
-public interface ICategoryService extends CategoryRepository{
+public interface ICategoryService{
 
-	void saveCategory(Category category);
+		Category saveCategory(Category category);
 
 
 
