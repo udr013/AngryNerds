@@ -12,23 +12,25 @@
 
 
  <form id="col-form" th:object="${question}" th:action="@{/questionsave}" action="#" method="post">
-	 <input type="hidden" th:field="*{questionID}" class="form-control" placeholder=" id"/>
-	 <input type="text" th:field="*{content}" class="form-control" placeholder=" question"/>
+	<table>
+			<tr><td></td><td> <input type="hidden" th:field="*{questionID}" class="form-control" placeholder=" id"/></td></tr>
+	 <tr><td>Vraag</td><td><input type="text" th:field="*{content}" class="form-control" placeholder=" question"/></td></tr>
 
-	 <input type="text" th:field="*{code}" class="form-control" placeholder=" code"/>
+	 <tr><td>Code</td><td><input type="text" th:field="*{code}" class="form-control" placeholder=" code"/></td></tr>
 
 
-	 <input type="checkbox" class="form-control" placeholder=" label"/>
+	 <tr><td>Status</td><td>
 	 <select type="text" th:field="*{status}" class="form-control">
 		 <option name="select" value="SUBMITTED">Submitted</option>
 		 <option name="select" value="APPROVED">Approved</option>
-	 </select>
-	 <select type="text" th:field="*{difficulty}" class="form-control">
+	 </select></td></tr>
+	 <tr><td>Moeilijkheidsgraag</td><td><select type="text" th:field="*{difficulty}" class="form-control">
 		 <option name="select" value="EASY">Easy</option>
 		 <option name="select" value="MEDIUM">Medium</option>
 		 <option name="select" value="HARD">Hard</option>
-	 </select>
-	 <input type="url" th:field="*{internetLink}" placeholder="internetLink" />
+	 </select></td></tr>
+	 <tr><td>InternetLink</td><td><input type="url" th:field="*{internetLink}" placeholder="internetLink" /></td></tr>
+	 </table>
 
 	 <input class="button" type="submit" value="Submit"/>
 
