@@ -1,6 +1,8 @@
 package eu.programit.repository;
 
 
+import java.util.Collection;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +12,6 @@ import eu.programit.domain.Category;
 public interface CategoryRepository extends CrudRepository<Category,Integer> {
 		
 		//Do we need line 14?
-	    //Collection<Category> findAllByCategory(Category id);
+	    Collection<Category> findAllByCategory(Category id);
 
 }
