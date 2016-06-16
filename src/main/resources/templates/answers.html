@@ -5,23 +5,41 @@
     <title>Angry Nerds Examiner</title>
 </head>
 <body>
-<div class="container" id="banner">
-    <div class="row">
-        <h2> Welcome at Program IT Starter ap</h2>
-    </div>
-</div>
+<header>Level: <span th:text="${question.difficulty}"></span></header>
+
+<p th:text="${question.content}"></p>
+<pre th:text="${question.code}"/>
+
+    <table>
+        <tr th:each="answer : ${answers}">
+            <td><input type="checkbox" th:text="${answer.content}" th:value="${answer.answerID}"/></td>
+            <!--<label th:name="${#ids.prev('answer.anserID')}"></label>-->
+        </tr>
+    </table>
 
 
 <form id="col-form" th:object="${answer}" th:action="@{/answersave}" action="#" method="post">
+	<table>
     <!--<input type="hidden" th:value="${question}" th:field="${question}"  />
     <input type="text" th:field="*{answerID}" class="form-control" placeholder=" id"/>-->
-    <input type="text" th:field="*{content}" class="form-control" placeholder="answer"/>
-    <!--<input type="checkbox" class="form-control" th:label="correct" th:title="value"/>-->
-    <input type="checkbox" th:text="${answer.content}" th:id="answer" th:value="value"/>
-    <input type="text" th:field="*{explanation}" placeholder="explanation"/>
-    <input class="button" type="submit" value="Submit"/>
-
+			<tr>
+				<td>Antwoord</td>
+				<td><input type="text" th:field="*{content}"
+					class="form-control" placeholder="answer" /></td></tr>
+			<tr>
+				<td>aanvinken als die klopt</td>
+				<td><input type="checkbox" class="form-control"
+					th:field="*{correct}" th:title="value" /></td></tr>
+			<tr>
+				<td>Uitleg</td>
+				<td><input type="text" th:field="*{explanation}"
+					placeholder="explanation" /></td></tr>
+					</table>
+				<input class="button" type="submit" value="Submit" />
 </form>
+
+<a href="#" th:href="@{/vraag}">vraag toevoegen</a>
+<a href="#" th:href="@{/}">terug naar index</a>
 
 
 </body>

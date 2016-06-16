@@ -24,6 +24,10 @@ public class Question implements Serializable {
 	@OneToMany (mappedBy="question")
 	private List<Answer> answers;
 	
+	@ManyToOne
+	@JoinColumn(name = "categoryid")
+	private Category category;
+	
 	@Column(columnDefinition = "TEXT")
 	private String content;
 	
