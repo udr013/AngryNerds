@@ -27,12 +27,19 @@ public class TakeTestController {
     public String start(Model model) {
         //List<Question>questions = (List<Question>)iQuestionService.findAll();
     	//model.addAttribute("question", questions.get(questionCounter));//the 1 will get question 2 (index 0)
-    	Question q = iQuestionService.findById(questionCounter);
+    	Question q;
+    	List<Answer> answers = null;
+    	try {
+    		q = iQuestionService.findById(questionCounter);
+        	answers = q.getAnswers();
+    	} catch (NullPointerException npe) {
+    		q = new Question();
+    		q.setContent("Unknown question requested (questionID does not exist)");
+    	}
     	questionCounter++;
         //System.out.println("TakeTestCont: questionCounter = " + questionCounter);
     	model.addAttribute("question", q);//the 1 will get question 2 (index 0)
         
-    	List<Answer>answers = q.getAnswers();
         model.addAttribute("answers", answers);
         
     	//model.addAttribute("selectedAnswers", selectedAnswers);
