@@ -1,26 +1,39 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/html"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Angry Nerds Examiner</title>
+<meta charset="UTF-8" />
+<title>Angry Nerds Examiner</title>
 </head>
 <body>
-<div class="container" id="banner">
-    <div class="row">
-        <h2> Welcome at Program IT Starter ap</h2>
-    </div>
-</div>
+	<div class="container" id="banner">
+		<div class="row">
+			<h2>Welcome at Program IT Starter app</h2>
+		</div>
+	</div>
 
 
-<form id="col-form" th:object="${answer}" th:action="@{/answersave}" action="#" method="post">
-    <!--<input type="hidden" th:value="${question}" th:field="${question}"  />
+	<form id="col-form" th:object="${answer}" th:action="@{/answersave}"
+		action="#" method="post">
+		<table>
+			<!--<input type="hidden" th:value="${question}" th:field="${question}"  />
     <input type="text" th:field="*{answerID}" class="form-control" placeholder=" id"/>-->
-    <input type="text" th:field="*{content}" class="form-control" placeholder="answer"/>
-    <input type="checkbox" class="form-control" th:field="*{correct}" th:title="value"/>    
-    <input type="text" th:field="*{explanation}" placeholder="explanation"/>
-    <input class="button" type="submit" value="Submit"/>
-
-</form>
+			<tr>
+				<td>Antwoord</td>
+				<td><input type="text" th:field="*{content}"
+					class="form-control" placeholder="answer" /></td></tr>
+			<tr>
+				<td>aanvinken als die klopt</td>
+				<td><input type="checkbox" class="form-control"
+					th:field="*{correct}" th:title="value" /></td></tr>
+			<tr>
+				<td>Uitleg</td>
+				<td><input type="text" th:field="*{explanation}"
+					placeholder="explanation" /></td></tr>
+					</table>
+				<input class="button" type="submit" value="Submit" />
+		
+	</form>
 
 
 </body>
