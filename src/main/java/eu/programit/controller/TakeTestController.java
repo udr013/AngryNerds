@@ -26,6 +26,7 @@ public class TakeTestController {
 	
     @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
     public String start(Model model, TestAnswerForm testAnswerForm) {
+    	
         //List<Question>questions = (List<Question>)iQuestionService.findAll();
     	//model.addAttribute("question", questions.get(questionCounter));//the 1 will get question 2 (index 0)
     	Question q;
@@ -36,6 +37,7 @@ public class TakeTestController {
     	} catch (NullPointerException npe) {
     		q = new Question();
     		q.setContent("Unknown question requested (questionID does not exist)");
+    		return "index";
     	}
     	questionCounter++;
         //System.out.println("TakeTestCont: questionCounter = " + questionCounter);
