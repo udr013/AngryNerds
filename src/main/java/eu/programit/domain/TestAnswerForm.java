@@ -3,7 +3,7 @@ package eu.programit.domain;
 import java.util.List;
 
 public class TestAnswerForm {
-	List<Integer> testAnswers;
+	private List<Integer> testAnswers;
 
 	public List<Integer> getTestAnswers() {
 		return testAnswers;
