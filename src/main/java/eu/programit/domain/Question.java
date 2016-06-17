@@ -126,7 +126,6 @@ public class Question implements Serializable {
 		return "Question{" +
 				"questionID=" + questionID +
 				", answers=" + answers +
-				", category=" + category +
 				", content='" + content + '\'' +
 				", code='" + code + '\'' +
 				", difficulty=" + difficulty +
