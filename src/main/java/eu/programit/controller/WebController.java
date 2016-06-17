@@ -37,12 +37,12 @@ public class WebController {
 
     @RequestMapping("/login")
     public String login (){
-        return "/index";
+        return "/login";
     }
 
     @RequestMapping("/index")
-    public String loginTo (){
-        return "index";
+    public String index (){
+        return "/index";
     }
 
     @RequestMapping("/exam")
