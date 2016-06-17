@@ -50,6 +50,7 @@ public class Category implements Serializable{
 	
 	@Override
 	public String toString() {
+//		return "Category [name=" + name + ", chapter=" + chapter + "]";
 		return "Category [name=" + name + ", chapter=" + chapter + ", questions=" + questions + "]";
 	}
 }

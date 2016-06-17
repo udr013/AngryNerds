@@ -35,7 +35,7 @@
 			<tr>
 				<td>Category</td>
 				<td><select th:field="*{category}" class="form-control">
-					<option th:each="category:${categories}" th:text="${category.name}" th:value="${category.id}"></option>
+					<option th:each="category:${categories}" th:text="${category.chapter} +':' + ${category.name}" th:value="${category.id}"></option>
 
 				</select></td>
 			</tr>
