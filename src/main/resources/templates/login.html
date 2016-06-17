@@ -21,14 +21,19 @@
 <form id="loginForm" th:action="@{/login}" method="post">
     <h3 id="loginHeader">Login or use the register button to get to the registration page.</h3>
     <label> User Name : <input type="text" name="username"/> </label><br/>
-    <label> Password: <input type="password" name="password"/> </label><br/>
+    <label> Password : <input type="password" name="password"/> </label><br/>
 <br/> 
 	If you didn't sign up already, follow the link to the:
     <a th:href="@{/register}"> registration page.</a>
-    <input class="clear" type="image" src="http://shipmyride.com/uploads/login-button.jpg" value="Sign In" width="58" height="58"/>
+    <input class="clear" type="image" src="http://shipmyride.com/uploads/login-button.jpg" value="Sign In" width="100" height="100"/>
 
 
 </form>
 </div>
+<div id="wb_Logo" style="position:absolute;left:0px;bottom:0px;width:100%;text-align: center;">
+<img src="https://www.computable.nl/img/57/69/480_360/5769289.jpg" id="Logo" alt=""/></div>
+
+
+
 </body>
 </html>
