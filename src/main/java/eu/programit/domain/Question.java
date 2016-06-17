@@ -82,7 +82,11 @@ public class Question implements Serializable {
 		return code;
 	}
 	public void setCode(String code) {
-		this.code = code;
+		String newCode= code.replaceAll(Character.toString((char)10),"\n\r");
+		newCode= newCode.replaceAll(Character.toString((char)9),"\t");
+		System.out.println(newCode);
+		System.out.println(code);
+		this.code = newCode;
 	}
 	public Difficulty getDifficulty() {
 		return difficulty;

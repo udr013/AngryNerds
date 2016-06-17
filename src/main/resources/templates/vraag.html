@@ -2,6 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html"
 	xmlns:th="http://www.thymeleaf.org">
 	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	
 <head>
 </head>
 <body>
@@ -26,16 +27,16 @@
 				<td><input type="text" th:field="*{content}"
 					class="form-control" placeholder=" question" /></td>
 			</tr>
+			
+			
+			
 
-			<tr>
-				<td>Code</td>
-				<td><input type="text" th:field="*{code}" class="form-control"
-					placeholder=" code" /></td>
-			</tr>
+			
+			<tr><td>code</td><td><textarea th:field="*{code}" rows="20" cols="80"></textarea> </td></tr>
 			<tr>
 				<td>Category</td>
 				<td><select th:field="*{category}" class="form-control">
-					<option th:each="category:${categories}" th:text="${category.chapter} +':' + ${category.name}" th:value="${category.id}"></option>
+					<option th:each="category:${categories}" th:text="${category.chapter} +': ' + ${category.name}" th:value="${category.id}"></option>
 
 				</select></td>
 			</tr>
