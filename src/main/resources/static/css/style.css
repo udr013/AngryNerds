@@ -141,8 +141,14 @@
 	}
 	
 	h1 {
-		margin-bottom: 14px; 	 
+		margin-bottom: 14px;
+		font-weight: 900;
 		font-size: 32px; 
+	}
+	
+	h1.welcome {
+		margin-top: -35px;
+		margin-bottom: 60px; 	 
 		line-height: 50px; 
 	}
 	
@@ -240,6 +246,7 @@
 		margin-bottom: 20px;
 		white-space: pre-wrap;
 		background-color: #f7f7f7; 
+		font-style: italic;
 	}
 	
 	/* Typography Helper Classes */
@@ -448,7 +455,22 @@
 		outline: 0;	
 	}
 	
-
+	#loginform {
+		text-align: center
+		width: 100%;
+	}
+	
+	#loginform > form {
+		border: solid 1px #18829c;
+		padding: 10px;
+		width: 50%;
+  		margin-left: auto;
+  		margin-right: auto;
+  }
+	
+	.clear {
+		border:none;
+	}
 	
 	select:focus {
 	  outline: thin dotted #333;
