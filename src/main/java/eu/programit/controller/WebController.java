@@ -32,6 +32,16 @@ public class WebController {
 
     @RequestMapping("/")
     public String start(){
+        return "/login";
+    }
+
+    @RequestMapping("/login")
+    public String login (){
+        return "/index";
+    }
+
+    @RequestMapping("/index")
+    public String loginTo (){
         return "index";
     }
 

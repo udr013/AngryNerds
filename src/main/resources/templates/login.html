@@ -1,0 +1,32 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+<head>
+    <title>AngryNerds Examiner</title>
+</head>
+<body>
+<article id="loginText">
+    <p>
+    <h3>Welcome to the AngryNerds Examiner<br/> If you didn't sign up already, follow the link to the:
+    <a th:href="@{/register}"> registration page.</a></h3>
+</p>
+</article>
+
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form id="loginForm" th:action="@{/login}" method="post">
+    <h3 id="loginHeader">Login or use the register button to get to the registration page.</h3>
+    <label> User Name : <input type="text" name="username"/> </label><br/>
+    <label> Password: <input type="password" name="password"/> </label><br/>
+    <input class="button" type="submit" value="Sign In"/>
+    <button onclick="window.location.href='/register'">Register</button><br/>
+
+</form>
+
+</body>
+</html>
