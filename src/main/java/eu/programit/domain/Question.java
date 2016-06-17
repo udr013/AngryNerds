@@ -20,10 +20,10 @@ public class Question implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int questionID;
-	
+
 	@OneToMany (mappedBy="question")
 	private List<Answer> answers;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "categoryid")
 	private Category category;
@@ -125,7 +125,6 @@ public class Question implements Serializable {
 	public String toString() {
 		return "Question{" +
 				"questionID=" + questionID +
-				", answers=" + answers +
 				", content='" + content + '\'' +
 				", code='" + code + '\'' +
 				", difficulty=" + difficulty +
