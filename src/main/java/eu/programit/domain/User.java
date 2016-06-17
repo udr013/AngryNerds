@@ -11,17 +11,13 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @Column(name = "idusers")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "username")
     private String username;
 
-    @Column(name = "password")
     private String password;
 
-    @Column(name = "email")
     private String email;
 
     @Column(columnDefinition = "boolean default true", nullable = false)
