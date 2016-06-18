@@ -32,17 +32,17 @@ public class WebController {
 
     @RequestMapping("/")
     public String start(){
-        return "/login";
+        return "login";
     }
 
     @RequestMapping("/login")
     public String login (){
-        return "/login";
+        return "login";
     }
 
     @RequestMapping("/index")
     public String index (){
-        return "/index";
+        return "index";
     }
 
     @RequestMapping("/exam")
