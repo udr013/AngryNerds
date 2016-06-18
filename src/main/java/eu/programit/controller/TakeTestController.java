@@ -1,17 +1,17 @@
 package eu.programit.controller;
 
-import java.util.List;
-import eu.programit.service.*;
-
+import eu.programit.domain.Answer;
+import eu.programit.domain.Question;
+import eu.programit.domain.TestAnswerForm;
+import eu.programit.service.IAnswerService;
+import eu.programit.service.IQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import eu.programit.domain.Answer;
-import eu.programit.domain.Question;
-import eu.programit.domain.TestAnswerForm;
+import java.util.List;
 
 @Controller
 public class TakeTestController {
@@ -47,7 +47,7 @@ public class TakeTestController {
         
     	//model.addAttribute("selectedAnswers", selectedAnswers);
  
-    	return "examquestion";
+    	return "ExamQuestion";
     }
     
     @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.POST)
