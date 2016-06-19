@@ -53,7 +53,7 @@ public class TakeTestController {
         
         model.addAttribute("answers", answers);
         model.addAttribute("mytestview", myTestView);
-        model.addAttribute("myanswers", myTestResults.getTestResults(myTestView.getQuestionNr()));
+//        model.addAttribute("myanswers", myTestResults.getTestResults(myTestView.getQuestionNr()));
         
     	//model.addAttribute("selectedAnswers", selectedAnswers);
  
@@ -73,7 +73,8 @@ public class TakeTestController {
     	
     }
     
-    // Start a new Test
+    // Start a new Test       *********************************************************************
+    
     @RequestMapping(value = "/StartTest", method = RequestMethod.GET)
     public String startTest(){
     	myTestView = testViewsService.findById(1);
@@ -90,7 +91,8 @@ public class TakeTestController {
     	return "redirect:/loadExamQuestion";
     }
     
-    // Load Next Question
+    // Load Next Question     *********************************************************************
+    
     @RequestMapping(value = "/LoadNextQuestion", method = RequestMethod.POST)
     public String loadNextQuestion(TestAnswerForm testAnswerForm){
     	myTestView.getNextQuestion();
@@ -98,7 +100,8 @@ public class TakeTestController {
     	return "redirect:/loadExamQuestion";
     }
 
-    // Load Previous Question
+    // Load Previous Question *********************************************************************
+    
     @RequestMapping(value = "/LoadPrevQuestion", method = RequestMethod.POST)
     public String loadPrevQuestion(TestAnswerForm testAnswerForm){
     	myTestView.getPrevQuestion();

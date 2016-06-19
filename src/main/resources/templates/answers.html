@@ -1,6 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
     <meta charset="UTF-8"/>
     <title>Angry Nerds Examiner</title>
 </head>
@@ -8,6 +9,7 @@
 <header>Level: <span th:text="${question.difficulty}"></span></header>
 
 <p th:text="${question.content}"></p>
+
 <pre th:text="${question.code}"/>
 
     <table>
@@ -27,7 +29,7 @@
 				<td><input type="text" th:field="*{content}"
 					class="form-control" placeholder="answer" /></td></tr>
 			<tr>
-				<td>aanvinken als die klopt</td>
+				<td>Aanvinken als die klopt</td>
 				<td><input type="checkbox" class="form-control"
 					th:field="*{correct}" th:title="value" /></td></tr>
 			<tr>

@@ -20,10 +20,10 @@ public class Question implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int questionID;
-	
+
 	@OneToMany (mappedBy="question")
 	private List<Answer> answers;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "categoryid")
 	private Category category;
@@ -50,6 +50,13 @@ public class Question implements Serializable {
 	
 	private String internetLink;
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	public int getQuestionID() {
 		return questionID;
@@ -75,6 +82,10 @@ public class Question implements Serializable {
 		return code;
 	}
 	public void setCode(String code) {
+		//String newCode= code.replaceAll(Character.toString((char)10),"\n\r");
+		//newCode= newCode.replaceAll(Character.toString((char)9),"\t");
+		//System.out.println(newCode);
+		System.out.println(code);
 		this.code = code;
 	}
 	public Difficulty getDifficulty() {
@@ -114,20 +125,20 @@ public class Question implements Serializable {
 		this.internetLink = internetLink;
 	}
 
-    @Override
-    public String toString() {
-        return "Question{" +
-                "questionID=" + questionID +
-                ", content='" + content + '\'' +
-                ", code='" + code + '\'' +
-                ", difficulty=" + difficulty +
-                ", isMarked=" + isMarked +
-                ", status=" + status +
-                ", feedback='" + feedback + '\'' +
-                ", hasFeedback=" + hasFeedback +
-                ", internetLink='" + internetLink + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Question{" +
+				"questionID=" + questionID +
+				", content='" + content + '\'' +
+				", code='" + code + '\'' +
+				", difficulty=" + difficulty +
+				", isMarked=" + isMarked +
+				", status=" + status +
+				", feedback='" + feedback + '\'' +
+				", hasFeedback=" + hasFeedback +
+				", internetLink='" + internetLink + '\'' +
+				'}';
+	}
 }
 
 

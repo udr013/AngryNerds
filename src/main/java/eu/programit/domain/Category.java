@@ -20,8 +20,8 @@ public class Category implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@OneToMany (mappedBy="category")
-	private List<Question> questions;
+	//@OneToMany (mappedBy="category")
+	//private List<Question> questions;
 	
 	private String name;
 	private String chapter;
@@ -32,12 +32,12 @@ public class Category implements Serializable{
 	public void setChapter(String chapter) {
 		this.chapter = chapter;
 	}
-	public List<Question> getQuestions() {
-		return questions;
-	}
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
-	}
+	//public List<Question> getQuestions() {
+	//	return questions;
+	//}
+	//public void setQuestions(List<Question> questions) {
+	//	this.questions = questions;
+	//}
 	public String getName() {
 		return name;
 	}
@@ -50,6 +50,7 @@ public class Category implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Category [name=" + name + ", chapter=" + chapter + ", questions=" + questions + "]";
+		return "Category [name=" + name + ", chapter=" + chapter + "]";
+//		return "Category [name=" + name + ", chapter=" + chapter + ", questions=" + questions + "]";
 	}
 }

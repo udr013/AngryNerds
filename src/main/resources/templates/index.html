@@ -1,6 +1,7 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
     <meta charset="UTF-8"/>
     <title>Angry Nerds Main Memu</title>
 </head>
@@ -10,19 +11,11 @@
 <!-- dit mag zo eigenlijk niet -->
 <!-- moet iets zijn als
 <a href="hupje/vraag.html"... >Klik hier </a> -->
-<a href="#" th:href="@{/vraag}">Vraag toevoegen</a>
-<a href="#" th:href="@{/exam}">Examen maken</a>
-<a href="#" th:href="@{/categorysave}">Categorie toevoegen</a>
+<ul>
+<li><a href="#" th:href="@{/exam}">Take the exam</a></li>
+<li><a href="#" th:href="@{/vraag}">Add question</a></li>
+<li><a href="#" th:href="@{/categorysave}">Add category</a></li>
+</ul>
 
-
-<form method="get" action="/StartTest">
-    <select type="text">
-        <option name="select" value="C#">C#</option>
-        <option name="select" value="JavaOCA">Java OCA</option>
-        <option name="select" value="JavaOCP">Java OCP</option>
-        <option name="select" value="WebDevelopment">"Web Development</option>
-    </select>
-    <button>submit</button>
-    </form>
 </body>
 </html>
