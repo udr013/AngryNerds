@@ -7,18 +7,21 @@
 <body>	
 
 <header>Level: <span th:text="${question.difficulty}"></span></header>
+<p th:text="|Test ID: ${mytestview.id}, question nr: ${mytestview.description}, Question ID: ${question.questionID}"></p>
 
 <p th:text="${question.content}"></p>
 <pre th:text="${question.code}"/>
 
-<form  method="post" th:action="@{/loadExamQuestion}" th:object="${answers}">
+<form  method="post" th:action="@{/loadExamQuestion}">
 	<table>
 		<tr th:each="answer : ${answers}">
 			<td><input type="checkbox" th:text="${answer.content}" th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/></td>
 			<!--<label th:name="${#ids.prev('answer.anserID')}"></label>-->
 	    </tr>
 	</table>
-	<button type="submit"   value="Submit">submit</button>
+	<button type="submit" value="Submit">submit</button>
+	<button type="submit" value="PrevQuestion" formaction="/LoadPrevQuestion">Previous Question</button>
+	<button type="submit" value="NextQuestion" formaction="/LoadNextQuestion">Next Question</button>
 </form>
 
 </body>

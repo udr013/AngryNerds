@@ -1,4 +1,4 @@
-package eu.programit.domain;
+	package eu.programit.domain;
 
 
 import java.io.Serializable;
