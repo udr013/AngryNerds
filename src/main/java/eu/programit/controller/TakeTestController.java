@@ -75,11 +75,21 @@ public class TakeTestController {
     	
     }
     
+    // Select a Test          *********************************************************************
+
+    @RequestMapping("/SelectTest")
+    public String selectTest(Model model){
+    	Iterable<TestViews> tv = testViewsService.findAll();
+    	model.addAttribute("testviews", tv);
+        return "SelectTest";
+    }
+
     // Start a new Test       *********************************************************************
     
-    @RequestMapping(value = "/StartTest", method = RequestMethod.GET)
-    public String startTest(){
+    @RequestMapping(value = "/StartTest", method = RequestMethod.POST)
+    public String startTest(@ModelAttribute TestSelection testSelection){
     	myTestView = testViewsService.findById(1);
+    	System.out.println("Selected TEst: " + testSelection.selectedTest);
 //    	myTestsList = myTestView.getsortedTestViewsList();
     	
     	// test output start
@@ -118,14 +128,8 @@ public class TakeTestController {
     	return "redirect:/loadExamQuestion";
     }
 
-    // Select a Test          *********************************************************************
+}
 
-    @RequestMapping("/SelectTest")
-    public String selectTest(Model model){
-    	Iterable<TestViews> tv = testViewsService.findAll();
-    	model.addAttribute("testviews", tv);
-    	
-        return "SelectTest";
-    }
-
+class TestSelection {
+	int selectedTest;
 }

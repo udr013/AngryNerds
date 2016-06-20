@@ -11,6 +11,7 @@
 <h1> welcome to the AngryNerds Examiner</h1>
 <h2> Select your exam option</h2>
 
+<!--
 <form method="get" action="/StartTest">
     <select type="text">
         <option name="select" value="C#">C#</option>
@@ -20,18 +21,23 @@
     </select>
     <button>submit</button>
     </form>
+-->
     
-<!--
-<form modelattribute="testSelection" method="get" th:action="@{/StartTest}">
+<form modelattribute="testSelection" method="POST" th:action="@{/StartTest}">
 	<table>
-		<tr th:each="testview : ${testviews}">
-			<td><input type="radio"  th:field="${testview.testType}" th:value="${testview.id}"/></td>
+		<thead>
+			<td></td>
+			<td>Test Type</td>
+			<td>Description</td>
+		</thead>
+		<tbody th:each="testview : ${testviews}">
+			<td><input type="radio" th:value="${testview.id}" name="testtype"/></td>
+			<td th:text="${testview.testType}"></td>
 			<td th:text="${testview.description}"></td>
-	    </tr>
+	    </tbody>
 	</table>
 	<button type="submit" value="Submit">Start Test</button>
 </form>    
--->
     
     
 </body>
