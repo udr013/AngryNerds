@@ -1,5 +1,7 @@
 package eu.programit.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,10 @@ public class TestViewsService {
 	
 	public TestViews findById(int testviewId){
 		return testViewsRepository.findOne(testviewId);
+	}
+	
+	public Iterable<TestViews> findAll() {
+		return testViewsRepository.findAll();
 	}
 
 }

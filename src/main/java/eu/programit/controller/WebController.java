@@ -45,11 +45,6 @@ public class WebController {
         return "index";
     }
 
-    @RequestMapping("/exam")
-    public String showExam(){
-        return "exam";
-    }
-
     @RequestMapping("/vraag")
     public String createQuestion(Model model){
         model.addAttribute("question", new Question());

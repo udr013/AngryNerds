@@ -10,16 +10,16 @@
 <body>	
 
 <header>Level: <span th:text="${question.difficulty}"></span></header>
-<p th:text="|Test ID: ${mytestview.id}, question nr: ${mytestview.description}, Question ID: ${question.questionID}"></p>
+<p th:text="|Test ID: ${mytestview.id}, Test: ${mytestview.description}, Question ID: ${question.questionID}"></p>
 
 <p th:text="${question.content}"></p>
 <pre th:text="${question.code}"/>
 
-<form  method="post" th:action="@{/loadExamQuestion}">
+<form modelattribute="testAnswerForm" method="post" th:action="@{/loadExamQuestion}">
 	<table>
 		<tr th:each="answer : ${answers}">
-			<td><input type="checkbox" th:text="${answer.content}" th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/></td>
-			<!--<label th:name="${#ids.prev('answer.anserID')}"></label>-->
+			<td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/></td>
+			<td th:text="${answer.content}"></td>
 	    </tr>
 	</table>
 	<button type="submit" value="Submit">submit</button>

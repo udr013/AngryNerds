@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,6 +15,7 @@ import eu.programit.domain.TestAnswerForm;
 import eu.programit.domain.TestResults;
 import eu.programit.domain.TestViews;
 import eu.programit.domain.TestViewsContent;
+import eu.programit.repository.TestViewsRepository;
 import eu.programit.service.IAnswerService;
 import eu.programit.service.IQuestionService;
 import eu.programit.service.TestViewsService;
@@ -36,7 +38,7 @@ public class TakeTestController {
 	TestViewsService testViewsService;
 	
     @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
-    public String start(Model model, TestAnswerForm testAnswerForm) {
+    public String LoadExamQuestion(Model model, TestAnswerForm testAnswerForm) {
     	Question q;
     	List<Answer> answers = null;
     	try {
@@ -61,7 +63,7 @@ public class TakeTestController {
     }
     
     @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.POST)
-    public String getAnswers(TestAnswerForm testAnswerForm) {
+    public String LoadExamQuestionPOST(@ModelAttribute TestAnswerForm testAnswerForm) {
     	List<Integer> answ = testAnswerForm.getTestAnswers();
 		if (answ != null) {
 			for (int s : answ) {
@@ -86,7 +88,7 @@ public class TakeTestController {
 //    	}
 //    	System.out.println("First Question: " + myTestView.getQuestionNr(1).getQuestionId());
     	// test output end
-    	
+
     	myTestView.startTest();
     	return "redirect:/loadExamQuestion";
     }
@@ -94,19 +96,36 @@ public class TakeTestController {
     // Load Next Question     *********************************************************************
     
     @RequestMapping(value = "/LoadNextQuestion", method = RequestMethod.POST)
-    public String loadNextQuestion(TestAnswerForm testAnswerForm){
-    	myTestView.getNextQuestion();
+    public String loadNextQuestion(@ModelAttribute TestAnswerForm testAnswerForm){
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()), testAnswerForm.getTestAnswers());
+		myTestView.getNextQuestion();
+		myTestResults.printValues();
     	return "redirect:/loadExamQuestion";
     }
 
     // Load Previous Question *********************************************************************
     
     @RequestMapping(value = "/LoadPrevQuestion", method = RequestMethod.POST)
-    public String loadPrevQuestion(TestAnswerForm testAnswerForm){
-    	myTestView.getPrevQuestion();
+    public String loadPrevQuestion(@ModelAttribute TestAnswerForm testAnswerForm){
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()), testAnswerForm.getTestAnswers());
+		myTestView.getPrevQuestion();
+		myTestResults.printValues();
+		if (testAnswerForm.getTestAnswers() != null) {
+			for (int s : testAnswerForm.getTestAnswers()) {
+				System.out.println("Answer = " + s);
+			}
+		}
     	return "redirect:/loadExamQuestion";
+    }
+
+    // Select a Test          *********************************************************************
+
+    @RequestMapping("/SelectTest")
+    public String selectTest(Model model){
+    	Iterable<TestViews> tv = testViewsService.findAll();
+    	model.addAttribute("testviews", tv);
+    	
+        return "SelectTest";
     }
 
 }
