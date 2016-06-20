@@ -74,7 +74,7 @@ public class TakeTestController {
     // Select a Test          *********************************************************************
 
     @RequestMapping("/SelectTest")
-    public String selectTest(Model model, TestViews testViews){
+    public String selectTest(Model model){
     	Iterable<TestViews> tv = testViewsService.findAll();
     	model.addAttribute("testviews", tv);
 		model.addAttribute("testview", new TestViews());
