@@ -23,7 +23,7 @@
     </form>
 -->
     
-<form modelattribute="testSelection" method="POST" th:action="@{/StartTest}">
+<form modelattribute="testSelection" th:object="${testview}"  method="POST" th:action="@{/StartTest}">
 	<table>
 		<thead>
 			<td></td>
@@ -31,7 +31,7 @@
 			<td>Description</td>
 		</thead>
 		<tbody th:each="testview : ${testviews}">
-			<td><input type="radio" th:value="${testview.id}" name="testtype"/></td>
+			<td><input type="radio" th:value="${testview.id}" th:field="*{id}" name="testtype"/></td>
 			<td th:text="${testview.testType}"></td>
 			<td th:text="${testview.description}"></td>
 	    </tbody>

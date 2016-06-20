@@ -1,7 +1,9 @@
 package eu.programit.controller;
 
-import java.util.List;
-
+import eu.programit.domain.*;
+import eu.programit.service.IAnswerService;
+import eu.programit.service.IQuestionService;
+import eu.programit.service.TestViewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,16 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import eu.programit.domain.Answer;
-import eu.programit.domain.Question;
-import eu.programit.domain.TestAnswerForm;
-import eu.programit.domain.TestResults;
-import eu.programit.domain.TestViews;
-import eu.programit.domain.TestViewsContent;
-import eu.programit.repository.TestViewsRepository;
-import eu.programit.service.IAnswerService;
-import eu.programit.service.IQuestionService;
-import eu.programit.service.TestViewsService;
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class TakeTestController {
@@ -38,7 +32,7 @@ public class TakeTestController {
 	TestViewsService testViewsService;
 	
     @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
-    public String LoadExamQuestion(Model model, TestAnswerForm testAnswerForm) {
+    public String LoadExamQuestion(Model model, TestAnswerForm testAnswerForm, Principal principal) {
     	Question q;
     	List<Answer> answers = null;
     	try {
@@ -59,15 +53,17 @@ public class TakeTestController {
         
     	//model.addAttribute("selectedAnswers", selectedAnswers);
  
-    	return "examquestion";
+    	return "ExamQuestion";
     }
     
     @RequestMapping(value = "/loadExamQuestion", method = RequestMethod.POST)
-    public String LoadExamQuestionPOST(@ModelAttribute TestAnswerForm testAnswerForm) {
+    public String LoadExamQuestionPOST(@ModelAttribute TestAnswerForm testAnswerForm, Principal principal) {
     	List<Integer> answ = testAnswerForm.getTestAnswers();
 		if (answ != null) {
 			for (int s : answ) {
-				System.out.println("Answer = " + s);
+				System.out.println("Answer = " + s+ principal.getName() );
+
+
 			}
 		}
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()), testAnswerForm.getTestAnswers());
@@ -81,15 +77,16 @@ public class TakeTestController {
     public String selectTest(Model model){
     	Iterable<TestViews> tv = testViewsService.findAll();
     	model.addAttribute("testviews", tv);
+		model.addAttribute("testview", new TestViews());
         return "SelectTest";
     }
 
     // Start a new Test       *********************************************************************
     
     @RequestMapping(value = "/StartTest", method = RequestMethod.POST)
-    public String startTest(@ModelAttribute TestSelection testSelection){
-    	myTestView = testViewsService.findById(1);
-    	System.out.println("Selected TEst: " + testSelection.selectedTest);
+    public String startTest(@ModelAttribute ("testview")TestViews testView,  Principal principal){
+    	myTestView = testViewsService.findById(testView.getId());
+    	System.out.println("Selected TEst: " + testView.getId() + "gebruiker:" + principal.getName());
 //    	myTestsList = myTestView.getsortedTestViewsList();
     	
     	// test output start
@@ -116,13 +113,13 @@ public class TakeTestController {
     // Load Previous Question *********************************************************************
     
     @RequestMapping(value = "/LoadPrevQuestion", method = RequestMethod.POST)
-    public String loadPrevQuestion(@ModelAttribute TestAnswerForm testAnswerForm){
+    public String loadPrevQuestion(@ModelAttribute TestAnswerForm testAnswerForm, Principal principal){
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()), testAnswerForm.getTestAnswers());
 		myTestView.getPrevQuestion();
 		myTestResults.printValues();
 		if (testAnswerForm.getTestAnswers() != null) {
 			for (int s : testAnswerForm.getTestAnswers()) {
-				System.out.println("Answer = " + s);
+				System.out.println("Answer = " + s + "gebruiker:"+ principal.getName() );
 			}
 		}
     	return "redirect:/loadExamQuestion";
@@ -132,4 +129,11 @@ public class TakeTestController {
 
 class TestSelection {
 	int selectedTest;
+
+	@Override
+	public String toString() {
+		return "TestSelection{" +
+				"selectedTest=" + selectedTest +
+				'}';
+	}
 }
