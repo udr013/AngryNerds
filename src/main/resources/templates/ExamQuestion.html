@@ -14,7 +14,7 @@
 
 <p th:text="${question.content}"></p>
 <pre th:text="${question.code}"/>
-
+<p>Number of answer(s) to select : <span style="font-weight: bold" th:text="${numberCorrect}"/>  </p>
 <form modelattribute="testAnswerForm" method="post" th:action="@{/loadExamQuestion}">
 	<table>
 		<tr th:each="answer : ${answers}">
