@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")//because we override and create our own login page we need to give permission
-                // to access this login page by adding the permitAll()as good practise so unauthenticated users can access it for sure!!
+                // to access this login page by adding the permitAll()as good practice so unauthenticated users can access it for sure!!
                 .usernameParameter("username").passwordParameter("password")
                 .permitAll()
                 .defaultSuccessUrl("/index")

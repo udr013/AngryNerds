@@ -27,23 +27,23 @@
     <!--<input type="hidden" th:value="${question}" th:field="${question}"  />
     <input type="text" th:field="*{answerID}" class="form-control" placeholder=" id"/>-->
 			<tr>
-				<td>Antwoord</td>
+				<td>Answer</td>
 				<td><input type="text" th:field="*{content}"
 					class="form-control" placeholder="answer" /></td></tr>
 			<tr>
-				<td>Aanvinken als die klopt</td>
+				<td>Check if correct</td>
 				<td><input type="checkbox" class="form-control"
 					th:field="*{correct}" th:title="value" /></td></tr>
 			<tr>
-				<td>Uitleg</td>
+				<td>Explanation</td>
 				<td><input type="text" th:field="*{explanation}"
 					placeholder="explanation" /></td></tr>
 					</table>
 				<input class="button" type="submit" value="Submit" />
 </form>
 
-<a href="#" th:href="@{/vraag}">vraag toevoegen</a>
-<a href="#" th:href="@{/}">terug naar index</a>
+<a href="#" th:href="@{/vraag}">Add Question</a>
+<a href="#" th:href="@{/}">Back to Index</a>
 
 
 </body>
