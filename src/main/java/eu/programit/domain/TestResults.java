@@ -1,5 +1,6 @@
 package eu.programit.domain;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,15 +11,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
-@Table(name="testresults")
-public class TestResults {
+public class TestResults implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1491385510338892825L;
 
 	@Override
 	public String toString() {
@@ -29,7 +32,7 @@ public class TestResults {
 	private int examID;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
+//	@JoinColumn(name = "id")
 	private User user;
 
 	// map questions to answers

@@ -3,30 +3,43 @@ package eu.programit.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import eu.programit.domain.Category;
-import eu.programit.domain.Question;
+import eu.programit.domain.TestResults;
 import eu.programit.repository.TestResultRepository;
-import junit.framework.TestResult;
 @Service
 public class TestResultService implements ITestResultService {
     @Autowired
     TestResultRepository testResultRepository;
 
     @Override
-    public TestResult saveTestResult(TestResult testResult) {
+    public TestResults saveTestResult(TestResults testResult) {
         return testResultRepository.save(testResult);
     }
-    @Override
-	public TestResult findById(int examID) {
-		// TODO Auto-generated method stub
-		return testResultRepository.findOne(examID);
-	}
+//    @Override
+//	public TestResults findById(int examID) {
+//		// TODO Auto-generated method stub
+//		return testResultRepository.findOne(examID);
+//	}
+//	@Override
+//	public Iterable<TestResults> findAll() {
+//		Iterable<TestResults> result = this.testResultRepository.findAll();
+//		
+//		return result;
+//	}
+
 	@Override
-	public Iterable<TestResult> findAll() {
-		Iterable<TestResult> result = this.testResultRepository.findAll();
-		
-		return result;
+	public Iterable<TestResults> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public TestResults findById(int examID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 
 
 //    @Override

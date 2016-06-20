@@ -1,13 +1,12 @@
 package eu.programit.service;
 
-import junit.framework.TestResult;
+import eu.programit.domain.TestResults;
 
-
-	public interface ITestResultService {
-	    TestResult saveTestResult(TestResult testResult);
-	    Iterable<TestResult> findAll();
+public interface ITestResultService {
+	    TestResults saveTestResult(TestResults testResult);
+	    Iterable<TestResults> findAll();
 	 //   Iterable<Answer> findAllByQuestion(Question question);
-		TestResult findById(int examID);
+	    TestResults findById(int examID);
 	}
 
 
