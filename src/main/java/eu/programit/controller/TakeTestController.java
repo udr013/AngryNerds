@@ -3,6 +3,7 @@ package eu.programit.controller;
 import eu.programit.domain.*;
 import eu.programit.service.IAnswerService;
 import eu.programit.service.IQuestionService;
+import eu.programit.service.ITestResultService;
 import eu.programit.service.TestViewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ public class TakeTestController {
 
 	@Autowired
 	IQuestionService iQuestionService;
+	
+	@Autowired
+	ITestResultService iTestResultService;
 
 	@Autowired
 	IAnswerService iAnswerService;
@@ -87,6 +91,7 @@ public class TakeTestController {
 		}
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
 				testAnswerForm.getTestAnswers());
+		System.out.println(myTestResults);
 		return "redirect:/loadExamQuestion";
 
 	}
@@ -133,6 +138,7 @@ public class TakeTestController {
 				testAnswerForm.getTestAnswers());
 		myTestView.getNextQuestion();
 		myTestResults.printValues();
+		System.out.println(myTestResults);
 		return "redirect:/loadExamQuestion";
 	}
 
@@ -150,6 +156,7 @@ public class TakeTestController {
 				System.out.println("Answer = " + s + "gebruiker:" + principal.getName());
 			}
 		}
+		System.out.println(myTestResults);
 		return "redirect:/loadExamQuestion";
 	}
 
