@@ -56,7 +56,7 @@ public class TakeTestController {
 
 		model.addAttribute("answers", answers);
 		model.addAttribute("mytestview", myTestView);
-		// model.addAttribute("myanswers",
+		model.addAttribute("mytestresults", myTestResults.getTestResults().get(q.getQuestionID()));
 		// myTestResults.getTestResults(myTestView.getQuestionNr()));
 
 		// model.addAttribute("selectedAnswers", selectedAnswers);
@@ -64,6 +64,7 @@ public class TakeTestController {
 		return "ExamQuestion";
 	}
 
+	// Leandro: getNrOfCorrectAnswers komt volgens mij meer overeen met de functionaliteit 
 	private int getCorrectAnswers(List<Answer> answers) {
 		// TODO Auto-generated method stub
 		int count = 0;
@@ -165,7 +166,10 @@ public class TakeTestController {
 	// *********************************************************************
 
 	@RequestMapping(value = "/ShowAllQuestions", method = RequestMethod.POST)
-	public String showAllQuestions() {
+	public String showAllQuestions(@ModelAttribute TestAnswerForm testAnswerForm) {
+		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
+				testAnswerForm.getTestAnswers());
+		myTestResults.printValues();
 		// Implement overview of all questions
 		return "ShowAllQuestions";
 	}
@@ -175,8 +179,10 @@ public class TakeTestController {
 	// *********************************************************************
 
 	@RequestMapping(value = "/StopTheTest", method = RequestMethod.POST)
-	public String stopTheTest() {
-		// Implement overview of all questions
+	public String stopTheTest(@ModelAttribute TestAnswerForm testAnswerForm) {
+		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
+				testAnswerForm.getTestAnswers());
+		myTestResults.printValues();
 		return "StopTheTest";
 	}
 
