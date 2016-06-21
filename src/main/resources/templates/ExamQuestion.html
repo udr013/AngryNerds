@@ -15,16 +15,18 @@
 <p th:text="${question.content}"></p>
 <pre th:text="${question.code}"/>
 <p>Number of answer(s) to select : <span style="font-weight: bold" th:text="${numberCorrect}"/>  </p>
-<form modelattribute="testAnswerForm" method="post" th:action="@{/loadExamQuestion}">
+<form modelattribute="testAnswerForm" method="post" th:action="@{/ShowAllQuestions}">
 	<table>
 		<tr th:each="answer : ${answers}">
 			<td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/></td>
 			<td th:text="${answer.content}"></td>
 	    </tr>
 	</table>
-	<button type="submit" value="Submit">submit</button>
 	<button type="submit" value="PrevQuestion" formaction="/LoadPrevQuestion">Previous Question</button>
+	<button type="submit" value="Submit">Show All Questions</button>
 	<button type="submit" value="NextQuestion" formaction="/LoadNextQuestion">Next Question</button>
+	<br/>
+	<button type="submit" value="Submit" formaction="/StopTheTest">Stop this test</button>
 </form>
 
 </body>

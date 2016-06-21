@@ -112,6 +112,7 @@ public class TakeTestController {
 
 	@RequestMapping(value = "/StartTest", method = RequestMethod.POST)
 	public String startTest(@ModelAttribute("testview") TestViews testView, Principal principal) {
+		if (testView.getId() == 0) return "redirect:/SelectTest";
 		myTestView = testViewsService.findById(testView.getId());
 		System.out.println("Selected TEst: " + testView.getId() + "gebruiker:" + principal.getName());
 		// myTestsList = myTestView.getsortedTestViewsList();
@@ -159,6 +160,35 @@ public class TakeTestController {
 		System.out.println(myTestResults);
 		return "redirect:/loadExamQuestion";
 	}
+	
+	// Show All Questons in one overview
+	// *********************************************************************
+
+	@RequestMapping(value = "/ShowAllQuestions", method = RequestMethod.POST)
+	public String showAllQuestions() {
+		// Implement overview of all questions
+		return "ShowAllQuestions";
+	}
+	
+	
+	// Stop the Test
+	// *********************************************************************
+
+	@RequestMapping(value = "/StopTheTest", method = RequestMethod.POST)
+	public String stopTheTest() {
+		// Implement overview of all questions
+		return "StopTheTest";
+	}
+
+	// Evaluate the Test
+	// *********************************************************************
+
+	@RequestMapping(value = "/TestEvaluation", method = RequestMethod.POST)
+	public String testEvaluation() {
+		// Implement overview of all questions
+		return "TestEvaluation";
+	}
+	
 
 }
 
