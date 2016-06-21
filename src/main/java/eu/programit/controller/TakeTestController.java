@@ -24,7 +24,7 @@ public class TakeTestController {
 	IQuestionService iQuestionService;
 
     @Autowired
-    IUserService iUserService;
+	IUserService IUserService;
 	
 	@Autowired
 	ITestResultService iTestResultService;
@@ -139,14 +139,14 @@ public class TakeTestController {
 				testAnswerForm.getTestAnswers());
 		myTestView.getNextQuestion();
 		myTestResults.printValues();
-        User user = iUserService.findByName(principal.getName());
-//        myTestResults.setUser(user);
+        User user = IUserService.findByName(principal.getName());
+        myTestResults.setUser(user);
         myTestResults.setExamId(myTestView.getId());
 
 		System.out.println(myTestResults);
         // this doesn't work if no catch: nested exception is org.hibernate.PropertyAccessException: could not get a field value by reflection
 //       try {
-            iTestResultService.saveTestResult(myTestResults);
+
 //        }catch (Exception e){
 //            System.out.println("file not saved");
 //        }
@@ -189,6 +189,7 @@ public class TakeTestController {
 	@RequestMapping(value = "/StopTheTest", method = RequestMethod.POST)
 	public String stopTheTest() {
 		// Implement overview of all questions
+		iTestResultService.saveTestResult(myTestResults);
 		return "StopTheTest";
 	}
 
@@ -197,6 +198,7 @@ public class TakeTestController {
 
 	@RequestMapping(value = "/TestEvaluation", method = RequestMethod.POST)
 	public String testEvaluation() {
+		iTestResultService.saveTestResult(myTestResults);
 		// Implement overview of all questions
 		return "TestEvaluation";
 	}
