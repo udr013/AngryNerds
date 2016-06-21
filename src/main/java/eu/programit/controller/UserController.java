@@ -2,7 +2,7 @@ package eu.programit.controller;
 
 
 import eu.programit.domain.User;
-import eu.programit.service.UserServiceInterface;
+import eu.programit.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,7 +25,7 @@ import java.util.Collection;
 public class UserController {
 
     @Autowired
-    UserServiceInterface userServiceInterface;
+    IUserService userServiceInterface;
 
     @RequestMapping("/register")
     public String registerPage(Model model){

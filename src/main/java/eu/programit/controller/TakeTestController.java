@@ -1,10 +1,7 @@
 package eu.programit.controller;
 
 import eu.programit.domain.*;
-import eu.programit.service.IAnswerService;
-import eu.programit.service.IQuestionService;
-import eu.programit.service.ITestResultService;
-import eu.programit.service.TestViewsService;
+import eu.programit.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +22,9 @@ public class TakeTestController {
 
 	@Autowired
 	IQuestionService iQuestionService;
+
+    @Autowired
+    IUserService iUserService;
 	
 	@Autowired
 	ITestResultService iTestResultService;
@@ -67,7 +67,7 @@ public class TakeTestController {
 	private int getCorrectAnswers(List<Answer> answers) {
 		// TODO Auto-generated method stub
 		int count = 0;
-		System.out.println(answers);
+		//System.out.println(answers);
 		if (answers != null) {
 			for (Answer answer : answers) {
 				if (answer.isCorrect()) {
@@ -134,12 +134,23 @@ public class TakeTestController {
 	// *********************************************************************
 
 	@RequestMapping(value = "/LoadNextQuestion", method = RequestMethod.POST)
-	public String loadNextQuestion(@ModelAttribute TestAnswerForm testAnswerForm) {
+	public String loadNextQuestion(@ModelAttribute TestAnswerForm testAnswerForm, Principal principal) {
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
 				testAnswerForm.getTestAnswers());
 		myTestView.getNextQuestion();
 		myTestResults.printValues();
+        User user = iUserService.findByName(principal.getName());
+        myTestResults.setUser(user);
+        myTestResults.setExamID(myTestView.getId());
+
 		System.out.println(myTestResults);
+        // this doesn't work if no catch: nested exception is org.hibernate.PropertyAccessException: could not get a field value by reflection
+       try {
+            iTestResultService.saveTestResult(myTestResults);
+        }catch (Exception e){
+            System.out.println("file not saved");
+        }
+        System.out.println("should be saved by now");
 		return "redirect:/loadExamQuestion";
 	}
 
@@ -158,7 +169,8 @@ public class TakeTestController {
 			}
 		}
 		System.out.println(myTestResults);
-		return "redirect:/loadExamQuestion";
+
+        return "redirect:/loadExamQuestion";
 	}
 	
 	// Show All Questons in one overview

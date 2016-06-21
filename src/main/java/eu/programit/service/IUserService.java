@@ -5,7 +5,7 @@ import eu.programit.domain.User;
 
 import java.util.Collection;
 
-public interface UserServiceInterface {
+public interface IUserService {
 
     public User saveUser(User user);
     public Boolean deleteUser(Integer id);

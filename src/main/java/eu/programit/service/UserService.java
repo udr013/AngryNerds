@@ -15,7 +15,7 @@ import java.util.Collection;
  */
 @Service
 @Transactional
-public class UserServiceImplementation implements UserServiceInterface {
+public class UserService implements IUserService {
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
