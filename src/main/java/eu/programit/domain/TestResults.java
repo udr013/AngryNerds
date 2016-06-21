@@ -34,6 +34,10 @@ public class TestResults implements Serializable {
     //Key = questionID  value list of answerIDs
     private Map<Integer, List<Integer>> testResults = new HashMap<>();
 
+    public int getTestResultId() {
+        return testResultId;
+    }
+
     public int getExamId() {
         return examId;
     }

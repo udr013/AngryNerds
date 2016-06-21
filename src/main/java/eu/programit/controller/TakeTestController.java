@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class TakeTestController {
@@ -56,7 +58,7 @@ public class TakeTestController {
 
 		model.addAttribute("answers", answers);
 		model.addAttribute("mytestview", myTestView);
-		model.addAttribute("mytestresults", myTestResults.getTestResults().get(q.getQuestionID()));
+		// model.addAttribute("myanswers",
 		// myTestResults.getTestResults(myTestView.getQuestionNr()));
 
 		// model.addAttribute("selectedAnswers", selectedAnswers);
@@ -64,7 +66,7 @@ public class TakeTestController {
 		return "ExamQuestion";
 	}
 
-	// Leandro: getNrOfCorrectAnswers komt volgens mij meer overeen met de functionaliteit 
+	// Leandro: getNrOfCorrectAnswers komt volgens mij meer overeen met de functionaliteit
 	private int getCorrectAnswers(List<Answer> answers) {
 		// TODO Auto-generated method stub
 		int count = 0;
@@ -202,8 +204,38 @@ public class TakeTestController {
 	// *********************************************************************
 
 	@RequestMapping(value = "/TestEvaluation", method = RequestMethod.POST)
-	public String testEvaluation() {
+	public String testEvaluation( Model model, Principal principal) {
 		iTestResultService.saveTestResult(myTestResults);
+		User user = iUserService.findByName(principal.getName());
+		int i=0;
+		List<TestResults> testResultses= (List<TestResults>) iTestResultService.findByUser(user);
+		List<Question> questions= new ArrayList<Question>();
+		TestResults lastTestResult = testResultses.get(testResultses.size()-1);
+		System.out.println(lastTestResult.getTestResultId() );
+		Map<Integer, List<Integer>> testResults = lastTestResult.getTestResults();
+		int correctQuestions = 0;
+		int incorrectQuestions = 0;
+		for(Map.Entry<Integer, List<Integer>> element : testResults.entrySet()) {
+			int vraagId = element.getKey();
+			Question q = this.iQuestionService.findById(vraagId);
+			questions.add(q);
+			List<Integer> antwoowrden = element.getValue();
+			boolean isOK = true;
+			for(int a :antwoowrden){
+				Answer answer = iAnswerService.findOne(a);
+				isOK = isOK && answer.isCorrect();
+			}
+			if(isOK) {
+				correctQuestions++;
+			}
+			else {
+				incorrectQuestions++;
+			}
+
+		}
+		System.out.println(correctQuestions);
+		System.out.println(incorrectQuestions);
+
 		// Implement overview of all questions
 		return "TestEvaluation";
 	}

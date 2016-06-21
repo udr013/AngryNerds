@@ -11,9 +11,10 @@
 
 <header>Evaluation of the test</header>
 
-<p>Evaluation results come here .....</p>
+<p>Your testResults:</p>
 
-<form modelattribute="testAnswerForm" method="post" th:action="@{/SelectTest}">
+
+<form modelattribute="lastTestResult" method="get" th:action="@{/SelectTest}">
 	<button type="submit" value="Submit">Select a new test</button>
 </form>
 
