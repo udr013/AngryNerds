@@ -17,12 +17,16 @@ public class TestResults implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int examID;
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
-    @ManyToOne
-    @JoinColumn(name = "id")
-    private User user;
+    private int testResultId;
+
+
+    private int examId;
+
+//    @ManyToOne
+//    @JoinColumn(name = "userid")
+//    private User user;
 
     // map questions to answers
     @Column(columnDefinition = "BLOB")
@@ -31,21 +35,21 @@ public class TestResults implements Serializable {
     //Key = questionID  value list of answerIDs
     private Map<Integer, List<Integer>> testResults = new HashMap<>();
 
-    public int getExamID() {
-        return examID;
+    public int getExamId() {
+        return examId;
     }
 
-    public void setExamID(int examID) {
-        this.examID = examID;
+    public void setExamId(int examId) {
+        this.examId = examId;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public Map<Integer, List<Integer>> getTestResults() {
         return testResults;
@@ -89,13 +93,10 @@ public class TestResults implements Serializable {
     @Override
     public String toString() {
         return "TestResults{" +
-                "examID=" + examID +
-                ", user=" + user +
+                "id=" + testResultId +
+                ", examId=" + examId +
+//                ", user=" + user +
                 ", testResults=" + testResults +
                 '}';
     }
-    //    @Override
-//    public String toString() {
-//        return "TestResults [testResults=" + testResults + "]";
-//    }
 }

@@ -140,16 +140,16 @@ public class TakeTestController {
 		myTestView.getNextQuestion();
 		myTestResults.printValues();
         User user = iUserService.findByName(principal.getName());
-        myTestResults.setUser(user);
-        myTestResults.setExamID(myTestView.getId());
+//        myTestResults.setUser(user);
+        myTestResults.setExamId(myTestView.getId());
 
 		System.out.println(myTestResults);
         // this doesn't work if no catch: nested exception is org.hibernate.PropertyAccessException: could not get a field value by reflection
-       try {
+//       try {
             iTestResultService.saveTestResult(myTestResults);
-        }catch (Exception e){
-            System.out.println("file not saved");
-        }
+//        }catch (Exception e){
+//            System.out.println("file not saved");
+//        }
         System.out.println("should be saved by now");
 		return "redirect:/loadExamQuestion";
 	}
