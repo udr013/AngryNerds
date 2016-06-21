@@ -11,7 +11,7 @@
 
 <header>Evaluation of the test</header>
 
-<p>Your testResults:</p>
+<p>Your testResults:</p> <span th:text="${score}"></span><span>%</span>
 
 
 <form modelattribute="lastTestResult" method="get" th:action="@{/SelectTest}">

@@ -235,7 +235,8 @@ public class TakeTestController {
 		}
 		System.out.println(correctQuestions);
 		System.out.println(incorrectQuestions);
-
+		int score =(100/(correctQuestions+incorrectQuestions))*correctQuestions;
+		model.addAttribute("score", score);
 		// Implement overview of all questions
 		return "TestEvaluation";
 	}
