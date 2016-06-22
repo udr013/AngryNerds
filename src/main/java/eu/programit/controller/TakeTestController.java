@@ -221,9 +221,9 @@ public class TakeTestController {
 			int vraagId = element.getKey();
 			Question q = this.iQuestionService.findById(vraagId);
 			questions.add(q);
-			List<Integer> antwoowrden = element.getValue();
+			List<Integer> antwoorden = element.getValue();
 			boolean isOK = true;
-			for(int a :antwoowrden){
+			for(int a :antwoorden){
 				Answer answer = iAnswerService.findOne(a);
 				isOK = isOK && answer.isCorrect();
 
