@@ -21,7 +21,7 @@
 			<!-- <td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/></td> -->
 			<!-- <td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/><span th:if="(${mytestresults} != null) (${mytestresults.contains('9')}) ?: 'checked'"></span></td> -->
 			<!-- <td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}" th:if="(${mytestresults} != null)"/></td> -->
-			<td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}" th:checked="( (${#lists.isEmpty(mytestresults)}) ?: ${#lists.contains(mytestresults, answer.answerID)} )" th:text="|${mytestresults}, ${answer.answerID}|" /></td>
+			<td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}" th:checked="( (${#lists.isEmpty(mytestresults)}) ?: ${#lists.contains(mytestresults, answer.answerID)} )" /></td>
 			<!-- <td><input type="checkbox"  th:field="${(${mytestresults} != null) ? 'checked' : 'notchecked'}" th:value="${answer.answerID}"/></td> -->
 			<td th:text="${answer.content}"></td>
 	    </tr>
