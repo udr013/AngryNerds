@@ -49,7 +49,6 @@ public class TakeTestController {
 			q = new Question();
 			q.setContent("Unknown question requested (questionID does not exist)");
 		}
-
 		model.addAttribute("numberCorrect", getCorrectAnswers(answers));
 		// questionCounter++;
 		// System.out.println("TakeTestCont: questionCounter = " +
@@ -58,7 +57,8 @@ public class TakeTestController {
 
 		model.addAttribute("answers", answers);
 		model.addAttribute("mytestview", myTestView);
-		// model.addAttribute("myanswers",
+		model.addAttribute("mytestresults", myTestResults.getTestResults().get(q.getQuestionID()));
+		System.out.println("TAkeTestController . mytestresults : " + myTestResults.getTestResults().get(q.getQuestionID()));
 		// myTestResults.getTestResults(myTestView.getQuestionNr()));
 
 		// model.addAttribute("selectedAnswers", selectedAnswers);
@@ -180,11 +180,13 @@ public class TakeTestController {
 	// *********************************************************************
 
 	@RequestMapping(value = "/ShowAllQuestions", method = RequestMethod.POST)
-	public String showAllQuestions(@ModelAttribute TestAnswerForm testAnswerForm) {
+	public String showAllQuestions(Model model, @ModelAttribute TestAnswerForm testAnswerForm) {
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
 				testAnswerForm.getTestAnswers());
 		myTestResults.printValues();
 		// Implement overview of all questions
+		model.addAttribute("mytestview", myTestView);
+		model.addAttribute("questionservice", iQuestionService);
 		return "ShowAllQuestions";
 	}
 	
