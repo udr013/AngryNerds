@@ -1,0 +1,41 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="shortcut icon" href="http://www.programit.nl/wp-content/uploads/2015/12/favicon.png" /><link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.programit.nl/wp-content/uploads/2015/12/programitlogo152x77.png" />
+<title>ProgramIT</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+    <meta charset="UTF-8"/>
+    <title>Angry Nerds Examiner</title>
+</head>
+<body>
+<div class="container" id="banner">
+		<div class="row">
+			<h2>Vul hier uw categoriën in</h2>
+		</div>
+	</div>
+
+
+
+
+<form id="col-form" th:object="${category}" th:action="@{/categorysave}" action="#" method="post">
+	<table>
+
+			<tr>
+				<td>Category naam</td>
+				<td><input type="text" th:field="*{name}"
+					class="form-control" placeholder="naam categorie" /></td></tr>
+		
+			<tr>
+				<td>Hoofdstuk</td>
+				<td><input type="text" th:field="*{chapter}"
+					placeholder="geef het hoofdstuk" /></td></tr>
+					</table>
+				<input class="button" type="submit" value="Submit" />
+</form>
+
+<a href="#" th:href="@{/categorysave}">categorie toevoegen</a>
+<a href="#" th:href="@{/}">terug naar index</a>
+
+
+</body>
+</html>

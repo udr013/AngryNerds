@@ -1,9 +1,14 @@
 package eu.programit.service;
 
-/**
- * Created by udr013 on 9-6-2016.
- */
-public interface IQuestionService {
+import eu.programit.domain.Question;
+
+public interface IQuestionService{
+
+    Question saveQuestion(Question question);
+    Iterable<Question> findAll();
+    
+    Question findById(int questionid);
+
 
 
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="shortcut icon" href="http://www.programit.nl/wp-content/uploads/2015/12/favicon.png" /><link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.programit.nl/wp-content/uploads/2015/12/programitlogo152x77.png" />
+<title>ProgramIT</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+    <title>AngryNerds Examiner</title>
+</head>
+
+<body>	
+
+<header>Evaluation of the test</header>
+
+<p>Your testResults:</p> <span th:text="${score}"></span><span>%</span>
+<table>
+    <caption>Question overview</caption>
+    <thead>
+    <th>ID</th>
+    <th>Question</th>
+    <th>Evaluation</th>
+    </thead>
+    <tbody>
+    <tr th:if="${#lists.isEmpty(questions)}" >
+        <td colspan="3" align="center">No questions found!</td>
+    </tr>
+    <tr th:each="question : ${questions}">
+        <td th:text="${question.questionID}"></td>
+        <td th:text="${question.content}"></td>
+        <td th:text="${question.correct}"></td>
+        <td>
+            <a th:href="@{/displayQuestInfo/{id}(id=${question.questionID})}"><span>klik hier&emsp;</span></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<form modelattribute="lastTestResult" method="get" th:action="@{/SelectTest}">
+	<button type="submit" value="Submit">Select a new test</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="shortcut icon" href="http://www.programit.nl/wp-content/uploads/2015/12/favicon.png" /><link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.programit.nl/wp-content/uploads/2015/12/programitlogo152x77.png" />
+<title>ProgramIT</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+    <meta charset="UTF-8"/>
+    <title>Angry Nerds Examiner</title>
+</head>
+<body>
+<header>Level: <span th:text="${question.difficulty}"></span></header>
+
+<p th:text="${question.content}"></p>
+
+<pre th:text="${question.code}"/>
+
+    <table>
+        <tr th:each="answer : ${answers}">
+            <td><input type="checkbox" th:text="${answer.content}" th:value="${answer.answerID}"/></td>
+            <!--<label th:name="${#ids.prev('answer.anserID')}"></label>-->
+        </tr>
+    </table>
+
+
+<form id="col-form" th:object="${answer}" th:action="@{/answersave}" action="#" method="post">
+	<table>
+    <!--<input type="hidden" th:value="${question}" th:field="${question}"  />
+    <input type="text" th:field="*{answerID}" class="form-control" placeholder=" id"/>-->
+			<tr>
+				<td>Answer</td>
+				<td><input type="text" th:field="*{content}"
+					class="form-control" placeholder="answer" /></td></tr>
+			<tr>
+				<td>Check if correct</td>
+				<td><input type="checkbox" class="form-control"
+					th:field="*{correct}" th:title="value" /></td></tr>
+			<tr>
+				<td>Explanation</td>
+				<td><input type="text" th:field="*{explanation}"
+					placeholder="explanation" /></td></tr>
+					</table>
+				<input class="button" type="submit" value="Submit" />
+</form>
+
+<a href="#" th:href="@{/vraag}">Add Question</a>
+<a href="#" th:href="@{/}">Back to Index</a>
+
+
+</body>
+</html>
