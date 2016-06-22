@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -221,9 +222,9 @@ public class TakeTestController {
 			int vraagId = element.getKey();
 			Question q = this.iQuestionService.findById(vraagId);
 			questions.add(q);
-			List<Integer> antwoowrden = element.getValue();
+			List<Integer> answers = element.getValue();
 			boolean isOK = true;
-			for(int a :antwoowrden){
+			for(int a :answers){
 				Answer answer = iAnswerService.findOne(a);
 				isOK = isOK && answer.isCorrect();
 
@@ -247,7 +248,14 @@ public class TakeTestController {
 		return "TestEvaluation";
 	}
 	
+	//display question after exam
+	@RequestMapping(value = {"/displayQuestInfo/{id}"}, method = RequestMethod.GET)
+	public String displayQuestion(@PathVariable("id") Integer  id,Model model) {
+		System.out.println("we have id"+id);
+		model.addAttribute("question", iQuestionService.findById(id));
 
+		return "displayQuestion";
+	}
 }
 
 class TestSelection {
