@@ -10,27 +10,23 @@
 <body>
 
 <header>Level: <span th:text="${question.difficulty}"></span></header>
-<h3 th:text="|Test: ${mytestview.description}, Question Nr: ${mytestview.getCurrentQuestion().getOrderNr()} of ${mytestview.getNrOfQuestions()} , Question ID: ${question.questionID}|"></h3>
+<h3>Question ID<span th:text="${question.questionID}"></span></h3>
 
 <p th:text="${question.content}"></p>
-<pre th:text="${question.code}"/>
-<p>Number of answer(s) to select : <span style="font-weight: bold" th:text="${numberCorrect}"/>  </p>
+<pre th:text="${question.code}"></pre>
+<!--<p>Number of answer(s) to select : <span style="font-weight: bold" th:text="${numberCorrect}"/>  </p>-->
 <form modelattribute="testAnswerForm" method="post" th:action="@{/TestEvaluation}">
     <table>
         <tr th:each="answer : ${answers}">
-            <!-- <td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/></td> -->
-            <!-- <td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/><span th:if="(${mytestresults} != null) (${mytestresults.contains('9')}) ?: 'checked'"></span></td> -->
-            <!-- <td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}" th:if="(${mytestresults} != null)"/></td> -->
-            <td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}" th:checked="( (${#lists.isEmpty(mytestresults)}) ?: ${#lists.contains(mytestresults, answer.answerID)} )" th:text="|${mytestresults}, ${answer.answerID}|" /></td>
-            <!-- <td><input type="checkbox"  th:field="${(${mytestresults} != null) ? 'checked' : 'notchecked'}" th:value="${answer.answerID}"/></td> -->
             <td th:text="${answer.content}"></td>
+            <td th:text="${answer.explanation}"></td>
         </tr>
     </table>
     <button type="submit" value="PrevQuestion" formaction="/TestEvaluation">Overview Result</button>
 
 
     <br/>
-    <button type="submit" value="Submit" formaction="/StopTheTest">Stop this test</button>
+    <!--<button type="submit" value="Submit" formaction="/StopTheTest">Stop this test</button>-->
 </form>
 
 </body>
