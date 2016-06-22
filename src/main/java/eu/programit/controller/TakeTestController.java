@@ -224,8 +224,11 @@ public class TakeTestController {
 			for(int a :antwoowrden){
 				Answer answer = iAnswerService.findOne(a);
 				isOK = isOK && answer.isCorrect();
+
 			}
 			if(isOK) {
+				q.setCorrect(true);
+				questions.add(q);
 				correctQuestions++;
 			}
 			else {
@@ -236,6 +239,7 @@ public class TakeTestController {
 		System.out.println(correctQuestions);
 		System.out.println(incorrectQuestions);
 		int score =(100/(correctQuestions+incorrectQuestions))*correctQuestions;
+		model.addAttribute("questions", questions);
 		model.addAttribute("score", score);
 		// Implement overview of all questions
 		return "TestEvaluation";
