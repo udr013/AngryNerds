@@ -252,9 +252,22 @@ public class TakeTestController {
 	@RequestMapping(value = {"/displayQuestInfo/{id}"}, method = RequestMethod.GET)
 	public String displayQuestion(@PathVariable("id") Integer  id,Model model) {
 		System.out.println("we have id"+id);
-		model.addAttribute("question", iQuestionService.findById(id));
+		Question q;
+		List<Answer> answers = null;
+		try {
+			// q = iQuestionService.findById(questionCounter);
+			q = iQuestionService.findById(id);
+			answers = q.getAnswers();
+		} catch (NullPointerException npe) {
+			q = new Question();
+			q.setContent("Unknown question requested (questionID does not exist)");
+		}
 
-		return "displayQuestion";
+		model.addAttribute("question", q);// the 1 will get question 2 (index 0)
+		model.addAttribute("answers", answers);
+
+
+		return "displayQuestionInfo";
 	}
 }
 
