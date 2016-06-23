@@ -221,7 +221,7 @@ public class TakeTestController {
 		for(Map.Entry<Integer, List<Integer>> element : testResults.entrySet()) {
 			int vraagId = element.getKey();
 			Question q = this.iQuestionService.findById(vraagId);
-			questions.add(q);
+			//questions.add(q);
 			List<Integer> answers = element.getValue();
 			boolean isOK = false;
 			// if the questions is answered
@@ -240,11 +240,11 @@ public class TakeTestController {
 			}
 			else {
 				incorrectQuestions++;
+				questions.add(q);
 			}
 
 		}
-		System.out.println(correctQuestions);
-		System.out.println(incorrectQuestions);
+
 		int score =(100/(correctQuestions+incorrectQuestions))*correctQuestions;
 		model.addAttribute("questions", questions);
 		model.addAttribute("score", score);
