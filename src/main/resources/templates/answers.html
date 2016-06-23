@@ -16,7 +16,8 @@
 
     <table>
         <tr th:each="answer : ${answers}">
-            <td><input type="checkbox" th:text="${answer.content}" th:value="${answer.answerID}"/></td>
+            <td><input type="checkbox" th:value="${answer.answerID}"/></td>
+			<td th:text="${answer.content}"></td>
             <!--<label th:name="${#ids.prev('answer.anserID')}"></label>-->
         </tr>
     </table>

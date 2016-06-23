@@ -30,7 +30,8 @@ public class ExamController {
         System.out.println("this is" + testViews);
         iTestViewsService.saveTestViews(testViews);
         List<TestViews> testViewses= (List<TestViews>) iTestViewsService.findAll();
-        testViews = iTestViewsService.findById(testViewses.size()-1);
+        TestViews latestTest = testViewses.get(testViewses.size()-1);
+        testViews = iTestViewsService.findById(latestTest.getId());
         model.addAttribute("latesttestview",testViews );
         model.addAttribute("questions", iQuestionService.findAll());
         model.addAttribute("selectedQuestions", new ArrayList<Question>() {

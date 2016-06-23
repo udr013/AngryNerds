@@ -19,16 +19,18 @@
     <table th:border="1" >
         <thead>
         <tr>
+            <th>Correct</th>
             <th>Answers</th>
             <th>Explanation</th>
-            <th>Evaluation</th>
+
         </tr>
         </thead>
         <tbody>
         <tr th:each="answer : ${answers}">
+            <td th:text="${answer.isCorrect()}"></td>
             <td th:text="${answer.content}"></td>
             <td th:text="${answer.explanation}"></td>
-            <td th:text="${answer.isCorrect()}"></td>
+
         </tr>
         </tbody>
     </table>

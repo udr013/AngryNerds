@@ -8,9 +8,9 @@
     <title>Angry Nerds Examiner</title>
 </head>
 <body>
-<header>Exam<span th:text="${latesttestview.testType}"></span></header>
+<header>Exam type: <span th:text="${latesttestview.testType}"></span></header>
 
-<p th:text="${latesttestview.description}"></p>
+<p>description: <span th:text="${latesttestview.description}"></span></p>
 
 <form th:object="${selectedQuestions}" th:action="@{/saveQuestToExam}" action="#" method="post">
 <table>
