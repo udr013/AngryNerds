@@ -15,7 +15,7 @@
 
 <form modelattribute="testAnswerForm" method="post" th:action="@{/TestEvaluation}">
 	<button type="submit" value="Submit">Stop the Test and show my Results</button>
-	<button type="submit" value="NextQuestion" formaction="/loadExamQuestion">Return to test</button>
+	<button type="submit" value="NextQuestion" formmethod="get" formaction="/loadExamQuestion">Return to test</button>
 </form>
 
 </body>

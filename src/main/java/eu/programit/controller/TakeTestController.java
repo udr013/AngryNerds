@@ -18,7 +18,6 @@ import java.util.Map;
 @Controller
 public class TakeTestController {
 
-	// int questionCounter = 1;
 	TestResults myTestResults;
 	TestViews myTestView;
 	// List<TestViewsContent> myTestsList;
@@ -43,7 +42,6 @@ public class TakeTestController {
 		Question q;
 		List<Answer> answers = null;
 		try {
-			// q = iQuestionService.findById(questionCounter);
 			q = iQuestionService.findById(myTestView.getCurrentQuestion().getQuestionId());
 			answers = q.getAnswers();
 		} catch (NullPointerException npe) {
@@ -51,18 +49,12 @@ public class TakeTestController {
 			q.setContent("Unknown question requested (questionID does not exist)");
 		}
 		model.addAttribute("numberCorrect", getCorrectAnswers(answers));
-		// questionCounter++;
-		// System.out.println("TakeTestCont: questionCounter = " +
-		// questionCounter);
 		model.addAttribute("question", q);// the 1 will get question 2 (index 0)
-
 		model.addAttribute("answers", answers);
 		model.addAttribute("mytestview", myTestView);
-		model.addAttribute("mytestresults", myTestResults.getTestResults().get(q.getQuestionID()));
-		System.out.println("TAkeTestController . mytestresults : " + myTestResults.getTestResults().get(q.getQuestionID()));
-		// myTestResults.getTestResults(myTestView.getQuestionNr()));
 
-		// model.addAttribute("selectedAnswers", selectedAnswers);
+		testAnswerForm.setTestAnswers(myTestResults.getTestResults().get(q.getQuestionID()));
+		model.addAttribute("mytestresults", myTestResults.getTestResults().get(q.getQuestionID()));
 
 		return "ExamQuestion";
 	}
@@ -260,7 +252,6 @@ public class TakeTestController {
 		Question q;
 		List<Answer> answers = null;
 		try {
-			// q = iQuestionService.findById(questionCounter);
 			q = iQuestionService.findById(id);
 			answers = q.getAnswers();
 		} catch (NullPointerException npe) {
