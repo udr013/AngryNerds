@@ -23,7 +23,7 @@ public class NewCategoryController {
         System.out.println(category);
         iCategoryService.saveCategory(category);
  
-        return "category";
+        return "index";
     }
 
 

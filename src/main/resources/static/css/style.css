@@ -72,6 +72,17 @@
 		list-style: none;
 	}
 	
+  input[type="text"], textarea {
+
+  background-color : #dceeff; 
+
+}
+ input, textarea, select {
+
+  background-color : #dceeff; 
+
+}
+	
 	blockquote, 
 	q {
 		quotes: none;
@@ -435,6 +446,7 @@
 	textarea,
 	select {
 		/*-webkit-appearance: none;*/	 /* 1 */
+		background-color: #dceeff;
 		display: block;		
 		max-width: 100%;
 		-webkit-box-sizing: border-box;
