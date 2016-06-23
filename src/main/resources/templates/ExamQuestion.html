@@ -30,9 +30,10 @@
 			<td th:text="${answer.content}"></td>
 	    </tr>
 	</table>
-	<button type="submit" value="PrevQuestion" formaction="/LoadPrevQuestion">Previous Question</button>
 	<button type="submit" value="Submit">Show All Questions</button>
+	<button type="submit" value="PrevQuestion" formaction="/LoadPrevQuestion" th:unless="${mytestview.getCurrentQuestion().getOrderNr()} == 1">Previous Question</button>
 	<button type="submit" value="NextQuestion" formaction="/LoadNextQuestion" th:unless="${mytestview.getCurrentQuestion().getOrderNr()} == ${mytestview.getNrOfQuestions()}">Next Question</button>
+	<button type="submit" value="NextQuestion" formaction="/StopTheTest" th:if="${mytestview.getCurrentQuestion().getOrderNr()} == ${mytestview.getNrOfQuestions()}">Finish Test</button>
 	<br/>
 	<button type="submit" value="Submit" formaction="/StopTheTest">Stop this test</button>
 </form>

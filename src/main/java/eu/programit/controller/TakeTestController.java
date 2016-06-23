@@ -19,7 +19,7 @@ import java.util.Map;
 public class TakeTestController {
 
 	// int questionCounter = 1;
-	TestResults myTestResults = new TestResults();
+	TestResults myTestResults;
 	TestViews myTestView;
 	// List<TestViewsContent> myTestsList;
 
@@ -117,6 +117,7 @@ public class TakeTestController {
 	@RequestMapping(value = "/StartTest", method = RequestMethod.POST)
 	public String startTest(@ModelAttribute("testview") TestViews testView, Principal principal) {
 		if (testView.getId() == 0) return "redirect:/SelectTest";
+		myTestResults = new TestResults();
 		myTestView = testViewsService.findById(testView.getId());
 		System.out.println("Selected TEst: " + testView.getId() + "gebruiker:" + principal.getName());
 		// myTestsList = myTestView.getsortedTestViewsList();
