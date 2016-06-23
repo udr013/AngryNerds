@@ -36,7 +36,7 @@ public class TakeTestController {
 	IAnswerService iAnswerService;
 
 	@Autowired
-	TestViewsService testViewsService;
+	ITestViewsService testViewsService;
 
 	@RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
 	public String LoadExamQuestion(Model model, TestAnswerForm testAnswerForm, Principal principal) {

@@ -5,18 +5,19 @@
 <title>ProgramIT</title>
 <link rel="stylesheet" th:href="@{/css/style.css}" />
     <meta charset="UTF-8"/>
-    <title>Angry Nerds Main Memu</title>
+    <title>Angry Nerds Main Menu</title>
 </head>
 <body>
-<h1> welcome to the AngryNerds Examine creation tool Deluxe</h1>
+<h1> Welcome to the AngryNerds Exam Creation Tool Deluxe</h1>
 <h2> Select your option</h2>
 <!-- dit mag zo eigenlijk niet -->
 <!-- moet iets zijn als
 <a href="hupje/vraag.html"... >Klik hier </a> -->
 <ul>
-<li><a href="#" th:href="@{/SelectTest}">Take the exam</a></li>
+<li><a href="#" th:href="@{/SelectTest}">Take the exam</a></li><br/>
+    <li><a href="#" th:href="@{/categorysave}">Add category</a></li>
 <li><a href="#" th:href="@{/vraag}">Add question</a></li>
-<li><a href="#" th:href="@{/categorysave}">Add category</a></li>
+<li><a href="#" th:href="@{/createexam}">Create Exam</a></li>
 </ul>
 
 </body>
