@@ -54,5 +54,14 @@ public class TestViewsContent implements Serializable {
 	public Integer getId() {
 		return id;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "TestViewsContent{" +
+				"id=" + id +
+				", testView=" + testView +
+				", orderNr=" + orderNr +
+				", questionId=" + questionId +
+				'}';
+	}
 }

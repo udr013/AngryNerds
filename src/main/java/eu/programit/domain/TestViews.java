@@ -96,6 +96,10 @@ public class TestViews implements Serializable {
 		return testViewsList;
 	}
 
+	public void setTestViewsList(List<TestViewsContent> testViewsList) {
+		this.testViewsList = testViewsList;
+	}
+
 	public int getQuestionNr() {
 		return questionNr;
 	}
@@ -107,6 +111,16 @@ public class TestViews implements Serializable {
 	public List<TestViewsContent> getSortedTestViewsList() {
 		return sortedTestViewsList;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "TestViews{" +
+				"id=" + id +
+				", description='" + description + '\'' +
+				", testType='" + testType + '\'' +
+				", testViewsList=" + testViewsList +
+				", questionNr=" + questionNr +
+				", sortedTestViewsList=" + sortedTestViewsList +
+				'}';
+	}
 }
