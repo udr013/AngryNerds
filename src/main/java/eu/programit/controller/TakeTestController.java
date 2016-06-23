@@ -178,7 +178,6 @@ public class TakeTestController {
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
 				testAnswerForm.getTestAnswers());
 		myTestResults.printValues();
-		// Implement overview of all questions
 		model.addAttribute("mytestview", myTestView);
 		model.addAttribute("questionservice", iQuestionService);
 		return "ShowAllQuestions";
@@ -189,7 +188,7 @@ public class TakeTestController {
 	// *********************************************************************
 
 	@RequestMapping(value = "/StopTheTest", method = RequestMethod.POST)
-	public String stopTheTest(@ModelAttribute TestAnswerForm testAnswerForm) {
+	public String stopTheTest(Model model, @ModelAttribute TestAnswerForm testAnswerForm) {
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
 				testAnswerForm.getTestAnswers());
 		myTestResults.printValues();
