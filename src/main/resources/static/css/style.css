@@ -494,6 +494,29 @@
 	  outline: 5px auto -webkit-focus-ring-color;
 	  outline-offset: -2px;
 	}
+	.button {
+   
+        
+            align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 2px 6px 3px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+
+
+    text-decoration: none;
+    color: initial;
+}
 	
 	textarea { 
 		min-height: 100px; 
