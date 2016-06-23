@@ -177,7 +177,7 @@ public class TakeTestController {
         return "redirect:/loadExamQuestion";
 	}
 	
-	// Show All Questons in one overview
+	// Show All Questions in one overview
 	// *********************************************************************
 
 	@RequestMapping(value = "/ShowAllQuestions", method = RequestMethod.POST)
@@ -223,11 +223,15 @@ public class TakeTestController {
 			Question q = this.iQuestionService.findById(vraagId);
 			questions.add(q);
 			List<Integer> answers = element.getValue();
-			boolean isOK = true;
-			for(int a :answers){
-				Answer answer = iAnswerService.findOne(a);
-				isOK = isOK && answer.isCorrect();
-
+			boolean isOK = false;
+			// if the questions is answered
+			if (answers != null) {
+				isOK = true;
+				// and evaluate the answers
+				for (int a : answers) {
+					Answer answer = iAnswerService.findOne(a);
+					isOK = isOK && answer.isCorrect();
+				}
 			}
 			if(isOK) {
 				q.setCorrect(true);
