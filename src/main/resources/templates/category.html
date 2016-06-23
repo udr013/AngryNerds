@@ -10,7 +10,7 @@
 <body>
 <div class="container" id="banner">
 		<div class="row">
-			<h2>Vul hier uw categoriën in</h2>
+			<h2>Enter your categories</h2>
 		</div>
 	</div>
 
@@ -21,20 +21,20 @@
 	<table>
 
 			<tr>
-				<td>Category naam</td>
+				<td>Category name</td>
 				<td><input type="text" th:field="*{name}"
-					class="form-control" placeholder="naam categorie" /></td></tr>
+					class="form-control" placeholder="name category" /></td></tr>
 		
 			<tr>
-				<td>Hoofdstuk</td>
+				<td>Chapter</td>
 				<td><input type="text" th:field="*{chapter}"
-					placeholder="geef het hoofdstuk" /></td></tr>
+					placeholder="enter chapter" /></td></tr>
 					</table>
 				<input class="button" type="submit" value="Submit" />
 </form>
 
-<a href="#" th:href="@{/categorysave}">categorie toevoegen</a>
-<a href="#" th:href="@{/index}">terug naar index</a>
+<a href="#" th:href="@{/categorysave}">add category</a>
+<a href="#" th:href="@{/index}">back to index</a>
 
 
 </body>
