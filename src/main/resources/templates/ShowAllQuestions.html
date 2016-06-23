@@ -18,7 +18,7 @@
         <th>Nr</th>
         <th>Question</th>
       </tr>
-      <tr th:each="testview : ${mytestview.getSortedTestViewsList()}">
+      <tr th:each="testview : ${mytestview.getSortedTestViewsList()}" >
         <td th:text="${testview.orderNr}"></td>
         <td th:text="${questionservice.findById(testview.questionId).content}"></td>
       </tr>
