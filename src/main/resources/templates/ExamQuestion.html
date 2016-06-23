@@ -17,6 +17,10 @@
 <p>Number of answer(s) to select : <span style="font-weight: bold" th:text="${numberCorrect}"/>  </p>
 <form modelattribute="testAnswerForm" method="post" th:action="@{/ShowAllQuestions}">
 	<table>
+		<tr>
+			<th></th>
+			<th>Answer</th>
+		</tr>
 		<tr th:each="answer : ${answers}">
 			<!-- <td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/></td> -->
 			<!-- <td><input type="checkbox"  th:field="${testAnswerForm.testAnswers}" th:value="${answer.answerID}"/><span th:if="(${mytestresults} != null) (${mytestresults.contains('9')}) ?: 'checked'"></span></td> -->
@@ -28,7 +32,7 @@
 	</table>
 	<button type="submit" value="PrevQuestion" formaction="/LoadPrevQuestion">Previous Question</button>
 	<button type="submit" value="Submit">Show All Questions</button>
-	<button type="submit" value="NextQuestion" formaction="/LoadNextQuestion">Next Question</button>
+	<button type="submit" value="NextQuestion" formaction="/LoadNextQuestion" th:unless="${mytestview.getCurrentQuestion().getOrderNr()} == ${mytestview.getNrOfQuestions()}">Next Question</button>
 	<br/>
 	<button type="submit" value="Submit" formaction="/StopTheTest">Stop this test</button>
 </form>

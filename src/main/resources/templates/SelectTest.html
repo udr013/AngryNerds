@@ -20,11 +20,12 @@
 			<th>Description</th>
 		</tr>
 		<tr th:each="testview : ${testviews}">
-			<td><input type="radio" th:value="${testview.id}" th:field="*{id}" name="testtype" required=""/></td>
+			<td><input type="radio" th:value="${testview.id}" th:field="*{id}" name="testtype"/></td>
 			<td th:text="${testview.testType}"></td>
 			<td th:text="${testview.description}"></td>
 	    </tr>
 	</table>
+	<button type="submit" value="Submit" formaction="/index">Return to main screen</button>
 	<button type="submit" value="Submit">Start Test</button>
 </form>    
     
