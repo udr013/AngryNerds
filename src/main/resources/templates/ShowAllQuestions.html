@@ -18,14 +18,14 @@
         <th>Nr</th>
         <th>Question</th>
       </tr>
-      <tr th:each="testview : ${mytestview.getSortedTestViewsList()}">
+      <tr th:each="testview : ${mytestview.getSortedTestViewsList()}" >
         <td th:text="${testview.orderNr}"></td>
         <td th:text="${questionservice.findById(testview.questionId).content}"></td>
       </tr>
 </table>
 
 <form method="post" th:action="@{/StopTheTest}">
-	<button type="submit" value="LastQuestion" formaction="/loadExamQuestion">Resume test at last question</button>
+	<button type="submit" value="LastQuestion" formmethod="get" formaction="/loadExamQuestion">Resume test at last question</button>
 	<br/>
 	<button type="submit" value="Submit">Stop this test</button>
 </form>

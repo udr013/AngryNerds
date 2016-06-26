@@ -52,7 +52,7 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td>Moeilijkheidsgraag</td>
+				<td>Difficulty level</td>
 				<td><select type="text" th:field="*{difficulty}"
 					class="form-control">
 						<option name="select" value="EASY">Easy</option>
@@ -60,16 +60,14 @@
 						<option name="select" value="HARD">Hard</option>
 				</select></td>
 			</tr>
-			<tr>
-				<td>InternetLink</td>
-				<td><input type="url" th:field="*{internetLink}"
-					placeholder="internetLink" /></td>
-			</tr>
 		</table>
 
 	 <input class="button" type="submit" value="Submit"/>
 
  </form>
+ <form action="/index">
+    <input type="submit" value="Main Menu" class="button"></input>
+</form>
 	
 </body>
 </html>

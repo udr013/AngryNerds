@@ -4,6 +4,7 @@ package eu.programit.controller;
 import eu.programit.domain.Answer;
 import eu.programit.domain.Category;
 import eu.programit.domain.Question;
+import eu.programit.domain.TestViews;
 import eu.programit.service.IAnswerService;
 import eu.programit.service.ICategoryService;
 import eu.programit.service.IQuestionService;
@@ -50,6 +51,13 @@ public class WebController {
         model.addAttribute("question", new Question());
         model.addAttribute("categories", iCategoryService.findAll());
         return "vraag";
+    }
+
+    @RequestMapping("/createexam")
+    public String createExam(Model model) {
+        model.addAttribute("testviews", new TestViews());
+
+        return "addExam";
     }
     
     @RequestMapping("/categorysave")

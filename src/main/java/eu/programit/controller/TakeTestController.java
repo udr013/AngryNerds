@@ -18,8 +18,7 @@ import java.util.Map;
 @Controller
 public class TakeTestController {
 
-	// int questionCounter = 1;
-	TestResults myTestResults = new TestResults();
+	TestResults myTestResults;
 	TestViews myTestView;
 	// List<TestViewsContent> myTestsList;
 
@@ -36,14 +35,13 @@ public class TakeTestController {
 	IAnswerService iAnswerService;
 
 	@Autowired
-	TestViewsService testViewsService;
+	ITestViewsService testViewsService;
 
 	@RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
 	public String LoadExamQuestion(Model model, TestAnswerForm testAnswerForm, Principal principal) {
 		Question q;
 		List<Answer> answers = null;
 		try {
-			// q = iQuestionService.findById(questionCounter);
 			q = iQuestionService.findById(myTestView.getCurrentQuestion().getQuestionId());
 			answers = q.getAnswers();
 		} catch (NullPointerException npe) {
@@ -51,18 +49,12 @@ public class TakeTestController {
 			q.setContent("Unknown question requested (questionID does not exist)");
 		}
 		model.addAttribute("numberCorrect", getCorrectAnswers(answers));
-		// questionCounter++;
-		// System.out.println("TakeTestCont: questionCounter = " +
-		// questionCounter);
 		model.addAttribute("question", q);// the 1 will get question 2 (index 0)
-
 		model.addAttribute("answers", answers);
 		model.addAttribute("mytestview", myTestView);
-		model.addAttribute("mytestresults", myTestResults.getTestResults().get(q.getQuestionID()));
-		System.out.println("TAkeTestController . mytestresults : " + myTestResults.getTestResults().get(q.getQuestionID()));
-		// myTestResults.getTestResults(myTestView.getQuestionNr()));
 
-		// model.addAttribute("selectedAnswers", selectedAnswers);
+		testAnswerForm.setTestAnswers(myTestResults.getTestResults().get(q.getQuestionID()));
+		model.addAttribute("mytestresults", myTestResults.getTestResults().get(q.getQuestionID()));
 
 		return "ExamQuestion";
 	}
@@ -117,6 +109,7 @@ public class TakeTestController {
 	@RequestMapping(value = "/StartTest", method = RequestMethod.POST)
 	public String startTest(@ModelAttribute("testview") TestViews testView, Principal principal) {
 		if (testView.getId() == 0) return "redirect:/SelectTest";
+		myTestResults = new TestResults();
 		myTestView = testViewsService.findById(testView.getId());
 		System.out.println("Selected TEst: " + testView.getId() + "gebruiker:" + principal.getName());
 		// myTestsList = myTestView.getsortedTestViewsList();
@@ -177,7 +170,7 @@ public class TakeTestController {
         return "redirect:/loadExamQuestion";
 	}
 	
-	// Show All Questons in one overview
+	// Show All Questions in one overview
 	// *********************************************************************
 
 	@RequestMapping(value = "/ShowAllQuestions", method = RequestMethod.POST)
@@ -185,7 +178,6 @@ public class TakeTestController {
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
 				testAnswerForm.getTestAnswers());
 		myTestResults.printValues();
-		// Implement overview of all questions
 		model.addAttribute("mytestview", myTestView);
 		model.addAttribute("questionservice", iQuestionService);
 		return "ShowAllQuestions";
@@ -196,7 +188,7 @@ public class TakeTestController {
 	// *********************************************************************
 
 	@RequestMapping(value = "/StopTheTest", method = RequestMethod.POST)
-	public String stopTheTest(@ModelAttribute TestAnswerForm testAnswerForm) {
+	public String stopTheTest(Model model, @ModelAttribute TestAnswerForm testAnswerForm) {
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
 				testAnswerForm.getTestAnswers());
 		myTestResults.printValues();
@@ -221,13 +213,17 @@ public class TakeTestController {
 		for(Map.Entry<Integer, List<Integer>> element : testResults.entrySet()) {
 			int vraagId = element.getKey();
 			Question q = this.iQuestionService.findById(vraagId);
-			questions.add(q);
+			//questions.add(q);
 			List<Integer> answers = element.getValue();
-			boolean isOK = true;
-			for(int a :answers){
-				Answer answer = iAnswerService.findOne(a);
-				isOK = isOK && answer.isCorrect();
-
+			boolean isOK = false;
+			// if the questions is answered
+			if (answers != null) {
+				isOK = true;
+				// and evaluate the answers
+				for (int a : answers) {
+					Answer answer = iAnswerService.findOne(a);
+					isOK = isOK && answer.isCorrect();
+				}
 			}
 			if(isOK) {
 				q.setCorrect(true);
@@ -236,11 +232,11 @@ public class TakeTestController {
 			}
 			else {
 				incorrectQuestions++;
+				questions.add(q);
 			}
 
 		}
-		System.out.println(correctQuestions);
-		System.out.println(incorrectQuestions);
+
 		int score =(100/(correctQuestions+incorrectQuestions))*correctQuestions;
 		model.addAttribute("questions", questions);
 		model.addAttribute("score", score);
@@ -255,7 +251,6 @@ public class TakeTestController {
 		Question q;
 		List<Answer> answers = null;
 		try {
-			// q = iQuestionService.findById(questionCounter);
 			q = iQuestionService.findById(id);
 			answers = q.getAnswers();
 		} catch (NullPointerException npe) {

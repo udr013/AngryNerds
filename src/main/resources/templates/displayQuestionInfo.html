@@ -13,14 +13,26 @@
 <h3>Question ID<span th:text="${question.questionID}"></span></h3>
 
 <p th:text="${question.content}"></p>
-<pre th:text="${question.code}"></pre>
+<pre th:text="${question.code}"/>
 <!--<p>Number of answer(s) to select : <span style="font-weight: bold" th:text="${numberCorrect}"/>  </p>-->
 <form modelattribute="testAnswerForm" method="post" th:action="@{/TestEvaluation}">
-    <table>
+    <table th:border="1" >
+        <thead>
+        <tr>
+            <th>Correct</th>
+            <th>Answers</th>
+            <th>Explanation</th>
+
+        </tr>
+        </thead>
+        <tbody>
         <tr th:each="answer : ${answers}">
+            <td th:text="${answer.isCorrect()}"></td>
             <td th:text="${answer.content}"></td>
             <td th:text="${answer.explanation}"></td>
+
         </tr>
+        </tbody>
     </table>
     <button type="submit" value="PrevQuestion" formaction="/TestEvaluation">Overview Result</button>
 

@@ -12,17 +12,25 @@ import eu.programit.repository.TestViewsRepository;
 
 @Service
 @Transactional
-public class TestViewsService {
+public class TestViewsService implements ITestViewsService {
 	
 	@Autowired
 	private TestViewsRepository testViewsRepository;
 	
+	@Override
 	public TestViews findById(int testviewId){
 		return testViewsRepository.findOne(testviewId);
 	}
 	
+	@Override
 	public Iterable<TestViews> findAll() {
 		return testViewsRepository.findAll();
+	}
+
+	@Override
+	public TestViews saveTestViews(TestViews testViews){
+		return testViewsRepository.save(testViews);
+
 	}
 
 }
