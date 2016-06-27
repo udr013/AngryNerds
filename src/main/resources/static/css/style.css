@@ -38,6 +38,10 @@
 		font: inherit;
 		vertical-align: baseline;
 	}
+ 
+ .errormessage{
+	 color: #ff0000;
+ }
 	
 	/* HTML5 display-role reset for older browsers */
 	

@@ -26,24 +26,26 @@ public class ExamController {
     IQuestionService iQuestionService;
 
     @RequestMapping(value = "/examsave", method = RequestMethod.POST)
-    String createExam(@ModelAttribute("testviews") TestViews testViews, Model model) {
+    String createExam(@ModelAttribute("testviews") TestViews testViews, Model model, TestQuestionsForm testQuestionsForm) {
         System.out.println("this is" + testViews);
         iTestViewsService.saveTestViews(testViews);
         List<TestViews> testViewses= (List<TestViews>) iTestViewsService.findAll();
         TestViews latestTest = testViewses.get(testViewses.size()-1);
         testViews = iTestViewsService.findById(latestTest.getId());
+        List<Integer> testAnswers= new ArrayList<>();
         model.addAttribute("latesttestview",testViews );
         model.addAttribute("questions", iQuestionService.findAll());
-        model.addAttribute("selectedQuestions", new ArrayList<Question>() {
-        });
+        model.addAttribute("testQuestionForm", new TestQuestionsForm());
         return "addQuestToExam";
     }
 
     @RequestMapping(value = "/saveQuestToExam", method = RequestMethod.POST)
-    public String saveQuestToExam(@ModelAttribute("selectedQuestions") ArrayList<Question> question, Model model) {
-
-        System.out.println(question);
-
+    public String saveQuestToExam(@ModelAttribute ("testQuestionForm")TestQuestionsForm testQuestionsForm) {
+        if(testQuestionsForm.getTestQuestions() !=null) {
+            for (int q : testQuestionsForm.getTestQuestions()) {
+                System.out.println(q);
+            }
+        }
 
         return "index";
 

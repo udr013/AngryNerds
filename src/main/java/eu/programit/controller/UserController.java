@@ -39,8 +39,21 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/register/save"}, method = RequestMethod.POST)
-        public String registerPage( @ModelAttribute("user") User user) {
-        IUserService.saveUser(user);
+        public String registerPage( @ModelAttribute("user") User user, Model model) {
+        if(user.getPassword().equals(user.getConfirmpassword())) {
+            try {
+                IUserService.saveUser(user);
+            } catch (org.springframework.dao.DataIntegrityViolationException e) {
+                model.addAttribute("loginError", true);
+                user.setUsername("");
+                return "redirect:/register";
+            }
+        }else {
+            model.addAttribute("passwordError",true);
+            user.setPassword(null);
+            user.setConfirmpassword(null);
+            return "register";
+        }
         System.out.println(user);
         System.out.println("saving user");
         return "redirect:/login";
@@ -53,6 +66,7 @@ public class UserController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
+
         return "redirect:/login";//generally it's a good practice to show login screen again.
     }
 }
