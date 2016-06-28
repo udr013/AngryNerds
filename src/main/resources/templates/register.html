@@ -29,7 +29,7 @@
         <td>
             <label> First Name : <input type="text" th:field="*{firstName}"/> </label><br/>
             <label> Last Name : <input type="text" th:field="*{lastName}"/> </label><br/>
-            <p class="errormessage" th:if="${loginError}">username is already in use! Pick an other </p>
+            <p class="errormessage" th:if="${registerError}">username is already in use! Pick an other </p>
             <label> User Name : <input type="text" th:field="*{userName}"/> </label><br/>
             <p class="errormessage" th:if="${passwordError}">passwords don't match! </p>
             <label> Password: <input type="password" th:field="*{password}" name="password"/> </label><br/>

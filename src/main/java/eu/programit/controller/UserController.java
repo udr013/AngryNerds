@@ -40,13 +40,13 @@ public class UserController {
 
     @RequestMapping(value = {"/register/save"}, method = RequestMethod.POST)
         public String registerPage( @ModelAttribute("user") User user, Model model) {
-        if(user.getPassword().equals(user.getConfirmpassword())) {
+        if(user.getPassword().equals(user.getConfirmpassword())&&user.getPassword()!=null) {
             try {
                 IUserService.saveUser(user);
             } catch (org.springframework.dao.DataIntegrityViolationException e) {
-                model.addAttribute("loginError", true);
-                user.setUsername("");
-                return "redirect:/register";
+                model.addAttribute("registerError", true);
+                user.setUsername(null);
+                return "register";
             }
         }else {
             model.addAttribute("passwordError",true);
@@ -56,7 +56,8 @@ public class UserController {
         }
         System.out.println(user);
         System.out.println("saving user");
-        return "redirect:/login";
+        model.addAttribute("registered", true);
+        return "login";
 
     }
 

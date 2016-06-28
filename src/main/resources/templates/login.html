@@ -13,22 +13,15 @@
 </p>
 </article>
 
-
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
 <div id="loginform">
 <form id="loginForm" th:action="@{/login}" method="post">
     <h3 id="loginHeader">Log in or use the register button to get to the registration page.</h3>
+    <p class="errormessage" th:if="${registered}">You can login using your new account</p>
+    <p class="errormessage" th:if="${param.logout}">You have been logged out.</p>
     <label> User Name : <input type="text" name="username"/> </label><br/>
     <label> Password : <input type="password" name="password"/> </label><br/>
-    <div class="errormessage" th:if="${param.error}">
-        Invalid username and/or password.
-    </div>
-    <div th:if="${param.logout}">
-        You have been logged out.
-    </div>
-<br/> 
+    <p class="errormessage" th:if="${param.error}">Invalid username and/or password.</p>
+<br/>
 	If you didn't sign up already, follow the link to the:
     <a th:href="@{/register}"> registration page.</a>
     <input class="clear" type="image" src="http://shipmyride.com/uploads/login-button.jpg" value="Sign In" width="100" height="100"/>
