@@ -27,7 +27,7 @@ import eu.programit.service.UserService;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping("/register")
     public String registerPage(Model model){
