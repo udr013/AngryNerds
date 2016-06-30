@@ -1,6 +1,5 @@
 package eu.programit.controller;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -42,8 +41,7 @@ public class NewQuestionController {
 
     @RequestMapping(value = "/answersave", method = RequestMethod.POST)
     public String saveAnswer(@ModelAttribute("answer") Answer answer, Model model) {
-        List<Question> questions = (List<Question> )questionService.findAll();
-        Question addedQuestion = questions.get(questions.size()-1);
+        Question addedQuestion = this.questionService.findLastInsertedQuestion();
         answer.setQuestion(addedQuestion);
         LOGGER.debug("Answer: [{}]", answer);
         answerService.saveAnswer(answer);
