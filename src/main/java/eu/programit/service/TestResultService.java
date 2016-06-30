@@ -6,26 +6,16 @@ import org.springframework.stereotype.Service;
 
 import eu.programit.domain.TestResults;
 import eu.programit.repository.TestResultRepository;
+
 @Service
 public class TestResultService implements ITestResultService {
-    @Autowired
-    TestResultRepository testResultRepository;
+	@Autowired
+	TestResultRepository testResultRepository;
 
-    @Override
-    public TestResults saveTestResult(TestResults testResult) {
-        return testResultRepository.save(testResult);
-    }
-//    @Override
-//	public TestResults findById(int examID) {
-//		// TODO Auto-generated method stub
-//		return testResultRepository.findOne(examID);
-//	}
-//	@Override
-//	public Iterable<TestResults> findAll() {
-//		Iterable<TestResults> result = this.testResultRepository.findAll();
-//		
-//		return result;
-//	}
+	@Override
+	public TestResults saveTestResult(TestResults testResult) {
+		return testResultRepository.save(testResult);
+	}
 
 	@Override
 	public Iterable<TestResults> findAll() {
@@ -44,11 +34,10 @@ public class TestResultService implements ITestResultService {
 		return testResultRepository.findByUser(user);
 	}
 
-
-//    @Override
-//    public Iterable<Answer> findAllByQuestion(Question question) {
-//        Iterable<Answer> itr = answerRepository.findAllByQuestion(question);
-//
-//        return itr ;
-//    }
+	// @Override
+	// public Iterable<Answer> findAllByQuestion(Question question) {
+	// Iterable<Answer> itr = answerRepository.findAllByQuestion(question);
+	//
+	// return itr ;
+	// }
 }
