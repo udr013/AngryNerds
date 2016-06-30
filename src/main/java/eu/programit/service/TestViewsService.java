@@ -7,26 +7,22 @@ import org.springframework.transaction.annotation.Transactional;
 import eu.programit.domain.TestViews;
 import eu.programit.repository.TestViewsRepository;
 
-
 @Service
 @Transactional
-public class TestViewsService implements ITestViewsService {
-	
+public class TestViewsService {
+
 	@Autowired
 	private TestViewsRepository testViewsRepository;
-	
-	@Override
-	public TestViews findById(int testviewId){
+
+	public TestViews findById(int testviewId) {
 		return testViewsRepository.findOne(testviewId);
 	}
-	
-	@Override
+
 	public Iterable<TestViews> findAll() {
 		return testViewsRepository.findAll();
 	}
 
-	@Override
-	public TestViews saveTestViews(TestViews testViews){
+	public TestViews saveTestViews(TestViews testViews) {
 		return testViewsRepository.save(testViews);
 
 	}
