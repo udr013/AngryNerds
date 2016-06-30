@@ -17,32 +17,31 @@ import java.util.Map;
 
 @Controller
 public class TakeTestController {
-
-	TestResults myTestResults;
-	TestViews myTestView;
-	// List<TestViewsContent> myTestsList;
-
-	@Autowired
-	IQuestionService iQuestionService;
-
-    @Autowired
-	IUserService iUserService;
 	
 	@Autowired
-	ITestResultService iTestResultService;
+	QuestionService questionService;
+
+    @Autowired
+	UserService userService;
+	
+	@Autowired
+	TestResultService testResultService;
 
 	@Autowired
-	IAnswerService iAnswerService;
+	AnswerService answerService;
 
 	@Autowired
-	ITestViewsService testViewsService;
+	TestViewsService testViewsService;
+	
+	private TestResults myTestResults;
+	private TestViews myTestView;
 
 	@RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
 	public String LoadExamQuestion(Model model, TestAnswerForm testAnswerForm, Principal principal) {
 		Question q;
 		List<Answer> answers = null;
 		try {
-			q = iQuestionService.findById(myTestView.getCurrentQuestion().getQuestionId());
+			q = questionService.findById(myTestView.getCurrentQuestion().getQuestionId());
 			answers = q.getAnswers();
 		} catch (NullPointerException npe) {
 			q = new Question();
@@ -136,7 +135,7 @@ public class TakeTestController {
 				testAnswerForm.getTestAnswers());
 		myTestView.getNextQuestion();
 		myTestResults.printValues();
-        User user = iUserService.findByName(principal.getName());
+        User user = userService.findByName(principal.getName());
         myTestResults.setUser(user);
         myTestResults.setExamId(myTestView.getId());
 
@@ -179,7 +178,7 @@ public class TakeTestController {
 				testAnswerForm.getTestAnswers());
 		myTestResults.printValues();
 		model.addAttribute("mytestview", myTestView);
-		model.addAttribute("questionservice", iQuestionService);
+		model.addAttribute("questionservice", questionService);
 		return "ShowAllQuestions";
 	}
 	
@@ -200,10 +199,9 @@ public class TakeTestController {
 
 	@RequestMapping(value = "/TestEvaluation", method = RequestMethod.POST)
 	public String testEvaluation( Model model, Principal principal) {
-		iTestResultService.saveTestResult(myTestResults);
-		User user = iUserService.findByName(principal.getName());
-		int i=0;
-		List<TestResults> testResultses= (List<TestResults>) iTestResultService.findByUser(user);
+		testResultService.saveTestResult(myTestResults);
+		User user = userService.findByName(principal.getName());
+		List<TestResults> testResultses= (List<TestResults>) testResultService.findByUser(user);
 		List<Question> questions= new ArrayList<Question>();
 		TestResults lastTestResult = testResultses.get(testResultses.size()-1);
 		System.out.println(lastTestResult.getTestResultId() );
@@ -212,7 +210,7 @@ public class TakeTestController {
 		int incorrectQuestions = 0;
 		for(Map.Entry<Integer, List<Integer>> element : testResults.entrySet()) {
 			int vraagId = element.getKey();
-			Question q = this.iQuestionService.findById(vraagId);
+			Question q = this.questionService.findById(vraagId);
 			//questions.add(q);
 			List<Integer> answers = element.getValue();
 			boolean isOK = false;
@@ -221,7 +219,7 @@ public class TakeTestController {
 				isOK = true;
 				// and evaluate the answers
 				for (int a : answers) {
-					Answer answer = iAnswerService.findOne(a);
+					Answer answer = answerService.findOne(a);
 					isOK = isOK && answer.isCorrect();
 				}
 			}
@@ -251,7 +249,7 @@ public class TakeTestController {
 		Question q;
 		List<Answer> answers = null;
 		try {
-			q = iQuestionService.findById(id);
+			q = questionService.findById(id);
 			answers = q.getAnswers();
 		} catch (NullPointerException npe) {
 			q = new Question();

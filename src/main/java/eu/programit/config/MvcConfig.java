@@ -5,11 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-/**
- * Created by udr013 on 13-5-2016.
- */
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
+	
     // bean to access database over spring security
     @Bean(name="driverManagerDataSource")
     public DriverManagerDataSource driverManagerDataSource(){
@@ -18,7 +16,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/xm?useSSL=false");
         driverManagerDataSource.setUsername("netweazle");
         driverManagerDataSource.setPassword("bloemen");
-
 
         return driverManagerDataSource;
     }

@@ -8,41 +8,27 @@ import org.springframework.stereotype.Service;
 import eu.programit.domain.Category;
 import eu.programit.repository.CategoryRepository;
 @Service
-public class CategoryService implements ICategoryService {
+public class CategoryService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(QuestionService.class);
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
-	/*
-	@Override
-	public void saveCategory(Category category) {
-		
-		LOGGER.debug("it rocks");
-		
-		Category result = this.categoryRepository.save(category);	
-		
-		//return result;
-
-	}
-	*/
-	
 	public Iterable<Category> findAll() {
 		Iterable<Category> result = this.categoryRepository.findAll();
+		
+		LOGGER.info("The result of the findAll for all Categories is [{}]", result);
 		
 		return result;
 	}
 
-	@Override
 	public Category saveCategory(Category category) {
 		return categoryRepository.save(category);
 	}
 
-	@Override
 	public Category findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.categoryRepository.findOne(id);
 	}
 
 }

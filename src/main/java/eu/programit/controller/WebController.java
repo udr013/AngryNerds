@@ -1,13 +1,8 @@
 package eu.programit.controller;
 
 
-import eu.programit.domain.Answer;
-import eu.programit.domain.Category;
-import eu.programit.domain.Question;
-import eu.programit.domain.TestViews;
-import eu.programit.service.IAnswerService;
-import eu.programit.service.ICategoryService;
-import eu.programit.service.IQuestionService;
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.context.annotation.Bean;
@@ -17,19 +12,25 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.ArrayList;
+import eu.programit.domain.Answer;
+import eu.programit.domain.Category;
+import eu.programit.domain.Question;
+import eu.programit.domain.TestViews;
+import eu.programit.service.AnswerService;
+import eu.programit.service.CategoryService;
+import eu.programit.service.QuestionService;
 
 @Controller
 public class WebController {
 
     @Autowired
-    ICategoryService iCategoryService;
+    CategoryService categoryService;
 
     @Autowired
-    IQuestionService iQuestionService;
+    QuestionService questionService;
     
     @Autowired
-    IAnswerService iAnswerService;
+    AnswerService answerService;
 
     @RequestMapping("/")
     public String start(){
@@ -49,7 +50,7 @@ public class WebController {
     @RequestMapping("/vraag")
     public String createQuestion(Model model){
         model.addAttribute("question", new Question());
-        model.addAttribute("categories", iCategoryService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "vraag";
     }
 
