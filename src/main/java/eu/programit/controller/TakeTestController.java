@@ -202,7 +202,6 @@ public class TakeTestController {
 	public String testEvaluation( Model model, Principal principal) {
 		iTestResultService.saveTestResult(myTestResults);
 		User user = iUserService.findByName(principal.getName());
-		int i=0;
 		List<TestResults> testResultses= (List<TestResults>) iTestResultService.findByUser(user);
 		List<Question> questions= new ArrayList<Question>();
 		TestResults lastTestResult = testResultses.get(testResultses.size()-1);

@@ -24,6 +24,8 @@ public class QuestionService implements IQuestionService{
 
 	public Iterable<Question> findAll() {
 		Iterable<Question> result = this.questionRepository.findAll();
+		
+		LOGGER.info("The result of all questions are [{}]", result);
 
 		return result;
 	}
@@ -37,7 +39,7 @@ public class QuestionService implements IQuestionService{
 
 	@Override
 	public Question findById(int questionID) {
-		// TODO Auto-generated method stub
+		
 		return questionRepository.findOne(questionID);
 	}
 }
