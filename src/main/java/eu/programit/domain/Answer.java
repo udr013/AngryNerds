@@ -1,10 +1,14 @@
 package eu.programit.domain;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.persistence.*;
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Answer implements Serializable {
@@ -15,7 +19,6 @@ public class Answer implements Serializable {
 	}
 
 	private static final long serialVersionUID = -5754502589407713275L;
-	private static final Logger log = LoggerFactory.getLogger(Answer.class);
 
 	@ManyToOne
 	@JoinColumn(name = "questionid")

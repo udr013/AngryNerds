@@ -15,21 +15,10 @@ public class CategoryService implements ICategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
-	/*
-	@Override
-	public void saveCategory(Category category) {
-		
-		LOGGER.debug("it rocks");
-		
-		Category result = this.categoryRepository.save(category);	
-		
-		//return result;
-
-	}
-	*/
-	
 	public Iterable<Category> findAll() {
 		Iterable<Category> result = this.categoryRepository.findAll();
+		
+		LOGGER.info("The result of the findAll for all Categories is [{}]", result);
 		
 		return result;
 	}
@@ -41,8 +30,7 @@ public class CategoryService implements ICategoryService {
 
 	@Override
 	public Category findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.categoryRepository.findOne(id);
 	}
 
 }
