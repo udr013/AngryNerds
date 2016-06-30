@@ -7,17 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AnswerService implements IAnswerService {
+public class AnswerService {
 
     @Autowired
     AnswerRepository answerRepository;
 
-    @Override
     public Answer saveAnswer(Answer answer) {
         return answerRepository.save(answer);
     }
 
-    @Override
     public Iterable<Answer> findAllByQuestion(Question question) {
         Iterable<Answer> itr = answerRepository.findAllByQuestion(question);
 

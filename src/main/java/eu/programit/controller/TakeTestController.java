@@ -32,7 +32,7 @@ public class TakeTestController {
 	ITestResultService iTestResultService;
 
 	@Autowired
-	IAnswerService iAnswerService;
+	AnswerService answerService;
 
 	@Autowired
 	TestViewsService testViewsService;
@@ -221,7 +221,7 @@ public class TakeTestController {
 				isOK = true;
 				// and evaluate the answers
 				for (int a : answers) {
-					Answer answer = iAnswerService.findOne(a);
+					Answer answer = answerService.findOne(a);
 					isOK = isOK && answer.isCorrect();
 				}
 			}
