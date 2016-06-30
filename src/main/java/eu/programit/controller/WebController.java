@@ -17,14 +17,14 @@ import eu.programit.domain.Category;
 import eu.programit.domain.Question;
 import eu.programit.domain.TestViews;
 import eu.programit.service.AnswerService;
-import eu.programit.service.ICategoryService;
+import eu.programit.service.CategoryService;
 import eu.programit.service.IQuestionService;
 
 @Controller
 public class WebController {
 
     @Autowired
-    ICategoryService iCategoryService;
+    CategoryService categoryService;
 
     @Autowired
     IQuestionService iQuestionService;
@@ -50,7 +50,7 @@ public class WebController {
     @RequestMapping("/vraag")
     public String createQuestion(Model model){
         model.addAttribute("question", new Question());
-        model.addAttribute("categories", iCategoryService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "vraag";
     }
 
