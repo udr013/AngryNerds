@@ -35,8 +35,8 @@ public class ExamController {
         testViews = testViewsService.findById(latestTest.getId());
         model.addAttribute("latesttestview",testViews );
         model.addAttribute("questions", iQuestionService.findAll());
-        model.addAttribute("selectedQuestions", new ArrayList<Question>() {
-        });
+        model.addAttribute("selectedQuestions", new ArrayList<Question>());
+        
         return "addQuestToExam";
     }
 
