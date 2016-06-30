@@ -25,7 +25,7 @@
 </table>
 
 <form method="post" th:action="@{/StopTheTest}">
-	<button type="submit" value="LastQuestion" formaction="/loadExamQuestion">Resume test at last question</button>
+	<button type="submit" value="LastQuestion" formmethod="get" formaction="/loadExamQuestion">Resume test at last question</button>
 	<br/>
 	<button type="submit" value="Submit">Stop this test</button>
 </form>
