@@ -26,7 +26,7 @@ public class TakeTestController {
 	QuestionService questionService;
 
     @Autowired
-	IUserService iUserService;
+	UserService userService;
 	
 	@Autowired
 	TestResultService testResultService;
@@ -136,7 +136,7 @@ public class TakeTestController {
 				testAnswerForm.getTestAnswers());
 		myTestView.getNextQuestion();
 		myTestResults.printValues();
-        User user = iUserService.findByName(principal.getName());
+        User user = userService.findByName(principal.getName());
         myTestResults.setUser(user);
         myTestResults.setExamId(myTestView.getId());
 
@@ -201,7 +201,7 @@ public class TakeTestController {
 	@RequestMapping(value = "/TestEvaluation", method = RequestMethod.POST)
 	public String testEvaluation( Model model, Principal principal) {
 		testResultService.saveTestResult(myTestResults);
-		User user = iUserService.findByName(principal.getName());
+		User user = userService.findByName(principal.getName());
 		List<TestResults> testResultses= (List<TestResults>) testResultService.findByUser(user);
 		List<Question> questions= new ArrayList<Question>();
 		TestResults lastTestResult = testResultses.get(testResultses.size()-1);

@@ -1,8 +1,11 @@
 package eu.programit.controller;
 
 
-import eu.programit.domain.User;
-import eu.programit.service.IUserService;
+import java.util.Collection;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,9 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Collection;
+import eu.programit.domain.User;
+import eu.programit.service.UserService;
 
 
 /**
@@ -25,11 +27,11 @@ import java.util.Collection;
 public class UserController {
 
     @Autowired
-    IUserService IUserService;
+    UserService userService;
 
     @RequestMapping("/register")
     public String registerPage(Model model){
-       Collection<User> allUsers = IUserService.getAllUsers();
+       Collection<User> allUsers = userService.getAllUsers();
         for(User user:allUsers){
             System.out.println(user);
         }
@@ -40,7 +42,7 @@ public class UserController {
 
     @RequestMapping(value = {"/register/save"}, method = RequestMethod.POST)
         public String registerPage( @ModelAttribute("user") User user) {
-        IUserService.saveUser(user);
+        userService.saveUser(user);
         System.out.println(user);
         System.out.println("saving user");
         return "redirect:/login";

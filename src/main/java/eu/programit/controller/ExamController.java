@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import eu.programit.domain.Question;
 import eu.programit.domain.TestViews;
-import eu.programit.service.IQuestionService;
+import eu.programit.service.QuestionService;
 import eu.programit.service.TestViewsService;
 
 @Controller
@@ -24,7 +24,7 @@ public class ExamController {
     TestViewsService testViewsService;
 
     @Autowired
-    IQuestionService iQuestionService;
+    QuestionService questionService;
 
     @RequestMapping(value = "/examsave", method = RequestMethod.POST)
     String createExam(@ModelAttribute("testviews") TestViews testViews, Model model) {
@@ -34,7 +34,7 @@ public class ExamController {
         TestViews latestTest = testViewses.get(testViewses.size()-1);
         testViews = testViewsService.findById(latestTest.getId());
         model.addAttribute("latesttestview",testViews );
-        model.addAttribute("questions", iQuestionService.findAll());
+        model.addAttribute("questions", questionService.findAll());
         model.addAttribute("selectedQuestions", new ArrayList<Question>());
         
         return "addQuestToExam";
