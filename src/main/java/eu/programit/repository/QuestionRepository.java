@@ -9,6 +9,10 @@ import eu.programit.domain.Question;
 public interface QuestionRepository extends CrudRepository<Question, Integer> {
 	
 	//Question findOne(int questionId);
+	
+	//find last
+	List<Question> findTop1ByOrderByIdDesc();
+		
 
 }
 

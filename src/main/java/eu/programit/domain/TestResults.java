@@ -25,7 +25,6 @@ public class TestResults implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int testResultId;
 
-
     private int examId;
 
     @ManyToOne

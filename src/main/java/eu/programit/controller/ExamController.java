@@ -21,10 +21,10 @@ public class ExamController {
 
 
     @Autowired
-    TestViewsService testViewsService;
+    private TestViewsService testViewsService;
 
     @Autowired
-    QuestionService questionService;
+    private QuestionService questionService;
 
     @RequestMapping(value = "/examsave", method = RequestMethod.POST)
     String createExam(@ModelAttribute("testviews") TestViews testViews, Model model) {
@@ -47,8 +47,6 @@ public class ExamController {
 
 
         return "index";
-
-
     }
 }
 

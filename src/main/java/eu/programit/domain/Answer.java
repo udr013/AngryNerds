@@ -13,13 +13,21 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Answer implements Serializable {
 
-	public Answer(){}
-	public Answer(Question question){
-
-	}
-
 	private static final long serialVersionUID = -5754502589407713275L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int answerID;
+	
+	@Column(columnDefinition = "TEXT")
+	private String content;
 
+	@Column(nullable = false, columnDefinition = "INT default 0")
+	private boolean correct;
+
+	@Column(columnDefinition = "TEXT")
+	private String explanation;
+	
 	@ManyToOne
 	@JoinColumn(name = "questionid")
 	private Question question;
@@ -31,19 +39,6 @@ public class Answer implements Serializable {
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int answerID;
-
-	@Column(columnDefinition = "TEXT")
-	private String content;
-
-	@Column(nullable = false, columnDefinition = "INT default 0")
-	private boolean correct;
-
-	@Column(columnDefinition = "TEXT")
-	private String explanation;
 
 	public int getAnswerID() {
 		return answerID;

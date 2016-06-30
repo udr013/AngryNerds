@@ -21,7 +21,6 @@ public class QuestionService {
 
 	
 
-
 	public Iterable<Question> findAll() {
 		Iterable<Question> result = this.questionRepository.findAll();
 		

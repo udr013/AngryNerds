@@ -15,7 +15,7 @@ public class NewCategoryController {
 
 
     @Autowired
-    CategoryService categoryService;
+    private CategoryService categoryService;
 
 
     @RequestMapping(value = "/categorysave", method = RequestMethod.POST)
@@ -25,7 +25,4 @@ public class NewCategoryController {
  
         return "index";
     }
-
-
-
 }

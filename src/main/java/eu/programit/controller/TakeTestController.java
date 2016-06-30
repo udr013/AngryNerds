@@ -17,11 +17,7 @@ import java.util.Map;
 
 @Controller
 public class TakeTestController {
-
-	TestResults myTestResults;
-	TestViews myTestView;
-	// List<TestViewsContent> myTestsList;
-
+	
 	@Autowired
 	QuestionService questionService;
 
@@ -36,6 +32,9 @@ public class TakeTestController {
 
 	@Autowired
 	TestViewsService testViewsService;
+	
+	private TestResults myTestResults;
+	private TestViews myTestView;
 
 	@RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
 	public String LoadExamQuestion(Model model, TestAnswerForm testAnswerForm, Principal principal) {
