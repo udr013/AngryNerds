@@ -18,7 +18,7 @@ import eu.programit.domain.Question;
 import eu.programit.domain.TestViews;
 import eu.programit.service.AnswerService;
 import eu.programit.service.CategoryService;
-import eu.programit.service.IQuestionService;
+import eu.programit.service.QuestionService;
 
 @Controller
 public class WebController {
@@ -27,7 +27,7 @@ public class WebController {
     CategoryService categoryService;
 
     @Autowired
-    IQuestionService iQuestionService;
+    QuestionService questionService;
     
     @Autowired
     AnswerService answerService;

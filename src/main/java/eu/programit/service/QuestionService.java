@@ -12,7 +12,7 @@ import eu.programit.repository.QuestionRepository;
 
 @Service
 @Transactional
-public class QuestionService implements IQuestionService{
+public class QuestionService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(QuestionService.class);
 	
@@ -31,13 +31,11 @@ public class QuestionService implements IQuestionService{
 	}
 
 
-	@Override
 	public Question saveQuestion(Question question) {
 		return questionRepository.save(question);
 	}
 
 
-	@Override
 	public Question findById(int questionID) {
 		
 		return questionRepository.findOne(questionID);

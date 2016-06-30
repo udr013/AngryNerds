@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import eu.programit.domain.Answer;
 import eu.programit.domain.Question;
 import eu.programit.service.AnswerService;
-import eu.programit.service.IQuestionService;
+import eu.programit.service.QuestionService;
 
 @Controller
 public class NewQuestionController {
 
 
     @Autowired
-    IQuestionService iQuestionService;
+    QuestionService questionService;
 
     @Autowired
     AnswerService answerService;
@@ -27,14 +27,14 @@ public class NewQuestionController {
     @RequestMapping(value = "/questionsave", method = RequestMethod.POST)
     public String saveQuestion(@ModelAttribute("question") Question question, Model model) {
         System.out.println(question);
-        iQuestionService.saveQuestion(question);
+        questionService.saveQuestion(question);
         model.addAttribute("answer", new Answer());
         return "answers";
     }
 
     @RequestMapping(value = "/answersave", method = RequestMethod.POST)
     public String saveAnswer(@ModelAttribute("answer") Answer answer, Model model) {
-        List<Question> questions = (List<Question> )iQuestionService.findAll();
+        List<Question> questions = (List<Question> )questionService.findAll();
         Question addedQuestion = questions.get(questions.size()-1);
         answer.setQuestion(addedQuestion);
         System.out.println(answer);

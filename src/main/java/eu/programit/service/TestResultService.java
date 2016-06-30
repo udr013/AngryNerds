@@ -8,36 +8,26 @@ import eu.programit.domain.TestResults;
 import eu.programit.repository.TestResultRepository;
 
 @Service
-public class TestResultService implements ITestResultService {
+public class TestResultService {
+	
 	@Autowired
-	TestResultRepository testResultRepository;
+	private TestResultRepository testResultRepository;
 
-	@Override
 	public TestResults saveTestResult(TestResults testResult) {
 		return testResultRepository.save(testResult);
 	}
 
-	@Override
+	
 	public Iterable<TestResults> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.testResultRepository.findAll();
 	}
 
-	@Override
 	public TestResults findById(int examID) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.testResultRepository.findOne(examID);
 	}
 
-	@Override
 	public Iterable<TestResults> findByUser(User user) {
 		return testResultRepository.findByUser(user);
 	}
-
-	// @Override
-	// public Iterable<Answer> findAllByQuestion(Question question) {
-	// Iterable<Answer> itr = answerRepository.findAllByQuestion(question);
-	//
-	// return itr ;
-	// }
 }

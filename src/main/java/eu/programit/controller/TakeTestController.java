@@ -23,13 +23,13 @@ public class TakeTestController {
 	// List<TestViewsContent> myTestsList;
 
 	@Autowired
-	IQuestionService iQuestionService;
+	QuestionService questionService;
 
     @Autowired
 	IUserService iUserService;
 	
 	@Autowired
-	ITestResultService iTestResultService;
+	TestResultService testResultService;
 
 	@Autowired
 	AnswerService answerService;
@@ -42,7 +42,7 @@ public class TakeTestController {
 		Question q;
 		List<Answer> answers = null;
 		try {
-			q = iQuestionService.findById(myTestView.getCurrentQuestion().getQuestionId());
+			q = questionService.findById(myTestView.getCurrentQuestion().getQuestionId());
 			answers = q.getAnswers();
 		} catch (NullPointerException npe) {
 			q = new Question();
@@ -179,7 +179,7 @@ public class TakeTestController {
 				testAnswerForm.getTestAnswers());
 		myTestResults.printValues();
 		model.addAttribute("mytestview", myTestView);
-		model.addAttribute("questionservice", iQuestionService);
+		model.addAttribute("questionservice", questionService);
 		return "ShowAllQuestions";
 	}
 	
@@ -200,9 +200,9 @@ public class TakeTestController {
 
 	@RequestMapping(value = "/TestEvaluation", method = RequestMethod.POST)
 	public String testEvaluation( Model model, Principal principal) {
-		iTestResultService.saveTestResult(myTestResults);
+		testResultService.saveTestResult(myTestResults);
 		User user = iUserService.findByName(principal.getName());
-		List<TestResults> testResultses= (List<TestResults>) iTestResultService.findByUser(user);
+		List<TestResults> testResultses= (List<TestResults>) testResultService.findByUser(user);
 		List<Question> questions= new ArrayList<Question>();
 		TestResults lastTestResult = testResultses.get(testResultses.size()-1);
 		System.out.println(lastTestResult.getTestResultId() );
@@ -211,7 +211,7 @@ public class TakeTestController {
 		int incorrectQuestions = 0;
 		for(Map.Entry<Integer, List<Integer>> element : testResults.entrySet()) {
 			int vraagId = element.getKey();
-			Question q = this.iQuestionService.findById(vraagId);
+			Question q = this.questionService.findById(vraagId);
 			//questions.add(q);
 			List<Integer> answers = element.getValue();
 			boolean isOK = false;
@@ -250,7 +250,7 @@ public class TakeTestController {
 		Question q;
 		List<Answer> answers = null;
 		try {
-			q = iQuestionService.findById(id);
+			q = questionService.findById(id);
 			answers = q.getAnswers();
 		} catch (NullPointerException npe) {
 			q = new Question();
