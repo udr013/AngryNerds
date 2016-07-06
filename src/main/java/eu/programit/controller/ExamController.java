@@ -4,6 +4,7 @@ package eu.programit.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.programit.domain.TestQuestionsForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,8 @@ public class ExamController {
 
     @Autowired
     private QuestionService questionService;
+
+    private TestQuestionsForm testQuestionsForm;
 
     @RequestMapping(value = "/examsave", method = RequestMethod.POST)
     String createExam(@ModelAttribute("testviews") TestViews testViews, Model model, TestQuestionsForm testQuestionsForm) {
