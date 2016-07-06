@@ -11,9 +11,18 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     // bean to access database over spring security
     @Bean(name="driverManagerDataSource")
     public DriverManagerDataSource driverManagerDataSource(){
+        String host = "jdbc:mysql://"
+                + System.getenv().get("OPENSHIFT_MYSQL_DB_HOST")
+                + ":"
+                + System.getenv().get("OPENSHIFT_MYSQL_DB_PORT")
+                + "/serverside";
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
         driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        driverManagerDataSource.setUrl("jdbc:mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/angrynerds");
+        driverManagerDataSource.setUrl("jdbc:mysql://"
+                + System.getenv().get("OPENSHIFT_MYSQL_DB_HOST")
+                + ":"
+                + System.getenv().get("OPENSHIFT_MYSQL_DB_PORT")
+                + "/serverside");
         driverManagerDataSource.setUsername("adminKtvbMSA");
         driverManagerDataSource.setPassword("fSm7EuZcznPN");
 
