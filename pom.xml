@@ -6,7 +6,7 @@
 	<groupId>eu.programit</groupId>
 	<artifactId>AngryNerds</artifactId>
 	<version>0.3.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>AngryNerds</name>
 	<description>AgryNerds Examination Application</description>
@@ -20,7 +20,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 	</properties>
 
 	<dependencies>
