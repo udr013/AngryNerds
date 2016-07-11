@@ -18,6 +18,14 @@ import java.util.Map;
 @Controller
 public class TakeTestController {
 
+	private String toExamQuestion = "ExamQuetion";
+	private String redirectToLoadExamQuestion = "redirect:/loadExamQuestion";
+	private String toSelectTest = "SelectTest";
+	private String toShowAllQuestions = "ShowAllQuestions";
+	private String toStopTheTest = "StopTheTest";
+	private String toTestEvaluation = "TestEvaluation";
+	private String toDisplayQuestionInfo = "displayQuestionInfo";
+	
 	TestResults myTestResults;
 	TestViews myTestView;
 	// List<TestViewsContent> myTestsList;
@@ -56,7 +64,7 @@ public class TakeTestController {
 		testAnswerForm.setTestAnswers(myTestResults.getTestResults().get(q.getQuestionID()));
 		model.addAttribute("mytestresults", myTestResults.getTestResults().get(q.getQuestionID()));
 
-		return "ExamQuestion";
+		return toExamQuestion;
 	}
 
 	// Leandro: getNrOfCorrectAnswers komt volgens mij meer overeen met de functionaliteit
@@ -88,7 +96,7 @@ public class TakeTestController {
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
 				testAnswerForm.getTestAnswers());
 		System.out.println(myTestResults);
-		return "redirect:/loadExamQuestion";
+		return redirectToLoadExamQuestion;
 
 	}
 
@@ -100,7 +108,7 @@ public class TakeTestController {
 		Iterable<TestViews> tv = testViewsService.findAll();
 		model.addAttribute("testviews", tv);
 		model.addAttribute("testview", new TestViews());
-		return "SelectTest";
+		return toSelectTest;
 	}
 
 	// Start a new Test
@@ -124,7 +132,7 @@ public class TakeTestController {
 		// test output end
 
 		myTestView.startTest();
-		return "redirect:/loadExamQuestion";
+		return redirectToLoadExamQuestion;
 	}
 
 	// Load Next Question
@@ -148,7 +156,7 @@ public class TakeTestController {
 //            System.out.println("file not saved");
 //        }
         System.out.println("should be saved by now");
-		return "redirect:/loadExamQuestion";
+		return redirectToLoadExamQuestion;
 	}
 
 	// Load Previous Question
@@ -167,7 +175,7 @@ public class TakeTestController {
 		}
 		System.out.println(myTestResults);
 
-        return "redirect:/loadExamQuestion";
+        return redirectToLoadExamQuestion;
 	}
 	
 	// Show All Questions in one overview
@@ -180,7 +188,7 @@ public class TakeTestController {
 		myTestResults.printValues();
 		model.addAttribute("mytestview", myTestView);
 		model.addAttribute("questionservice", iQuestionService);
-		return "ShowAllQuestions";
+		return toShowAllQuestions;
 	}
 	
 	
@@ -192,7 +200,7 @@ public class TakeTestController {
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
 				testAnswerForm.getTestAnswers());
 		myTestResults.printValues();
-		return "StopTheTest";
+		return toStopTheTest;
 	}
 
 	// Evaluate the Test
@@ -241,7 +249,7 @@ public class TakeTestController {
 		model.addAttribute("questions", questions);
 		model.addAttribute("score", score);
 		// Implement overview of all questions
-		return "TestEvaluation";
+		return toTestEvaluation;
 	}
 	
 	//display question after exam
@@ -262,7 +270,7 @@ public class TakeTestController {
 		model.addAttribute("answers", answers);
 
 
-		return "displayQuestionInfo";
+		return toDisplayQuestionInfo;
 	}
 }
 
