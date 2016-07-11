@@ -1,7 +1,13 @@
 package eu.programit.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,6 +39,12 @@ public class TestViewsContent implements Serializable {
 	Integer orderNr;	// defines nr of the question within the test
 	Integer questionId;	// Id of question
 	
+	// map questions to exam
+    @Column(columnDefinition = "BLOB")
+    @ElementCollection(targetClass = ArrayList.class)
+    //Key = questionID  value list of answerIDs
+    private Map<Integer, List<Integer>> testViewsContent = new HashMap<>();
+	
 	/****** Vars  NOT in DB   ******************************************************/
 /*	
 	@Transient
@@ -45,6 +57,12 @@ public class TestViewsContent implements Serializable {
 	public TestViews getTestViews() {
 		return testView;
 	}
+	 public Map<Integer, List<Integer>> getTestViewsContent() {
+	        return testViewsContent;
+	    }
+	 public void setTestViewsContent(Map<Integer, List<Integer>> testViewsContent) {
+	        this.testViewsContent = testViewsContent;
+	    }
 	public void setTestViews(TestViews testView) {
 		this.testView = testView;
 	}

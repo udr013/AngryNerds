@@ -87,7 +87,7 @@ public class TakeTestController {
 		}
 		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
 				testAnswerForm.getTestAnswers());
-		System.out.println(myTestResults);
+		System.out.println("de juiste "+ myTestResults);
 		return "redirect:/loadExamQuestion";
 
 	}
@@ -140,7 +140,7 @@ public class TakeTestController {
         myTestResults.setUser(user);
         myTestResults.setExamId(myTestView.getId());
 
-		System.out.println(myTestResults);
+		System.out.println("in de load nextquestion "+myTestResults);
         // this doesn't work if no catch: nested exception is org.hibernate.PropertyAccessException: could not get a field value by reflection
 //       try {
 
