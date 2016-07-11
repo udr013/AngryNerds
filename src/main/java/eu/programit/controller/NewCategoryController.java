@@ -8,21 +8,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import eu.programit.domain.Category;
-import eu.programit.service.CategoryService;
+import eu.programit.service.ICategoryService;
 
 @Controller
 public class NewCategoryController {
 
 
     @Autowired
-    private CategoryService categoryService;
+    ICategoryService iCategoryService;
 
 
     @RequestMapping(value = "/categorysave", method = RequestMethod.POST)
     public String saveCategory(@ModelAttribute("category") Category category, Model model) {
         System.out.println(category);
-        categoryService.saveCategory(category);
+        iCategoryService.saveCategory(category);
  
         return "index";
     }
+
+
+
 }

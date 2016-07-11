@@ -1,6 +1,5 @@
 package eu.programit.service;
 
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,38 +12,32 @@ import eu.programit.repository.QuestionRepository;
 
 @Service
 @Transactional
-public class QuestionService {
-
+public class QuestionService implements IQuestionService{
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(QuestionService.class);
-
+	
 	@Autowired
 	private QuestionRepository questionRepository;
+
+	
+
 
 	public Iterable<Question> findAll() {
 		Iterable<Question> result = this.questionRepository.findAll();
 
-		LOGGER.info("The result of all questions are [{}]", result);
-
 		return result;
 	}
 
-	public Question findLastInsertedQuestion() {
-		List<Question> questions = this.questionRepository.findTop1ByOrderByQuestionIDDesc();
 
-		Question result = null;
-		if (questions != null) {
-			result = questions.get(0);
-		}
-		
-		return result;
-	}
-
+	@Override
 	public Question saveQuestion(Question question) {
 		return questionRepository.save(question);
 	}
 
-	public Question findById(int questionID) {
 
+	@Override
+	public Question findById(int questionID) {
+		// TODO Auto-generated method stub
 		return questionRepository.findOne(questionID);
 	}
 }

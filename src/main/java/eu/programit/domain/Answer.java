@@ -1,33 +1,22 @@
 package eu.programit.domain;
 
-import java.io.Serializable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 public class Answer implements Serializable {
 
+	public Answer(){}
+	public Answer(Question question){
+
+	}
+
 	private static final long serialVersionUID = -5754502589407713275L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int answerID;
-	
-	@Column(columnDefinition = "TEXT")
-	private String content;
+	private static final Logger log = LoggerFactory.getLogger(Answer.class);
 
-	@Column(nullable = false, columnDefinition = "INT default 0")
-	private boolean correct;
-
-	@Column(columnDefinition = "TEXT")
-	private String explanation;
-	
 	@ManyToOne
 	@JoinColumn(name = "questionid")
 	private Question question;
@@ -39,6 +28,19 @@ public class Answer implements Serializable {
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int answerID;
+
+	@Column(columnDefinition = "TEXT")
+	private String content;
+
+	@Column(nullable = false, columnDefinition = "INT default 0")
+	private boolean correct;
+
+	@Column(columnDefinition = "TEXT")
+	private String explanation;
 
 	public int getAnswerID() {
 		return answerID;

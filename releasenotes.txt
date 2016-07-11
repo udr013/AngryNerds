@@ -1,42 +1,3 @@
-v0.2.0
-
-Carpago Software | Raymond Loman (2):
-      H3 tag was not closed.fixed
-
-Constant (2):
-      NL termen uit html files Engels gemaakt
-      NL termen uit html files Engels gemaakt.. #2
-
-Leandro (6):
-      Removed debug output from ExamQuestion.html
-      Fixed nullpointer exception and some html sutff
-      modified:   src/main/resources/templates/ExamQuestion.html
-      modified:   src/main/java/eu/programit/controller/TakeTestController.java     modified:   src/main/resources/templates/ShowAllQuestions.html
-      In test remember questions answered when using prev/next/all questions.
-      In test keep answer when show allquestions or stoptest
-
-Remond Karst (7):
-      achtergrond aangepast
-      made image static and adjusted the padding
-      added main menu buttons
-      menu toegevoegd
-      menu toegevoegd
-      made image static and adjusted the padding
-      buttons in main menu
-
-udr013 (5):
-      return to index fixed     result page and explanation page improved
-      implemented create new Exam, save new questions to this is not working yet
-      questions display ordernr of Exam in Evaluation
-      questions display ordernr of Exam in Evaluation
-      some improvement in layouts. fixed incorrect info about exam when adding new exam
-
-
-
-=====================================================================================
-
-
-v0.1.0 (Initial release)
 Carpago Software | Raymond Loman (15):
       Rename Domain to domain and Controller to controller in package structure
       Review samen met het team
@@ -171,6 +132,4 @@ udr013 (51):
       refact
       new dump.sql     started to display question after exam
       display Question information
-=========================================================
-
 
