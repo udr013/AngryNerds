@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import eu.programit.domain.TestResults;
 import eu.programit.repository.TestResultRepository;
 @Service
-public class TestResultService implements ITestResultService {
+public class ExamResultService implements ITestResultService {
     @Autowired
     TestResultRepository testResultRepository;
 
