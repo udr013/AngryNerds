@@ -17,7 +17,8 @@ import java.util.List;
 
 @Controller
 public class ExamController {
-
+	private String toTheIndexPage = "index";
+	private String toTheAddQuestionToExamPage = "addQuestToExam";
 
     @Autowired
     ITestViewsService iTestViewsService;
@@ -36,7 +37,7 @@ public class ExamController {
         model.addAttribute("questions", iQuestionService.findAll());
         model.addAttribute("selectedQuestions", new ArrayList<Question>() {
         });
-        return "addQuestToExam";
+        return toTheAddQuestionToExamPage;
     }
 
     @RequestMapping(value = "/saveQuestToExam", method = RequestMethod.POST)
@@ -45,7 +46,7 @@ public class ExamController {
         System.out.println(question);
 
 
-        return "index";
+        return toTheIndexPage;
 
 
     }
