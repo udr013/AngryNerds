@@ -31,7 +31,7 @@ public class ExamController {
 
     @RequestMapping(value = "/examsave", method = RequestMethod.POST)
     String createExam(@ModelAttribute("testviews") TestViews testViews, Model model) {
-        System.out.println("this is" + testViews);
+        System.out.println("this is createExam" + testViews);
         iTestViewsService.saveTestViews(testViews);
         List<TestViews> testViewses= (List<TestViews>) iTestViewsService.findAll();
         TestViews latestTest = testViewses.get(testViewses.size()-1);
@@ -47,6 +47,7 @@ public class ExamController {
     public String saveQuestToExam(@ModelAttribute ExamQuestionSelectedForm examQuestionSelectedForm ) {
     	mySelectedQuestions.setTestViewsContent(new Integer(myTestView.getId()),
 				examQuestionSelectedForm.getSelectedQuestions());
+    	System.out.println("in save question to exam"+myTestView.getId());
 	//	myTestView.getNextQuestion();
 	//	mySelectedQuestions.printValues();
     //  User user = iUserService.findByName(principal.getName());
