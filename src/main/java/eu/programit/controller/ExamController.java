@@ -42,14 +42,16 @@ public class ExamController {
     }
 
     @RequestMapping(value = "/saveQuestToExam", method = RequestMethod.POST)
+    
     public String saveQuestToExam(@ModelAttribute ExamQuestionSelectedForm examQuestionSelectedForm ) {
-    	mySelectedQuestions.setTestViewsContent(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
+    	mySelectedQuestions.setTestViewsContent(new Integer(myTestView.getId()),
 				examQuestionSelectedForm.getSelectedQuestions());
 	//	myTestView.getNextQuestion();
-		mySelectedQuestions.printValues();
-        User user = iUserService.findByName(principal.getName());
-        mySelectedQuestions.setUser(user);
-        mySelectedQuestions.setExamId(myTestView.getId());
+	//	mySelectedQuestions.printValues();
+    //  User user = iUserService.findByName(principal.getName());
+    //   mySelectedQuestions.setUser(user);
+//        mySelectedQuestions.setExamId(myTestView.getId());
+    	
 
 
         return "redirect:/saveQuestToExam";

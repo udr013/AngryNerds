@@ -60,8 +60,8 @@ public class TestViewsContent implements Serializable {
 	 public Map<Integer, List<Integer>> getTestViewsContent() {
 	        return testViewsContent;
 	    }
-	 public void setTestViewsContent(Map<Integer, List<Integer>> testViewsContent) {
-	        this.testViewsContent = testViewsContent;
+	 public void setTestViewsContent(Integer examID, List<Integer> questionList) {
+	        this.testViewsContent.put(examID, questionList);
 	    }
 	public void setTestViews(TestViews testView) {
 		this.testView = testView;
