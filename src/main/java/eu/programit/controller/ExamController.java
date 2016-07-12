@@ -40,14 +40,16 @@ public class ExamController {
         model.addAttribute("questions", iQuestionService.findAll());
         model.addAttribute("selectedQuestions", new ArrayList<Question>() {
         });
+        ExamQuestionSelectedForm examQuestionSelectedForm = new ExamQuestionSelectedForm();
         return toTheAddQuestionToExamPage;
     }
 
     @RequestMapping(value = "/saveQuestToExam", method = RequestMethod.POST)   
     public String saveQuestToExam(@ModelAttribute ExamQuestionSelectedForm examQuestionSelectedForm ) {
+    	System.out.println("in save question to exam"+examQuestionSelectedForm);
     	mySelectedQuestions.setTestViewsContent(new Integer(myTestView.getId()),
 				examQuestionSelectedForm.getSelectedQuestions());
-    	System.out.println("in save question to exam"+myTestView.getId());
+    	System.out.println("in save question to exam");
 	//	myTestView.getNextQuestion();
 	//	mySelectedQuestions.printValues();
     //  User user = iUserService.findByName(principal.getName());
