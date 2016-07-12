@@ -20,6 +20,9 @@ public class ExamController {
 	private String toTheIndexPage = "index";
 	private String toTheAddQuestionToExamPage = "addQuestToExam";
 
+	TestViewsContent mySelectedQuestions;
+	TestViews myTestView;
+
     @Autowired
     ITestViewsService iTestViewsService;
 
@@ -40,15 +43,18 @@ public class ExamController {
         return toTheAddQuestionToExamPage;
     }
 
-    @RequestMapping(value = "/saveQuestToExam", method = RequestMethod.POST)
-    public String saveQuestToExam(@ModelAttribute("selectedQuestions") ArrayList<Question> question, Model model) {
-
-        System.out.println(question);
-
+    @RequestMapping(value = "/saveQuestToExam", method = RequestMethod.POST)   
+    public String saveQuestToExam(@ModelAttribute ExamQuestionSelectedForm examQuestionSelectedForm ) {
+    	mySelectedQuestions.setTestViewsContent(new Integer(myTestView.getId()),
+				examQuestionSelectedForm.getSelectedQuestions());
+	//	myTestView.getNextQuestion();
+	//	mySelectedQuestions.printValues();
+    //  User user = iUserService.findByName(principal.getName());
+    //   mySelectedQuestions.setUser(user);
+//        mySelectedQuestions.setExamId(myTestView.getId());
+    	
 
         return toTheIndexPage;
-
-
     }
 }
 
