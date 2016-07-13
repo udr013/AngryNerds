@@ -82,6 +82,14 @@ public class TestViewsContent implements Serializable {
 	public Integer getId() {
 		return id;
 	}
+	
+//	public void setSelectedQuestion(Integer examId, List<Integer> selectedQuestions) {
+//        this.testViewsContent.put(examId, selectedQuestions);
+//    }
+	 public void setSelectedQuestions(Integer examId, List<Integer> selectedQuestions) {
+		 System.out.println("we zitten erin:");
+	        this.testViewsContent.put(examId, selectedQuestions);
+	    }
 
 	@Override
 	public String toString() {
@@ -92,4 +100,5 @@ public class TestViewsContent implements Serializable {
 				", questionId=" + questionId +
 				'}';
 	}
+	
 }

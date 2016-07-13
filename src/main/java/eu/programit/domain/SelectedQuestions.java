@@ -26,7 +26,7 @@ public class SelectedQuestions implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id")
-    private TestViewsContent user;
+    private User user;
 
     // map questions to answers
     @Column(columnDefinition = "BLOB")
@@ -46,11 +46,11 @@ public class SelectedQuestions implements Serializable {
         this.examId = examId;
     }
 
-    public TestViewsContent getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(TestViewsContent user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
