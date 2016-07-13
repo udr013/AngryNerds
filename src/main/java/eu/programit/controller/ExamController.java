@@ -37,6 +37,7 @@ public class ExamController {
         List<TestViews> testViewses= (List<TestViews>) iTestViewsService.findAll();
         TestViews latestTest = testViewses.get(testViewses.size()-1);
         testViews = iTestViewsService.findById(latestTest.getId());
+        
       //  ExamQuestionSelectedForm examQuestionSelectedForm = new ExamQuestionSelectedForm();
         try {
 			q = iQuestionService.findById(myTestView.getCurrentQuestion().getQuestionId());
@@ -50,16 +51,33 @@ public class ExamController {
         model.addAttribute("examQuestionSelectedForm",examQuestionSelectedForm);
         model.addAttribute("selectedQuestions", new ArrayList<Question>() {
         });
-        examQuestionSelectedForm.setTestAnswers(mySelectedQuestions.getTestViewsContent().get(q.getQuestionID()));
-		model.addAttribute("mySelectedQuestions", mySelectedQuestions.getTestViewsContent().get(q.getQuestionID()));
+   //     examQuestionSelectedForm.setTestAnswers(mySelectedQuestions.getTestViewsContent().get(q.getQuestionID()));
+	//	model.addAttribute("mySelectedQuestions", mySelectedQuestions.getTestViewsContent().get(q.getQuestionID()));
+        System.out.println("this is createExam" + testViews);
+        this.myTestView=testViews;
         return toTheAddQuestionToExamPage;
     }
 
     @RequestMapping(value = "/saveQuestToExam", method = RequestMethod.POST)   
-    public String saveQuestToExam(@ModelAttribute("examQuestionSelectedForm") ExamQuestionSelectedForm examQuestionSelectedForm ) {
+    public String saveQuestToExam(@ModelAttribute ExamQuestionSelectedForm examQuestionSelectedForm ) {
     	System.out.println("in save question to exam"+examQuestionSelectedForm);
+    	System.out.println("controlere:"+myTestView.getId());
+    	List<Integer> answ = examQuestionSelectedForm.getSelectedQuestions();
+    	if (answ != null) {
+			for (int s : answ) {
+				System.out.println("Question selected = " + s );
+
+			}
+		}
+    	try{
     	mySelectedQuestions.setTestViewsContent(new Integer(myTestView.getId()),
-				examQuestionSelectedForm.getSelectedQuestions());
+    			answ);
+    	}catch (NullPointerException npe) {
+    		System.out.println("nullpointer");
+    	}
+    	System.out.println("this is createExam" + myTestView);
+//    	mySelectedQuestions.setTestViewsContent(new Integer(myTestView.getId()),
+//				examQuestionSelectedForm.getSelectedQuestions());
     	System.out.println("in save question to exam");
 	//	myTestView.getNextQuestion();
 	//	mySelectedQuestions.printValues();

@@ -16,6 +16,14 @@ public class ExamQuestionSelectedForm {
 
 	private List<Integer> examQuestionsSelected;
 
+	public List<Integer> getExamQuestionsSelected() {
+		return examQuestionsSelected;
+	}
+
+	public void setExamQuestionsSelected(List<Integer> examQuestionsSelected) {
+		this.examQuestionsSelected = examQuestionsSelected;
+	}
+
 	public List<Integer> getSelectedQuestions() {
 		return examQuestionsSelected;
 	}

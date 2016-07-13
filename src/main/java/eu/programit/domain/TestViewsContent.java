@@ -61,6 +61,7 @@ public class TestViewsContent implements Serializable {
 	        return testViewsContent;
 	    }
 	 public void setTestViewsContent(Integer examID, List<Integer> questionList) {
+		 System.out.println("in de setTestViewsContent in TestViewContent" +questionList );
 	        this.testViewsContent.put(examID, questionList);
 	    }
 	public void setTestViews(TestViews testView) {
