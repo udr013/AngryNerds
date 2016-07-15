@@ -3,10 +3,12 @@ package eu.programit.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import eu.programit.domain.Exam;
 import eu.programit.repository.ExamRepository;
 
+@Service
 public class ExamService {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(QuestionService.class);
@@ -17,12 +19,20 @@ public class ExamService {
 	
 	public Exam save(Exam exam) {
 		
+		System.out.println("Saving exam ... "+exam);
+		
 		LOGGER.debug("it rocks");
 		
 		Exam result = this.examRepository.save(exam);	
 		
 		return result;
 
+	}
+	
+	public Exam findById(Integer id) {
+		Exam result = this.examRepository.findOne(id);
+		
+		return result;
 	}
 	
 	public Iterable<Exam> findAll() {

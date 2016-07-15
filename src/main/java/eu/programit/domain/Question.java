@@ -1,11 +1,21 @@
 package eu.programit.domain;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
@@ -23,6 +33,9 @@ public class Question implements Serializable {
 
 	@OneToMany (mappedBy="question")
 	private List<Answer> answers;
+	
+	@ManyToMany
+	private List<Exam> exams;
 
 	@ManyToOne
 	@JoinColumn(name = "categoryid")
@@ -138,17 +151,7 @@ public class Question implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Question{" +
-				"questionID=" + questionID +
-				", content='" + content + '\'' +
-				", code='" + code + '\'' +
-				", difficulty=" + difficulty +
-				", isMarked=" + isMarked +
-				", status=" + status +
-				", feedback='" + feedback + '\'' +
-				", hasFeedback=" + hasFeedback +
-				", internetLink='" + internetLink + '\'' +
-				'}';
+		return "Question [questionID=" + questionID + "]";
 	}
 }
 

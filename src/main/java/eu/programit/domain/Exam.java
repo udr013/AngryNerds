@@ -1,11 +1,14 @@
 package eu.programit.domain;
 
 import java.io.Serializable;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +29,10 @@ public class Exam implements Serializable{
 	//Commented out because Category is not a field of Exam, but a manner of constructing an specific exam
 	//private Category categories;
 	private int maxTimelnMinutes;
+	
+	@ManyToMany(mappedBy="exams", cascade=CascadeType.ALL)
+	
+	private Collection<Question> questions;
 
 	public boolean isParallel() {
 		return isParallel;
@@ -56,9 +63,14 @@ public class Exam implements Serializable{
 	public long getId() {
 		return id;
 	}
-
+	
+	public void addQuestion(Question question) {
+		this.questions.add(question);
+	}
 	@Override
 	public String toString() {
-		return "Exam [isParallel=" + isParallel + ", numberOfQuestions=" + numberOfQuestions + ", maxTimelnMinutes=" + maxTimelnMinutes + "]";
+		return "Exam [id=" + id + ", questions=" + questions + "]";
 	}
+
+	
 }
