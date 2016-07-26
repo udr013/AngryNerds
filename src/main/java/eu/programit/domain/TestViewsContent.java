@@ -34,7 +34,7 @@ public class TestViewsContent implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "testViewsId")
 //	int testViewsId;// Id of TestViews table for this question
-	TestViews testView;	// Test in TestViews table to which this question belongs 
+	TestViews testView;	// Test in TestViews table to which this question belongs
 	
 	Integer orderNr;	// defines nr of the question within the test
 	Integer questionId;	// Id of question
@@ -82,7 +82,7 @@ public class TestViewsContent implements Serializable {
 	public Integer getId() {
 		return id;
 	}
-	
+
 //	public void setSelectedQuestion(Integer examId, List<Integer> selectedQuestions) {
 //        this.testViewsContent.put(examId, selectedQuestions);
 //    }

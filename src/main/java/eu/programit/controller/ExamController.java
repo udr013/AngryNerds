@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import eu.programit.repository.TestViewsContentRepository;
+import eu.programit.service.TestViewsContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,9 @@ public class ExamController {
 
 	TestViewsContent mySelectedQuestions= new TestViewsContent() ;
 	TestViews myTestView;
+
+    @Autowired
+    TestViewsContentRepository testViewsContentRepository;
 
     @Autowired
     ITestViewsService iTestViewsService;
@@ -73,11 +78,19 @@ public class ExamController {
     	System.out.println("controlere:"+myTestView.getId());
     	List<Integer> answ = examQuestionSelectedForm.getSelectedQuestions();
     	if (answ != null) {
+    	    int ordernr = 0;
 			for (int s : answ) {
+			    ordernr++;
 				System.out.println("Question selected = " + s + " het Id ="+new Integer(myTestView.getId()) );
 	//			mySelectedQuestions.setSelectedQuestion(new Integer(myTestView.getId()), s.g);
+                TestViewsContent testViewsContent = new TestViewsContent();
+                testViewsContent.setQuestionId(s);
+                testViewsContent.setTestViews(myTestView);
+                testViewsContent.setOrderNr(ordernr);
+                testViewsContentRepository.save(testViewsContent);
 
 			}
+			//ordernr =0;
 		}
     	try{
     		Map<Integer, List<Integer>> testViewsContent = new HashMap<>();
