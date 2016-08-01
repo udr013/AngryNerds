@@ -13,17 +13,16 @@
 </p>
 </article>
 
-<div th:if="${param.error}">
-    Invalid username and password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<div id="loginform">
-<form id="loginForm" th:action="@{/login}" method="post">
+
+<div class="loginform">
+
+<form class="loginForm" th:action="@{/login}" method="post">
     <h3 id="loginHeader">Log in or use the register button to get to the registration page.</h3>
+    <div class="errormessage" th:if="${registered}">You can login using your new account</div>
     <label> User Name : <input type="text" name="username"/> </label><br/>
     <label> Password : <input type="password" name="password"/> </label><br/>
+    <p class="errormessage" th:if="${param.error}">Invalid username and password.</p>
+    <p class="errormessage" th:if="${param.logout}">You have been logged out.</p>
 <br/> 
 	If you didn't sign up already, follow the link to the:
     <a th:href="@{/register}"> registration page.</a>

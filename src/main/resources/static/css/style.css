@@ -28,7 +28,7 @@
 	fieldset, form, label, legend,
 	table, caption, tbody, tfoot, thead, tr, th, td,
 	article, aside, canvas, details, embed, 
-	figure, figcaption, footer, header, hgroup, 
+	figure, figcaption, footer, header,
 	menu, nav, output, ruby, section, summary,
 	time, mark, audio, video {
 		margin: 0;
@@ -47,8 +47,7 @@
 	figcaption, 
 	figure, 
 	footer, 
-	header, 
-	hgroup, 
+	header,
 	menu, 
 	nav, 
 	section {
@@ -470,13 +469,13 @@
 		outline: 0;	
 	}
 	
-	#loginform {
-		text-align: center
+	.loginform {
+		text-align: center;
 		width: 100%;
 		padding-bottom:10px;
 	}
 	
-	#loginform > form {
+	.loginform > form {
 		border: solid 1px #18829c;
 		padding: 10px;
 		width: 500px;
@@ -488,7 +487,11 @@
 	.clear {
 		border:none;
 	}
-	
+
+	.errormessage{
+		color: darkred;
+	}
+
 	select:focus {
 	  outline: thin dotted #333;
 	  outline: 5px auto -webkit-focus-ring-color;

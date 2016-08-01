@@ -14,17 +14,66 @@ public class User implements Serializable{
     private static final long serialVersionUID = -8245795555515772189L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@Column(name="id") //don't need this, table name is equal to entity class...
+    @GeneratedValue(strategy= GenerationType.AUTO) // Auto generate ID's (auto increment in MySQL)
     private int id;
+    private String firstName;
 
+    private String lastName;
+
+    @Column (unique = true)
     private String username;
 
+    private String phoneNr;
+
     private String password;
+    @Transient
+    private String confirmPassword;
 
     private String email;
 
     @Column(columnDefinition = "boolean default true", nullable = false)
     private boolean enabled = true;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPhoneNr() {
+        return phoneNr;
+    }
+
+    public void setPhoneNr(String phoneNr) {
+        this.phoneNr = phoneNr;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
     public boolean isEnabled() {
         return enabled;

@@ -27,7 +27,7 @@ public class UserController {
 		
 	//Hieronder vind je het eigenlijke programma mbt de gebruikers   	
     @Autowired
-    IUserService IUserService; //Hier wordt een nieuw object gemaakt van de IUserService, zodat de
+    IUserService iUserService; //Hier wordt een nieuw object gemaakt van de IUserService, zodat de
 		 					   //methodes van de UserService gebruikt kunnen worden (save en get).
 		 					   //In de toekomst zou hier ook nog delete bij kunnen voor de administrator.
 		 					   //De methode deleteUser is al beschikbaar in de UserService.
@@ -35,7 +35,7 @@ public class UserController {
 
     @RequestMapping("/register")
     public String registerPage(Model model){
-       Collection<User> allUsers = IUserService.getAllUsers();
+       Collection<User> allUsers = iUserService.getAllUsers();
         for(User user:allUsers){
             System.out.println(user);
         }
@@ -45,11 +45,25 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/register/save"}, method = RequestMethod.POST)
-        public String registerPage( @ModelAttribute("user") User user) {
-        IUserService.saveUser(user);
-        System.out.println(user);
-        System.out.println("saving user");
-        return RedirectToLoginPage;
+        public String registerPage( @ModelAttribute("user") User user, Model model) {
+        if(user.getPassword().equals(user.getConfirmPassword())&&user.getPassword()!=null) {
+            try {
+                iUserService.saveUser(user);
+
+
+            } catch (org.springframework.dao.DataIntegrityViolationException e) {
+                model.addAttribute("registerError", true);
+                user.setUsername(null);
+                return "register";
+            }
+        }else {
+            model.addAttribute("passwordError",true);
+            user.setPassword(null);
+            user.setConfirmPassword(null);
+            return "register";
+        }
+        model.addAttribute("registered", true);
+        return "login"; //do not use redirect or errormessage will not be displayed
 
     }
     //Dit gedeelte wordt gebruikt om uit te kunnen loggen. Dit gedeelte haalt methodes op van Springboot Authentication.

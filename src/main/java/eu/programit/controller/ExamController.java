@@ -81,7 +81,7 @@ public class ExamController {
     	    int ordernr = 0;
 			for (int s : answ) {
 			    ordernr++;
-				System.out.println("Question selected = " + s + " het Id ="+new Integer(myTestView.getId()) );
+	//			System.out.println("Question selected = " + s + " het Id ="+new Integer(myTestView.getId()) );
 	//			mySelectedQuestions.setSelectedQuestion(new Integer(myTestView.getId()), s.g);
                 TestViewsContent testViewsContent = new TestViewsContent();
                 testViewsContent.setQuestionId(s);
