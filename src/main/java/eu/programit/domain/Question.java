@@ -19,7 +19,7 @@ public class Question implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int questionID;
+	private int questionid;
 
 	@OneToMany (mappedBy="question")
 	private List<Answer> answers;
@@ -70,7 +70,7 @@ public class Question implements Serializable {
 	}
 
 	public int getQuestionID() {
-		return questionID;
+		return questionid;
 	}
 	
 	public List<Answer> getAnswers() {
@@ -81,7 +81,7 @@ public class Question implements Serializable {
 	}
 	
 	public void setQuestionID(int questionID) {
-		this.questionID = questionID;
+		this.questionid = questionID;
 	}
 	public String getContent() {
 		return content;
@@ -139,7 +139,7 @@ public class Question implements Serializable {
 	@Override
 	public String toString() {
 		return "Question{" +
-				"questionID=" + questionID +
+				"questionID=" + questionid +
 				", content='" + content + '\'' +
 				", code='" + code + '\'' +
 				", difficulty=" + difficulty +
