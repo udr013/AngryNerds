@@ -4,7 +4,7 @@ package eu.programit.controller;
 import eu.programit.domain.Answer;
 import eu.programit.domain.Category;
 import eu.programit.domain.Question;
-import eu.programit.domain.TestViews;
+import eu.programit.domain.Test;
 import eu.programit.service.IAnswerService;
 import eu.programit.service.ICategoryService;
 import eu.programit.service.IQuestionService;
@@ -21,8 +21,8 @@ import java.util.ArrayList;
 
 @Controller
 public class WebController {
-	private static String toTheCreateNewCategoryPage = "category";
-	private static String toTheLoginPage = "login";
+	private  String toTheCreateNewCategoryPage = "category";
+	private  String toTheLoginPage = "login";
 	private static String toTheIndexPage = "index";
 	private static String toTheNextQuestionOfTheExamPage = "redirect:/loadExamQuestion";
 	private static String toTheAddAnswersToTheQuestionPage = "vraag";
@@ -69,7 +69,7 @@ public class WebController {
     //Als die klaar is gaat die naar de pagina addExam
     @RequestMapping("/createexam")
     public String createExam(Model model) {
-        model.addAttribute("testviews", new TestViews());
+        model.addAttribute("testviews", new Test());
 
         return toTheAddExamToTheDatabasePage;
     }
@@ -86,7 +86,7 @@ public class WebController {
     //als je na de pagina localhost:8888/registerQuestion gaat, geeft het POST aan dat die daar invoer verwacht
     //op de pagina laat die alle antwoorden zien die bij de vraag horen die die via het model reeds binnen krijgt
     @RequestMapping(value = "/registerQuestion", method = RequestMethod.POST)
-    String saveQuestion(Model model, @ModelAttribute("answers") ArrayList<Answer> answers){
+    String saveQuestion(@ModelAttribute("answers") ArrayList<Answer> answers){
         for(Answer x:answers) {
             System.out.println(x);
         }

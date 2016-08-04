@@ -18,9 +18,9 @@ import java.util.Map;
 @Controller
 public class TakeTestController {
 
-	TestResults myTestResults;
-	TestViews myTestView;
-	// List<TestViewsContent> myTestsList;
+	private TestResult myTestResult;
+	private Test myTest;
+	// List<TestContent> myTestsList;
 
 	@Autowired
 	IQuestionService iQuestionService;
@@ -35,14 +35,14 @@ public class TakeTestController {
 	IAnswerService iAnswerService;
 
 	@Autowired
-	ITestViewsService testViewsService;
+	ITestService testService;
 
 	@RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
 	public String LoadExamQuestion(Model model, TestAnswerForm testAnswerForm, Principal principal) {
 		Question q;
 		List<Answer> answers = null;
 		try {
-			q = iQuestionService.findById(myTestView.getCurrentQuestion().getQuestionId());
+			q = iQuestionService.findById(myTest.getCurrentQuestion().getQuestionId());
 			answers = q.getAnswers();
 		} catch (NullPointerException npe) {
 			q = new Question();
@@ -51,17 +51,16 @@ public class TakeTestController {
 		model.addAttribute("numberCorrect", getCorrectAnswers(answers));
 		model.addAttribute("question", q);// the 1 will get question 2 (index 0)
 		model.addAttribute("answers", answers);
-		model.addAttribute("mytestview", myTestView);
+		model.addAttribute("mytestview", myTest);
 
-		testAnswerForm.setTestAnswers(myTestResults.getTestResults().get(q.getQuestionID()));
-		model.addAttribute("mytestresults", myTestResults.getTestResults().get(q.getQuestionID()));
+		testAnswerForm.setTestAnswers(myTestResult.getTestResults().get(q.getQuestionID()));
+		model.addAttribute("mytestresults", myTestResult.getTestResults().get(q.getQuestionID()));
 
 		return "ExamQuestion";
 	}
 
 	// Leandro: getNrOfCorrectAnswers komt volgens mij meer overeen met de functionaliteit
 	private int getCorrectAnswers(List<Answer> answers) {
-		// TODO Auto-generated method stub
 		int count = 0;
 		//System.out.println(answers);
 		if (answers != null) {
@@ -78,16 +77,16 @@ public class TakeTestController {
 
 	@RequestMapping(value = "/loadExamQuestion", method = RequestMethod.POST)
 	public String LoadExamQuestionPOST(@ModelAttribute TestAnswerForm testAnswerForm, Principal principal) {
-		List<Integer> answ = testAnswerForm.getTestAnswers();
-		if (answ != null) {
-			for (int s : answ) {
+		List<Integer> answers = testAnswerForm.getTestAnswers();
+		if (answers != null) {
+			for (int s : answers) {
 				System.out.println("Answer = " + s + principal.getName());
 
 			}
 		}
-		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
+		myTestResult.setTestResults(myTest.getCurrentQuestion().getQuestionId(),
 				testAnswerForm.getTestAnswers());
-		System.out.println(myTestResults);
+		System.out.println(myTestResult);
 		return "redirect:/loadExamQuestion";
 
 	}
@@ -97,9 +96,9 @@ public class TakeTestController {
 
 	@RequestMapping("/SelectTest")
 	public String selectTest(Model model) {
-		Iterable<TestViews> tv = testViewsService.findAll();
+		Iterable<Test> tv = testService.findAll();
 		model.addAttribute("testviews", tv);
-		model.addAttribute("testview", new TestViews());
+		model.addAttribute("testview", new Test());
 		return "SelectTest";
 	}
 
@@ -107,23 +106,23 @@ public class TakeTestController {
 	// *********************************************************************
 
 	@RequestMapping(value = "/StartTest", method = RequestMethod.POST)
-	public String startTest(@ModelAttribute("testview") TestViews testView, Principal principal) {
-		if (testView.getId() == 0) return "redirect:/SelectTest";
-		myTestResults = new TestResults();
-		myTestView = testViewsService.findById(testView.getId());
-		System.out.println("Selected TEst: " + testView.getId() + "gebruiker:" + principal.getName());
-		// myTestsList = myTestView.getsortedTestViewsList();
+	public String startTest(@ModelAttribute("testview") Test test, Principal principal) {
+		if (test.getId() == 0) return "redirect:/SelectTest";
+		myTestResult = new TestResult();
+		myTest = testService.findById(test.getId());
+		System.out.println("Selected TEst: " + test.getId() + "gebruiker:" + principal.getName());
+		// myTestsList = myTest.getsortedTestViewsList();
 
 		// test output start
-		// for (TestViewsContent t: myTestsList){
+		// for (TestContent t: myTestsList){
 		// System.out.println("Tests: " + t.getOrderNr() + " " +
 		// t.getQuestionId());
 		// }
 		// System.out.println("First Question: " +
-		// myTestView.getQuestionNr(1).getQuestionId());
+		// myTest.getQuestionNr(1).getQuestionId());
 		// test output end
 
-		myTestView.startTest();
+		myTest.startTest();
 		return "redirect:/loadExamQuestion";
 	}
 
@@ -132,15 +131,15 @@ public class TakeTestController {
 
 	@RequestMapping(value = "/LoadNextQuestion", method = RequestMethod.POST)
 	public String loadNextQuestion(@ModelAttribute TestAnswerForm testAnswerForm, Principal principal) {
-		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
+		myTestResult.setTestResults(myTest.getCurrentQuestion().getQuestionId(),
 				testAnswerForm.getTestAnswers());
-		myTestView.getNextQuestion();
-		myTestResults.printValues();
+		myTest.getNextQuestion();
+		myTestResult.printValues();
 		User user = iUserService.findByName(principal.getName());
-		myTestResults.setUser(user);
-		myTestResults.setExamId(myTestView.getId());
+		myTestResult.setUser(user);
+		myTestResult.setExamId(myTest.getId());
 
-		System.out.println(myTestResults);
+		System.out.println(myTestResult);
 		// this doesn't work if no catch: nested exception is org.hibernate.PropertyAccessException: could not get a field value by reflection
 //       try {
 
@@ -156,16 +155,16 @@ public class TakeTestController {
 
 	@RequestMapping(value = "/LoadPrevQuestion", method = RequestMethod.POST)
 	public String loadPrevQuestion(@ModelAttribute TestAnswerForm testAnswerForm, Principal principal) {
-		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
+		myTestResult.setTestResults(myTest.getCurrentQuestion().getQuestionId(),
 				testAnswerForm.getTestAnswers());
-		myTestView.getPrevQuestion();
-		myTestResults.printValues();
+		myTest.getPrevQuestion();
+		myTestResult.printValues();
 		if (testAnswerForm.getTestAnswers() != null) {
 			for (int s : testAnswerForm.getTestAnswers()) {
 				System.out.println("Answer = " + s + "gebruiker:" + principal.getName());
 			}
 		}
-		System.out.println(myTestResults);
+		System.out.println(myTestResult);
 
 		return "redirect:/loadExamQuestion";
 	}
@@ -175,10 +174,9 @@ public class TakeTestController {
 
 	@RequestMapping(value = "/ShowAllQuestions", method = RequestMethod.POST)
 	public String showAllQuestions(Model model, @ModelAttribute TestAnswerForm testAnswerForm) {
-		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
-				testAnswerForm.getTestAnswers());
-		myTestResults.printValues();
-		model.addAttribute("mytestview", myTestView);
+		myTestResult.setTestResults(myTest.getCurrentQuestion().getQuestionId(), testAnswerForm.getTestAnswers());
+		myTestResult.printValues();
+		model.addAttribute("mytestview", myTest);
 		model.addAttribute("questionservice", iQuestionService);
 		return "ShowAllQuestions";
 	}
@@ -188,10 +186,10 @@ public class TakeTestController {
 	// *********************************************************************
 
 	@RequestMapping(value = "/StopTheTest", method = RequestMethod.POST)
-	public String stopTheTest(Model model, @ModelAttribute TestAnswerForm testAnswerForm) {
-		myTestResults.setTestResults(new Integer(myTestView.getCurrentQuestion().getQuestionId()),
+	public String stopTheTest(@ModelAttribute TestAnswerForm testAnswerForm) {
+		myTestResult.setTestResults(myTest.getCurrentQuestion().getQuestionId(),
 				testAnswerForm.getTestAnswers());
-		myTestResults.printValues();
+		myTestResult.printValues();
 		return "StopTheTest";
 	}
 
@@ -200,17 +198,17 @@ public class TakeTestController {
 
 	@RequestMapping(value = "/TestEvaluation", method = RequestMethod.POST)
 	public String testEvaluation( Model model, Principal principal) {
-		iTestResultService.saveTestResult(myTestResults);
+		iTestResultService.saveTestResult(myTestResult);
 		User user = iUserService.findByName(principal.getName());
-		int i=0;
-		List<TestResults> testResultses= (List<TestResults>) iTestResultService.findByUser(user);
-		List<Question> questions= new ArrayList<Question>();
-		TestResults lastTestResult = testResultses.get(testResultses.size()-1);
+
+		List<TestResult> testResults= (List<TestResult>) iTestResultService.findByUser(user);
+		List<Question> questions= new ArrayList<>();
+		TestResult lastTestResult = testResults.get(testResults.size()-1);
 		System.out.println(lastTestResult.getTestResultId() );
-		Map<Integer, List<Integer>> testResults = lastTestResult.getTestResults();
+		Map<Integer, List<Integer>> testResult = lastTestResult.getTestResults();
 		int correctQuestions = 0;
 		int incorrectQuestions = 0;
-		for(Map.Entry<Integer, List<Integer>> element : testResults.entrySet()) {
+		for(Map.Entry<Integer, List<Integer>> element : testResult.entrySet()) {
 			int vraagId = element.getKey();
 			Question q = this.iQuestionService.findById(vraagId);
 			//questions.add(q);
@@ -266,11 +264,3 @@ public class TakeTestController {
 	}
 }
 
-class TestSelection {
-	int selectedTest;
-
-	@Override
-	public String toString() {
-		return "TestSelection{" + "selectedTest=" + selectedTest + '}';
-	}
-}

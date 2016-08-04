@@ -1,10 +1,10 @@
 package eu.programit.service;
 
+import eu.programit.domain.TestResult;
 import eu.programit.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import eu.programit.domain.TestResults;
 import eu.programit.repository.TestResultRepository;
 @Service
 public class ExamResultService implements ITestResultService {
@@ -12,35 +12,35 @@ public class ExamResultService implements ITestResultService {
     TestResultRepository testResultRepository;
 
     @Override
-    public TestResults saveTestResult(TestResults testResult) {
+    public TestResult saveTestResult(TestResult testResult) {
         return testResultRepository.save(testResult);
     }
 //    @Override
-//	public TestResults findById(int examID) {
+//	public TestResult findById(int examID) {
 //		// TODO Auto-generated method stub
 //		return testResultRepository.findOne(examID);
 //	}
 //	@Override
-//	public Iterable<TestResults> findAll() {
-//		Iterable<TestResults> result = this.testResultRepository.findAll();
+//	public Iterable<TestResult> findAll() {
+//		Iterable<TestResult> result = this.testResultRepository.findAll();
 //		
 //		return result;
 //	}
 
 	@Override
-	public Iterable<TestResults> findAll() {
+	public Iterable<TestResult> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public TestResults findById(int examID) {
+	public TestResult findById(int examID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Iterable<TestResults> findByUser(User user) {
+	public Iterable<TestResult> findByUser(User user) {
 		return testResultRepository.findByUser(user);
 	}
 

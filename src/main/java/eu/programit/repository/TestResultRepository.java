@@ -1,15 +1,14 @@
 package eu.programit.repository;
 
+import eu.programit.domain.TestResult;
 import eu.programit.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-import eu.programit.domain.TestResults;
-
 @Component
-public interface TestResultRepository extends CrudRepository<TestResults, Integer>{
+public interface TestResultRepository extends CrudRepository<TestResult, Integer>{
 
-	TestResults save(TestResults testResult);
-	Iterable<TestResults> findByUser(User user);
+	TestResult save(TestResult testResult);
+	Iterable<TestResult> findByUser(User user);
 
 }

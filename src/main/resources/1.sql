@@ -184,14 +184,11 @@ INSERT INTO `test_results_test_results` VALUES (1,'�\�\0sr\0java.util.Arra
 /*!40000 ALTER TABLE `test_results_test_results` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `test_views`
---
 
-DROP TABLE IF EXISTS `test_views`;
+DROP TABLE IF EXISTS `test`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `test_views` (
+CREATE TABLE `test` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) DEFAULT NULL,
   `test_type` varchar(255) DEFAULT NULL,
@@ -199,31 +196,28 @@ CREATE TABLE `test_views` (
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `test_views`
---
 
-LOCK TABLES `test_views` WRITE;
-/*!40000 ALTER TABLE `test_views` DISABLE KEYS */;
-INSERT INTO `test_views` VALUES (1,'Exam 1','Exam'),(2,'Exam 2','Exam');
-/*!40000 ALTER TABLE `test_views` ENABLE KEYS */;
+LOCK TABLES `test` WRITE;
+/*!40000 ALTER TABLE `test` DISABLE KEYS */;
+INSERT INTO `test` VALUES (1,'Exam 1','Exam'),(2,'Exam 2','Exam');
+/*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `test_views_content`
+-- Table structure for table `test_content`
 --
 
-DROP TABLE IF EXISTS `test_views_content`;
+DROP TABLE IF EXISTS `test_content`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `test_views_content` (
+CREATE TABLE `test_content` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_nr` int(11) DEFAULT NULL,
   `question_id` int(11) DEFAULT NULL,
-  `test_views_id` int(11) DEFAULT NULL,
+  `test_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_8xqjydw02le159pn3e5mpxxgj` (`test_views_id`),
-  CONSTRAINT `FK_8xqjydw02le159pn3e5mpxxgj` FOREIGN KEY (`test_views_id`) REFERENCES `test_views` (`id`)
+  KEY `FK_8xqjydw02le159pn3e5mpxxgj` (`test_id`),
+  CONSTRAINT `FK_8xqjydw02le159pn3e5mpxxgj` FOREIGN KEY (`test_id`) REFERENCES `test` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -231,10 +225,10 @@ CREATE TABLE `test_views_content` (
 -- Dumping data for table `test_views_content`
 --
 
-LOCK TABLES `test_views_content` WRITE;
-/*!40000 ALTER TABLE `test_views_content` DISABLE KEYS */;
-INSERT INTO `test_views_content` VALUES (1,1,9,1),(2,2,10,1),(3,1,10,2),(4,3,11,1),(5,2,12,2),(6,3,13,2),(7,4,14,1),(8,4,15,2),(9,5,16,1),(10,5,17,2);
-/*!40000 ALTER TABLE `test_views_content` ENABLE KEYS */;
+LOCK TABLES `test_content` WRITE;
+/*!40000 ALTER TABLE `test_content` DISABLE KEYS */;
+INSERT INTO `test_content` VALUES (1,1,9,1),(2,2,10,1),(3,1,10,2),(4,3,11,1),(5,2,12,2),(6,3,13,2),(7,4,14,1),(8,4,15,2),(9,5,16,1),(10,5,17,2);
+/*!40000 ALTER TABLE `test_content` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

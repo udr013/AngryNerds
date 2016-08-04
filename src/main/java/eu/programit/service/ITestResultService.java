@@ -1,14 +1,14 @@
 package eu.programit.service;
 
-import eu.programit.domain.TestResults;
+import eu.programit.domain.TestResult;
 import eu.programit.domain.User;
 
 public interface ITestResultService {
-	    TestResults saveTestResult(TestResults testResult);
-	    Iterable<TestResults> findAll();
+	    TestResult saveTestResult(TestResult testResult);
+	    Iterable<TestResult> findAll();
 	 //   Iterable<Answer> findAllByQuestion(Question question);
-	    TestResults findById(int examID);
-		Iterable<TestResults> findByUser(User user);
+	    TestResult findById(int examID);
+		Iterable<TestResult> findByUser(User user);
 	}
 
 

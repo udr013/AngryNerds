@@ -95,7 +95,7 @@ public class SelectedQuestions implements Serializable {
 
     @Override
     public String toString() {
-        return "TestResults{" +
+        return "TestResult{" +
                 "id=" + testResultId +
                 ", examId=" + examId +
                ", user=" + user +

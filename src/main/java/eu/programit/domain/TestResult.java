@@ -9,7 +9,7 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 @Entity
-public class TestResults implements Serializable {
+public class TestResult implements Serializable {
 
     /**
      *
@@ -95,7 +95,7 @@ public class TestResults implements Serializable {
 
     @Override
     public String toString() {
-        return "TestResults{" +
+        return "TestResult{" +
                 "id=" + testResultId +
                 ", examId=" + examId +
                ", user=" + user +

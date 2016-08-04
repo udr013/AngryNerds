@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Entity
-public class TestViews implements Serializable {
+public class Test implements Serializable {
 
 	private static final long serialVersionUID = 6392649144473391793L;
 
@@ -18,8 +18,8 @@ public class TestViews implements Serializable {
 	private String description;
 	private String testType;			// Exam, subject, ...
 	
-	@OneToMany (mappedBy = "testView")
-	private List<TestViewsContent> testViewsList;
+	@OneToMany (mappedBy = "test")
+	private List<TestContent> testList;
 
 	/****** Local Vars        ******************************************************/
 
@@ -27,15 +27,15 @@ public class TestViews implements Serializable {
 	private int questionNr;
 	
 	@Transient
-	private List<TestViewsContent> sortedTestViewsList;
+	private List<TestContent> sortedTestList;
 
 	/****** Methods           ******************************************************/
 	
 	public void startTest(){
 		// sort questions on order nr
-		sortedTestViewsList = new ArrayList<>(testViewsList);
-		sortedTestViewsList.sort(new Comparator<TestViewsContent>() {
-			public int compare(TestViewsContent a, TestViewsContent b){
+		sortedTestList = new ArrayList<>(testList);
+		sortedTestList.sort(new Comparator<TestContent>() {
+			public int compare(TestContent a, TestContent b){
 				return Integer.compare(a.orderNr, b.orderNr);
 			}
 		});
@@ -43,31 +43,31 @@ public class TestViews implements Serializable {
 		questionNr = 0;
 	}
 
-	public TestViewsContent getNextQuestion(){
-		if (questionNr <sortedTestViewsList.size()-1) questionNr++; // no next question if already at last
-		System.out.println("getNextQuestion - sortedTestViewsList.size: " + sortedTestViewsList.size());
+	public TestContent getNextQuestion(){
+		if (questionNr <sortedTestList.size()-1) questionNr++; // no next question if already at last
+		System.out.println("getNextQuestion - sortedTestViewsList.size: " + sortedTestList.size());
 		System.out.println("getNextQuestion - sortedTestViewsListIndex: " + questionNr);
-		return sortedTestViewsList.get(questionNr);
+		return sortedTestList.get(questionNr);
 	}
 
-	public TestViewsContent getPrevQuestion(){
+	public TestContent getPrevQuestion(){
 		if (questionNr > 0) questionNr--; // no previous question if already at 1
-		return sortedTestViewsList.get(questionNr);
+		return sortedTestList.get(questionNr);
 	}
 
 	// Set current question to index and return its value in table sortedTestViewsList 
-//	public TestViewsContent getQuestionNr(int index) {
+//	public TestContent getQuestionNr(int index) {
 //		if (index >= 0 && index < sortedTestViewsList.size()) questionNr = index;
 //		else questionNr = 0;
 //		return sortedTestViewsList.get(questionNr);
 //	}
 
-	public TestViewsContent getCurrentQuestion() {
-		return sortedTestViewsList.get(questionNr);	
+	public TestContent getCurrentQuestion() {
+		return sortedTestList.get(questionNr);
 	}
 	
 	public int getNrOfQuestions() {
-		return sortedTestViewsList.size();
+		return sortedTestList.size();
 	}
 
 	/****** Getters & Setters ******************************************************/
@@ -92,12 +92,12 @@ public class TestViews implements Serializable {
 		this.id = id;
 	}
 
-	public List<TestViewsContent> getTestViewsList() {
-		return testViewsList;
+	public List<TestContent> getTestList() {
+		return testList;
 	}
 
-	public void setTestViewsList(List<TestViewsContent> testViewsList) {
-		this.testViewsList = testViewsList;
+	public void setTestList(List<TestContent> testList) {
+		this.testList = testList;
 	}
 
 	public int getQuestionNr() {
@@ -108,19 +108,19 @@ public class TestViews implements Serializable {
 		this.questionNr = questionNr;
 	}
 
-	public List<TestViewsContent> getSortedTestViewsList() {
-		return sortedTestViewsList;
+	public List<TestContent> getSortedTestList() {
+		return sortedTestList;
 	}
 
 	@Override
 	public String toString() {
-		return "TestViews{" +
+		return "Test{" +
 				"id=" + id +
 				", description='" + description + '\'' +
 				", testType='" + testType + '\'' +
-				", testViewsList=" + testViewsList +
+				", testViewsList=" + testList +
 				", questionNr=" + questionNr +
-				", sortedTestViewsList=" + sortedTestViewsList +
+				", sortedTestViewsList=" + sortedTestList +
 				'}';
 	}
 }
