@@ -10,7 +10,7 @@
 <body>	
 
 <header>Level: <span th:text="${question.difficulty}"></span></header>
-<h3 th:text="|Test: ${mytestview.description}, Question Nr: ${mytestview.getCurrentQuestion().getOrderNr()} of ${mytestview.getNrOfQuestions()} , Question ID: ${question.questionID}|"></h3>
+<h3 th:text="|Test: ${mytest.description}, Question Nr: ${mytest.getCurrentQuestion().getOrderNr()} of ${mytest.getNrOfQuestions()} , Question ID: ${question.questionID}|"></h3>
 
 <p th:text="${question.content}"></p>
 <pre th:text="${question.code}"/>
@@ -27,9 +27,9 @@
 	    </tr>
 	</table>
 	<button type="submit" value="Submit">Show All Questions</button>
-	<button type="submit" value="PrevQuestion" formaction="/LoadPrevQuestion" th:unless="${mytestview.getCurrentQuestion().getOrderNr()} == 1">Previous Question</button>
-	<button type="submit" value="NextQuestion" formaction="/LoadNextQuestion" th:unless="${mytestview.getCurrentQuestion().getOrderNr()} == ${mytestview.getNrOfQuestions()}">Next Question</button>
-	<button type="submit" value="NextQuestion" formaction="/StopTheTest" th:if="${mytestview.getCurrentQuestion().getOrderNr()} == ${mytestview.getNrOfQuestions()}">Finish Test</button>
+	<button type="submit" value="PrevQuestion" formaction="/LoadPrevQuestion" th:unless="${mytest.getCurrentQuestion().getOrderNr()} == 1">Previous Question</button>
+	<button type="submit" value="NextQuestion" formaction="/LoadNextQuestion" th:unless="${mytest.getCurrentQuestion().getOrderNr()} == ${mytest.getNrOfQuestions()}">Next Question</button>
+	<button type="submit" value="NextQuestion" formaction="/StopTheTest" th:if="${mytest.getCurrentQuestion().getOrderNr()} == ${mytest.getNrOfQuestions()}">Finish Test</button>
 	<br/>
 	<button type="submit" value="Submit" formaction="/StopTheTest">Stop this test</button>
 </form>

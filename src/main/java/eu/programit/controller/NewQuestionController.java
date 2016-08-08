@@ -15,7 +15,6 @@ import java.util.List;
 
 @Controller
 public class NewQuestionController {
-	private String toTheAnswersPage = "answers";
 
     @Autowired
     IQuestionService iQuestionService;
@@ -28,7 +27,7 @@ public class NewQuestionController {
         System.out.println(question);
         iQuestionService.saveQuestion(question);
         model.addAttribute("answer", new Answer());
-        return toTheAnswersPage;
+        return "answers";
     }
 
     @RequestMapping(value = "/answersave", method = RequestMethod.POST)
@@ -43,7 +42,7 @@ public class NewQuestionController {
         model.addAttribute("answer", new Answer());
         model.addAttribute("answers", answers);
 
-        return toTheAnswersPage ;
+        return "answers" ;
     }
 
 }

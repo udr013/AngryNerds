@@ -51,7 +51,7 @@ public class TakeTestController {
 		model.addAttribute("numberCorrect", getCorrectAnswers(answers));
 		model.addAttribute("question", q);// the 1 will get question 2 (index 0)
 		model.addAttribute("answers", answers);
-		model.addAttribute("mytestview", myTest);
+		model.addAttribute("mytest", myTest);
 
 		testAnswerForm.setTestAnswers(myTestResult.getTestResults().get(q.getQuestionID()));
 		model.addAttribute("mytestresults", myTestResult.getTestResults().get(q.getQuestionID()));
@@ -206,8 +206,8 @@ public class TakeTestController {
 		TestResult lastTestResult = testResults.get(testResults.size()-1);
 		System.out.println(lastTestResult.getTestResultId() );
 		Map<Integer, List<Integer>> testResult = lastTestResult.getTestResults();
-		int correctQuestions = 0;
-		int incorrectQuestions = 0;
+		double correctQuestions = 0;
+		double incorrectQuestions = 0;
 		for(Map.Entry<Integer, List<Integer>> element : testResult.entrySet()) {
 			int vraagId = element.getKey();
 			Question q = this.iQuestionService.findById(vraagId);
@@ -235,9 +235,10 @@ public class TakeTestController {
 
 		}
 
-		int score =(100/(correctQuestions+incorrectQuestions))*correctQuestions;
+		double score =(100/(correctQuestions+incorrectQuestions))*correctQuestions;
+		System.out.println(score);
 		model.addAttribute("questions", questions);
-		model.addAttribute("score", score);
+		model.addAttribute("score", Math.round(score));
 		// Implement overview of all questions
 		return "TestEvaluation";
 	}

@@ -20,18 +20,11 @@ import java.util.Collection;
 
 @Controller
 public class UserController {
-	
-	//Strings met logische namen voor verwijzing naar html pagina
-	private String ToRegisterPage = "register";
-	private String RedirectToLoginPage = "redirect:/login";
+
 		
-	//Hieronder vind je het eigenlijke programma mbt de gebruikers   	
+
     @Autowired
-    IUserService iUserService; //Hier wordt een nieuw object gemaakt van de IUserService, zodat de
-		 					   //methodes van de UserService gebruikt kunnen worden (save en get).
-		 					   //In de toekomst zou hier ook nog delete bij kunnen voor de administrator.
-		 					   //De methode deleteUser is al beschikbaar in de UserService.
-		 					   //En in de toekomst zou de administrator de user moeten kunnen wijzigen.
+    IUserService iUserService;
 
     @RequestMapping("/register")
     public String registerPage(Model model){
@@ -41,7 +34,7 @@ public class UserController {
         }
         model.addAttribute("user", new User());
         model.addAttribute("allUsers", allUsers);
-        return ToRegisterPage;
+        return "register";
     }
 
     @RequestMapping(value = {"/register/save"}, method = RequestMethod.POST)
@@ -66,13 +59,13 @@ public class UserController {
         return "login"; //do not use redirect or errormessage will not be displayed
 
     }
-    //Dit gedeelte wordt gebruikt om uit te kunnen loggen. Dit gedeelte haalt methodes op van Springboot Authentication.
+
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return RedirectToLoginPage;//generally it's a good practice to show login screen again.
+        return "redirect:/login";//generally it's a good practice to show login screen again.
     }
 }

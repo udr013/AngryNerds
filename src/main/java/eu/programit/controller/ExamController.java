@@ -23,8 +23,6 @@ import eu.programit.service.ITestService;
 
 @Controller
 public class ExamController {
-	private String toTheIndexPage = "index";
-	private String toTheAddQuestionToExamPage = "addQuestToExam";
 
 	TestContent mySelectedQuestions= new TestContent() ;
 	Test myTest;
@@ -42,12 +40,12 @@ public class ExamController {
     IQuestionService iQuestionService;
 
     @RequestMapping(value = "/examsave", method = RequestMethod.POST)
-    String createExam(@ModelAttribute("testviews") Test test, Model model, ExamQuestionSelectedForm examQuestionSelectedForm) {
+    String createExam(@ModelAttribute("test") Test test, Model model, ExamQuestionSelectedForm examQuestionSelectedForm) {
         System.out.println("this is createExam" + test);
         Question q;
         iTestService.saveTestViews(test);
-        List<Test> testViewses= (List<Test>) iTestService.findAll();
-        Test latestTest = testViewses.get(testViewses.size()-1);
+        List<Test> testViews= (List<Test>) iTestService.findAll();
+        Test latestTest = testViews.get(testViews.size()-1);
         test = iTestService.findById(latestTest.getId());
         
       //  ExamQuestionSelectedForm examQuestionSelectedForm = new ExamQuestionSelectedForm();
@@ -58,7 +56,7 @@ public class ExamController {
 			q = new Question();
 			q.setContent("Unknown question requested (questionID does not exist)");
 		}
-        model.addAttribute("latesttestview", test);
+        model.addAttribute("latesttest", test);
         model.addAttribute("questions", iQuestionService.findAll());
         model.addAttribute("examQuestionSelectedForm",examQuestionSelectedForm);
         model.addAttribute("selectedQuestions", new ArrayList<Question>() {
@@ -67,7 +65,7 @@ public class ExamController {
 	//	model.addAttribute("mySelectedQuestions", mySelectedQuestions.getTestViewsContent().get(q.getQuestionID()));
         System.out.println("this is createExam" + test);
         this.myTest = test;
-        return toTheAddQuestionToExamPage;
+        return "addQuestToExam";
     }
 
     @RequestMapping(value = "/saveQuestToExam", method = RequestMethod.POST)   
@@ -112,7 +110,7 @@ public class ExamController {
 //        mySelectedQuestions.setExamId(myTest.getId());
     	
 
-        return toTheIndexPage;
+        return "index";
     }
 }
 
