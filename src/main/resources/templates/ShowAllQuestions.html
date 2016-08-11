@@ -9,7 +9,7 @@
 
 <body>	
 
-<header><h3 th:text="|Overview of all questions for test ${mytestview.description}|"></h3></header>
+<header><h3 th:text="|Overview of all questions for test ${mytest.getDescription()}|"></h3></header>
 
 <p>Select a question</p>
 
@@ -18,9 +18,9 @@
         <th>Nr</th>
         <th>Question</th>
       </tr>
-      <tr th:each="testview : ${mytestview.getSortedTestViewsList()}" >
-        <td th:text="${testview.orderNr}"></td>
-        <td th:text="${questionservice.findById(testview.questionId).content}"></td>
+      <tr th:each="test : ${mytest.getSortedTestList()}" >
+        <td th:text="${test.orderNr}"></td>
+        <td th:text="${questionservice.findById(test.questionId).content}"></td>
       </tr>
 </table>
 

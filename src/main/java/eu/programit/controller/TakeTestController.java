@@ -38,16 +38,20 @@ public class TakeTestController {
 	ITestService testService;
 
 	@RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
-	public String LoadExamQuestion(Model model, TestAnswerForm testAnswerForm, Principal principal) {
+	public String LoadExamQuestion(@ModelAttribute("newTest")Test newTest, Model model, TestAnswerForm testAnswerForm, Principal principal) {
+		System.out.println("LoadExamQuestion");
 		Question q;
 		List<Answer> answers = null;
 		try {
 			q = iQuestionService.findById(myTest.getCurrentQuestion().getQuestionId());
+
 			answers = q.getAnswers();
 		} catch (NullPointerException npe) {
 			q = new Question();
 			q.setContent("Unknown question requested (questionID does not exist)");
 		}
+
+
 		model.addAttribute("numberCorrect", getCorrectAnswers(answers));
 		model.addAttribute("question", q);// the 1 will get question 2 (index 0)
 		model.addAttribute("answers", answers);
@@ -70,13 +74,14 @@ public class TakeTestController {
 				}
 			}
 		}
-		System.out.println("waarde van count: " + count);
+		System.out.println("waarde van correcte antwoorden count: " + count);
 
 		return count;
 	}
 
 	@RequestMapping(value = "/loadExamQuestion", method = RequestMethod.POST)
 	public String LoadExamQuestionPOST(@ModelAttribute TestAnswerForm testAnswerForm, Principal principal) {
+		System.out.println("LoadExamQuestionPOST");
 		List<Integer> answers = testAnswerForm.getTestAnswers();
 		if (answers != null) {
 			for (int s : answers) {
@@ -106,10 +111,17 @@ public class TakeTestController {
 	// *********************************************************************
 
 	@RequestMapping(value = "/StartTest", method = RequestMethod.POST)
-	public String startTest(@ModelAttribute("testview") Test test, Principal principal) {
+	public String startTest(@ModelAttribute("testview") Test test, Principal principal, Model model) {
+		System.out.println("startTest");
+		System.out.println(test);
 		if (test.getId() == 0) return "redirect:/SelectTest";
+		User user = iUserService.findByName(principal.getName());
+		user.setTest(test);
+		System.out.println("user getTest: "+user.getTest());
 		myTestResult = new TestResult();
 		myTest = testService.findById(test.getId());
+		Test newTest = testService.findById(user.getTest().getId());
+		System.out.println(myTest.getId());
 		System.out.println("Selected TEst: " + test.getId() + "gebruiker:" + principal.getName());
 		// myTestsList = myTest.getsortedTestViewsList();
 
@@ -121,8 +133,9 @@ public class TakeTestController {
 		// System.out.println("First Question: " +
 		// myTest.getQuestionNr(1).getQuestionId());
 		// test output end
+		model.addAttribute("myTest", newTest);
+	myTest.startTest();
 
-		myTest.startTest();
 		return "redirect:/loadExamQuestion";
 	}
 
@@ -176,7 +189,7 @@ public class TakeTestController {
 	public String showAllQuestions(Model model, @ModelAttribute TestAnswerForm testAnswerForm) {
 		myTestResult.setTestResults(myTest.getCurrentQuestion().getQuestionId(), testAnswerForm.getTestAnswers());
 		myTestResult.printValues();
-		model.addAttribute("mytestview", myTest);
+		model.addAttribute("mytest", myTest);
 		model.addAttribute("questionservice", iQuestionService);
 		return "ShowAllQuestions";
 	}

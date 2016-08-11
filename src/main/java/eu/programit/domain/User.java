@@ -32,6 +32,17 @@ public class User implements Serializable{
 
     private String email;
 
+
+    private Test test;
+
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
+    }
+
     @Column(columnDefinition = "boolean default true", nullable = false)
     private boolean enabled = true;
 
