@@ -222,8 +222,8 @@ public class TakeTestController {
 		double correctQuestions = 0;
 		double incorrectQuestions = 0;
 		for(Map.Entry<Integer, List<Integer>> element : testResult.entrySet()) {
-			int vraagId = element.getKey();
-			Question q = this.iQuestionService.findById(vraagId);
+			int questionId = element.getKey();
+			Question q = this.iQuestionService.findById(questionId);
 			//questions.add(q);
 			List<Integer> answers = element.getValue();
 			boolean isOK = false;
