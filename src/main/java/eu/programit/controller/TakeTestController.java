@@ -37,6 +37,53 @@ public class TakeTestController {
 	@Autowired
 	ITestService testService;
 
+	// Select a Test
+	// *********************************************************************
+
+	@RequestMapping("/SelectTest")
+	public String selectTest(Model model) {
+		Iterable<Test> tv = testService.findAll();
+		model.addAttribute("testviews", tv);
+		model.addAttribute("testview", new Test());
+		return "SelectTest";
+	}
+
+
+	// Start a Test
+	// *********************************************************************
+
+	@RequestMapping(value = "/StartTest", method = RequestMethod.POST)
+	public String startTest(@ModelAttribute("testview") Test test, Principal principal, Model model) {
+		System.out.println("startTest");
+		System.out.println(test);
+		if (test.getId() == 0) return "redirect:/SelectTest";
+		User user = iUserService.findByName(principal.getName());
+		user.setTest(test);
+		System.out.println("user getTest: "+user.getTest());
+		myTestResult = new TestResult();
+		myTest = testService.findById(test.getId());
+		Test newTest = testService.findById(user.getTest().getId());
+		System.out.println(myTest.getId());
+		System.out.println("Selected TEst: " + test.getId() + "gebruiker:" + principal.getName());
+		// myTestsList = myTest.getsortedTestViewsList();
+
+		// test output start
+		// for (TestContent t: myTestsList){
+		// System.out.println("Tests: " + t.getOrderNr() + " " +
+		// t.getQuestionId());
+		// }
+		// System.out.println("First Question: " +
+		// myTest.getQuestionNr(1).getQuestionId());
+		// test output end
+		model.addAttribute("myTest", newTest);
+		myTest.startTest();
+
+		return "redirect:/loadExamQuestion";
+	}
+
+	// Load Question
+	// *********************************************************************
+
 	@RequestMapping(value = "/loadExamQuestion", method = RequestMethod.GET)
 	public String LoadExamQuestion(@ModelAttribute("newTest")Test newTest, Model model, TestAnswerForm testAnswerForm, Principal principal) {
 		System.out.println("LoadExamQuestion");
@@ -96,48 +143,6 @@ public class TakeTestController {
 
 	}
 
-	// Select a Test
-	// *********************************************************************
-
-	@RequestMapping("/SelectTest")
-	public String selectTest(Model model) {
-		Iterable<Test> tv = testService.findAll();
-		model.addAttribute("testviews", tv);
-		model.addAttribute("testview", new Test());
-		return "SelectTest";
-	}
-
-	// Start a new Test
-	// *********************************************************************
-
-	@RequestMapping(value = "/StartTest", method = RequestMethod.POST)
-	public String startTest(@ModelAttribute("testview") Test test, Principal principal, Model model) {
-		System.out.println("startTest");
-		System.out.println(test);
-		if (test.getId() == 0) return "redirect:/SelectTest";
-		User user = iUserService.findByName(principal.getName());
-		user.setTest(test);
-		System.out.println("user getTest: "+user.getTest());
-		myTestResult = new TestResult();
-		myTest = testService.findById(test.getId());
-		Test newTest = testService.findById(user.getTest().getId());
-		System.out.println(myTest.getId());
-		System.out.println("Selected TEst: " + test.getId() + "gebruiker:" + principal.getName());
-		// myTestsList = myTest.getsortedTestViewsList();
-
-		// test output start
-		// for (TestContent t: myTestsList){
-		// System.out.println("Tests: " + t.getOrderNr() + " " +
-		// t.getQuestionId());
-		// }
-		// System.out.println("First Question: " +
-		// myTest.getQuestionNr(1).getQuestionId());
-		// test output end
-		model.addAttribute("myTest", newTest);
-	myTest.startTest();
-
-		return "redirect:/loadExamQuestion";
-	}
 
 	// Load Next Question
 	// *********************************************************************
