@@ -6,10 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import eu.programit.domain.Test;
-import eu.programit.domain.TestContent;
-import eu.programit.repository.TestContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,10 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import eu.programit.domain.ExamQuestionSelectedForm;
 import eu.programit.domain.Question;
+import eu.programit.domain.Test;
+import eu.programit.domain.TestContent;
+import eu.programit.repository.TestContentRepository;
 import eu.programit.service.IQuestionService;
 import eu.programit.service.ITestService;
 
 @Controller
+@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS, value = "request")
 public class ExamController {
 
 	TestContent mySelectedQuestions= new TestContent() ;
