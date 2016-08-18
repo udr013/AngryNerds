@@ -3,6 +3,8 @@ package eu.programit.controller;
 import eu.programit.domain.*;
 import eu.programit.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class TakeTestController {
 
 	private TestResult myTestResult;
