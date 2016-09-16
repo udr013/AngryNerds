@@ -3,6 +3,7 @@ package eu.programit.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -31,17 +32,18 @@ public class Test implements Serializable {
 
 	/****** Methods           ******************************************************/
 	
-	public void startTest(){
+	public void startTest() {
 		// sort questions on order nr
 		sortedTestList = new ArrayList<>(testList);
-		sortedTestList.sort(new Comparator<TestContent>() {
-			public int compare(TestContent a, TestContent b){
-				return Integer.compare(a.orderNr, b.orderNr);
-			}
-		});
-		// start with question nr 1 (questionNr is index thus starts with 0)
-		questionNr = 0;
+		Collections.sort(sortedTestList,new TestComparator());
 	}
+		// start with question nr 1 (questionNr is index thus starts with 0)
+	class TestComparator implements Comparator<TestContent>{
+		public int compare(eu.programit.domain.TestContent a, eu.programit.domain.TestContent b){
+			return Integer.compare(a.orderNr, b.orderNr);
+		}
+	}
+
 
 	public TestContent getNextQuestion(){
 		if (questionNr <sortedTestList.size()-1) questionNr++; // no next question if already at last

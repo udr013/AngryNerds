@@ -35,9 +35,6 @@ public class ExamController {
 
     @Autowired
     ITestService iTestService;
-    
-//    @Autowired
-//    IExamService iExamService;
 
     @Autowired
     IQuestionService iQuestionService;
